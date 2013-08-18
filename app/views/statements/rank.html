@@ -1,0 +1,137 @@
+#{extends 'report.html'/}
+#{set title:gameInfo?.guest_name+"-"+ gameInfo?.home_name+"-横向比较"/}
+#{set 'moreStyles'}
+
+#{/set}
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+$(function(){
+	$("div[name=loadRank]").each(function(){
+		var id = $(this).attr("id");
+		var url = '/statements/rank/'+id+'/winloss';
+		loadHtml({},'POST',url,"#"+id);
+	});
+	
+	$("input[name=rankstyle]").change(function(){
+		var id = $("#gameId").val();
+		var url = '/statements/rank/'+id+'/'+$("input[name=rankstyle]:checked").val();
+		loadHtml({},'POST',url,"#"+id);
+		setBackColor();
+	});
+	
+	$("th").live('click',function(){
+		var gameId = $("#gameId").val();
+		var ranktype = $(this).parent().parent().parent().attr('ranktype');
+		var orderBy = $(this).attr("order");
+		var area = $(this).parent().parent().parent().parent().attr('data');		
+		var url = '/statements/rankRe/'+gameId+'/'+ranktype+'/'+area+'/'+orderBy;
+		var colus = $("#colus").val();
+		var colusName = $("#colusName").val();
+		loadHtml({colusName:colusName,colus:colus},'POST',url,"div[data="+area+"]");		
+	});
+	
+	$("#report_query").click(function(){
+		var gameId = $("#gameId").val();
+		var teamId = $("input[name=team]:checked").val();
+		var str = "";
+		$("input[name='teamids']").each(function(){
+			if($(this).attr("checked") == 'checked'){
+				if (str == ""){
+				 str = $(this).attr("value"); 
+				}else{
+				 str = str +  "," + $(this).attr("value");
+				}
+			}
+		});
+		window.open("/statements/rankreport/"+teamId+"/"+gameId +"?targetTeams="+str);
+	});
+	
+	
+	$("input[name='panelshow']").click(function(){
+		var order = $(this).attr("order");
+		$("div[name='panel']").each(function(){
+			if ($(this).attr("seq") == order){
+				$(this).css("display","block");
+			}else{
+				$(this).css("display","none");
+			}
+		});
+	});
+	
+	$("#stat_query").click(function(){
+		var id = $("#gameId").val();
+		var condition = "";
+		var conditionName = "";
+		$("input[name='teamscore']").each(function(){		
+			if($(this).attr("checked") == 'checked'){
+				if (condition == ""){
+					condition = $(this).val();
+					conditionName = $(this).attr("text");
+				}else{
+					condition = condition + "," + $(this).val();
+					conditionName = conditionName + "," + $(this).attr("text");
+				}
+			}
+		});
+		
+		if (condition != ""){
+			var url = '/statements/rank/'+id+'/teamscore';
+			loadHtml({colus:condition,colusName:conditionName},'POST',url,"#"+id);
+			
+		}
+	});
+	
+});
+function setBackColor(){
+	var homeName = $("#homeName").val();
+	var awayName = $("#awayName").val();
+	$("input[name='teamids']").each(function(){
+		if ($(this).parent().text() == homeName ||  $(this).parent().text() == awayName ){
+			
+			$(this).parent().css("background","#C1DAD7");
+		}
+	});
+
+}
+</script>
+#{/set}
+
+<input type="hidden" id="gameId" value="${gameInfo?.id}"/>
+<input type="hidden" id="homeName" value="${gameInfo?.home_name}"/>
+<input type="hidden" id="awayName" value="${gameInfo?.guest_name}"/>
+<input type="hidden" id="seq" value="1"/>
+<div class="query_nar">
+	<input type="button" class="button" name="panelshow" order="1" value="常规" />
+	<input type="button" class="button" name="panelshow" order="2" value="球队得分" />
+</div>
+<div class="query_nar" name="panel" seq="1">
+	<table class="bigtable">
+	<tbody>
+		<tr>
+		<td><input type="radio" value="${gameInfo?.home_id}" name="team" checked/>${gameInfo?.home_name}</td>
+		<td><input type="radio" value="${gameInfo?.guest_id}" name="team"/>${gameInfo?.guest_name}</td>
+		<td></td>
+		<td><input type="radio" value="hilo" name="lotteryType"/>总分</td>
+		<td><input type="radio" value="win" name="lotteryType"/>胜负</td>
+		<td><input type="radio" value="handicap" name="lotteryType"/>让分</td>
+		<td><input type="radio" value="winPoint" name="lotteryType"/>胜分差</td>
+		</tr>
+		<tr>
+		<td><input type="radio" value="winloss" name="rankstyle" checked/>战绩</td>
+		<td><input type="radio" value="teambase" name="rankstyle"/>得分</td>
+		<td><input type="radio" value="hilo" name="rankstyle"/>大小分</td>
+		<td><a id="report_query" class="query_btn" href="javascript:void(0);">生成排名</a></td>
+		<td colspan="5"></td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+
+<div class="query_nar" name="panel" seq="2" style="display:none">
+	#{statements.tStateTeamScorePannel /}
+</div>
+
+<div class="query_nar" name="loadRank" id="${gameInfo.id}">
+<!-- /statements/ajax/rankAjax.html -->
+</div>

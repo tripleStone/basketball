@@ -1,0 +1,32 @@
+#{extends 'report.html'/}
+#{set title:gameInfo.home_name+"-"+gameInfo.guest_name +"-总分-消息"/}
+#{set 'moreScripts'}
+<script type="text/javascript">
+<!--
+
+//-->
+$(function(){
+	
+});
+
+
+</script>
+
+#{/}
+<div class="query_nar">
+	#{analysis.tAnalysisNav gameInfo:gameInfo,lyType:lytype/}
+</div>
+
+
+<div class="query_nar clearfix" id="players">
+	<div class="reportleft textBox clearfix">
+		<div id="homePlayers" name="loadtmsg"  teamId="${gameInfo.home_id}" gameId="${gameInfo.id}">
+		</div>	
+	</div>
+	<div class="reportright textBox clearfix">
+		<div id="awayPlayers" name="loadtmsg" teamId="${gameInfo.guest_id}"  gameId="${gameInfo.id}">
+		</div>	
+	</div>
+
+
+</div>

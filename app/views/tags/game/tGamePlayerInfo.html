@@ -1,0 +1,18 @@
+*{球员信息}*  
+*{_player,_addition}*  
+<tr>
+	<td><a href="/basedata/player/recent/${_player.player_id}?gameId=${_player.game_id}" target="_blank">${_player.player_name}</a></td><td>${_player.player_position}</td><td>${_player.time}</td>
+	<td>${_player.shoot_hit}-${_player.shoot_all}</td><td>${_player.three_hit}-${_player.three_all}</td><td>${_player.free_hit}-${_player.free_all}</td>
+	<td>${_player.rebound_front}</td><td>${_player.rebound_after}</td><td>${_player.rebound_front + _player.rebound_after}</td>
+	<td>${_player.assist}</td><td>${_player.foul}</td><td>${_player.stolen}</td>
+	<td>${_player.turn_out}</td><td>${_player.block}</td><td>${_player.point}</td><td>${_player.per}</td>
+	#{if _addition == "analysis"}
+		<td>${_player.game_date.format("yyyy-mm-dd")}</td>
+		#{if _player.team_id == _player.gameInfo.home_id }
+		<td>主</td>
+		#{/if}
+		#{else}
+		<td>客</td>
+		#{/else}
+	#{/if}
+</tr>

@@ -1,0 +1,35 @@
+*{胜分差}
+*{var: _lotteries}*
+<table class="bigtable">
+<thead>
+	 <tr>
+	 	<th>球队(客VS主)</th><th>1-5</th><th>5-10</th><th>11-15</th><th>16-20</th><th>21-25</th><th>26+</th><th>日期</th><th></th>
+	 </tr>
+</thead>
+<tbody>
+	#{list items:_lotteries,as:'lottery'}
+	<tr>
+		#{if lottery.hit == null || lottery.hit == "" }
+			<td><a href="/analysis/base?gameId=${lottery.game_id}" target="_blank">${lottery.guest_team}<br/>${lottery.host_team}</a></td>
+		#{/if}
+		#{else}
+			<td><a href="/basedata/game/score/${lottery.game_id}" target="_blank">${lottery.guest_team}<br/>${lottery.host_team}</a></td>
+		#{/else}
+		
+		<td>${print(lottery.getHitLottery("1",lottery.host_1to5,lottery.guest_1to5))}</td>
+		<td>${print(lottery.getHitLottery("2",lottery.host_6to10,lottery.guest_6to10))}</td>
+		<td>${print(lottery.getHitLottery("3",lottery.host_11to15,lottery.guest_11to15))}</td>
+		<td>${print(lottery.getHitLottery("4",lottery.host_16to20,lottery.guest_16to20))}</td>
+		<td>${print(lottery.getHitLottery("5",lottery.host_21to25,lottery.guest_21to25))}</td>
+		<td>${print(lottery.getHitLottery("6",lottery.host_26,lottery.guest_26))}</td>		
+		<td>${lottery.createDate.format("yyyy-MM-dd HH:mm")}</td>
+		<td><a name="lottery_his"  href="javascript:void(0);" data="${lottery.game_id}" ltype="wnm">历史</a>
+		<a name="lottery_exp"  href="javascript:void(0);" data="${lottery.id}" rel="winpoint">经验</a>
+		#{if lottery.hit != null && lottery.hit != "" }
+			<a href="/analysis/analysismutual?gameId=${lottery.game_id}" target="_blank">复盘</a>
+		#{/if}
+		</td>
+	</tr>
+	#{/list}
+</tbody>
+</table>

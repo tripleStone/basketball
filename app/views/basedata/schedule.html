@@ -1,0 +1,30 @@
+#{extends 'main.html'/}
+#{set title:'basketball'/}
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+$(function(){
+	$("input[name=begin_date]").calendar({ format:'yyyy-MM-dd'});
+	
+   	$("#report_query").click(function(){//查询
+		window.location.href="/basedata/schedule?playDate="+$("#b_day").val();
+   	});
+});
+
+</script>
+#{/}
+
+<div class="query_nar">
+	<a class="query_btn" href="/basedata/schedule?playDate=${preDate}"><<</a>
+	<input type="text" id="b_day" name="begin_date" class="txt time_bar" value="${playDate}">
+	<a id="report_query" class="query_btn" href="javascript:void(0);">查询</a>
+	<a class="query_btn" href="/basedata/schedule?playDate=${nextDate}">>></a>
+</div>
+
+<div class="query_nar" id="result">	
+	#{games_table gameInfos:gameInfos,hiloMap:hiloMap,handiCapMap:handiCapMap/}
+</div>
+
+<div class="query_nar" id="editform">
+
+</div>

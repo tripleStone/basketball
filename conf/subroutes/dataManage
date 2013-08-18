@@ -1,0 +1,54 @@
+
+GET /datamanage/statisticgames 	DataManageController.statisticGames
+
+#~~~~~~~~~~~~~~~~~~~~~~~~球队类~~~~~~~~~~~~~~~~~~~~~~~
+#球队列表
+GET /datamanage/infoTeams     DataManageController.infoTeams
+
+#球队信息管理
+GET /datamanage/editTeamInfo/{<\d+>teamId}  DataManageController.editTeamInfo  
+#---------------------球队类---------------------
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~球员类~~~~~~~~~~~~~~~~~~~~~~~
+POST /datamanage/saveTeamInfo  DataManageController.saveTeamInfo   
+
+#球员最近比赛数据统计
+POST /manage/player/ajax/recentstat
+#---------------------球员类---------------------
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~比赛类~~~~~~~~~~~~~~~~~~~~~~~
+#比赛信息编辑--比赛信息编辑
+#POST /manage/editExperience     DataManageController.editExperience
+#比赛
+POST /manage/editExperience/save     DataManageController.saveGameExperience
+
+POST /mamage/game/gameinfostatistic 	DataManageController.execGameStatistic
+
+POST /mamage/game/teamseasonstatistic 	DataManageController.execTeamSeason
+
+POST /mamage/game/teamseasonstatisticScore 	DataManageController.execTeamSeasonScore
+
+POST /mamage/game/playerteamseason 	DataManageController.execPlayerTeamSS
+
+POST /mamage/game/playerseason 	DataManageController.execPlayerSS
+#---------------------比赛类---------------------
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~lottery~~~~~~~~~~~~~~~~~~~~~~~
+#调用盘口exp经验
+POST /datamanage/lottery/callLotteryExp   DataManageController.callLotteryExp     
+
+#保存盘口exp经验
+POST /datamanage/lottery/saveLotteryExp   DataManageController.saveLotteryExp
+#---------------------lottery---------------------   
+
+
+
+
+
+ 

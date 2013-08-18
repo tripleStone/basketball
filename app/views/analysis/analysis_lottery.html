@@ -1,0 +1,60 @@
+#{extends 'report.html'/}
+#{set title:'analysis'/}
+#{include 'analysis/analysis_navigate.html'/}
+<div class="query_nar">
+	<ul rel="lotteryRecent" id="linav">
+		<li data="winPoint">胜分差</li>
+		<li data="winlose">胜负</li>
+		<li data="hilo">总分</li>
+		<li data="handicap">让分</li>
+	</ul>
+</div>
+
+<div class="query_nar  clearfix" name="lotteryRecent" id="winPoint">
+	<div class="reportleft">	
+	<font color="red">${gameInfo.home_name}</font>最近赔率:
+	#{lottery.wnm lotteries:homeLotteries/}
+	
+	</div>
+	<div class="reportright">
+		<font color="red">${gameInfo.guest_name}</font>最近赔率:
+		#{lottery.wnm lotteries:guestLotteries/}
+	</div>
+</div>
+
+<div class="query_nar  clearfix" name="lotteryRecent" style="display:none" id="hilo">
+	<div class="reportleft">	
+	<font color="red">${gameInfo.home_name}</font>最近赔率:
+		#{lottery.hilo hilos:homeHilos/}
+	
+	</div>
+	<div class="reportright">
+		<font color="red">${gameInfo.guest_name}</font>最近赔率:
+		#{lottery.hilo hilos:awayHilos/}
+	</div>
+</div>
+
+<div class="query_nar  clearfix" name="lotteryRecent" style="display:none" id="handicap">
+	<div class="reportleft">	
+	<font color="red">${gameInfo.home_name}</font>最近赔率:
+		#{lottery.handicap handicaps:homeHdcps/}
+	
+	</div>
+	<div class="reportright">
+		<font color="red">${gameInfo.guest_name}</font>最近赔率:
+		#{lottery.handicap handicaps:awayHdcps/}
+	</div>
+</div>
+
+<div class="query_nar  clearfix"  name="lotteryRecent" style="display:none" id="winlose">
+	<div class="reportleft">	
+	<font color="red">${gameInfo.home_name}</font>最近赔率:
+		#{lottery.handicap handicaps:homeHdcps/}
+	
+	</div>
+	<div class="reportright">
+		<font color="red">${gameInfo.guest_name}</font>最近赔率:
+		#{lottery.handicap handicaps:awayHdcps/}
+	</div>
+</div>
+

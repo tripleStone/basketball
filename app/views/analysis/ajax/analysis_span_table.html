@@ -1,0 +1,20 @@
+
+<table class="table">
+<tbody>	
+	<tr>
+		<td>
+		#{list items:gameInfos,as:'singleGame'}
+		#{if isGuest == 0}
+		&nbsp;(${singleGame.home_score}-${singleGame.guest_score})#{if singleGame.g_btb == 1 }
+		<font color="red">${singleGame.guest_name}</font>#{/if}#{else}${singleGame.guest_name}#{/else}&nbsp;|
+		#{/if}
+		#{else}
+		&nbsp;${singleGame.home_name}
+		#{if singleGame.g_btb == 1 }<font color="red">(${singleGame.home_score}-${singleGame.guest_score})</font>#{/if}
+		#{else}(${singleGame.home_score}-${singleGame.guest_score})#{/else}&nbsp;|
+		#{/else}
+		#{/list}
+		</td>
+	</tr>
+</tbody>
+</table>

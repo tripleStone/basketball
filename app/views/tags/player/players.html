@@ -1,0 +1,23 @@
+*{球员名录}
+*{var: _team,_pgs,_centers,_pfs,_sgs,_sfs,_game}*
+<p>PF:</p>
+#{list items:_pfs,as:"player"}
+<p>depth:${player.depth}  <a name="player" target="_blank" href="/basedata/player/recent/${player.id}?gameId=${_game != null?_game.id:''}">${player.name}</a>  体重:${player.weight} 身高：${player.hight} 经验：${player.experience} 得分：<font color="red">${player.pss?.point}</font> 篮板：${player.pss?.rebound_all} 助攻：${player.pss?.assist}</p>
+#{/list}
+<p>C:</p>
+#{list items:_centers,as:"player"}
+<p>depth:${player.depth}  <a name="player" target="_blank" href="/basedata/player/recent/${player.id}?gameId=${_game != null?_game.id:''}">${player.name}</a>  体重:${player.weight} 身高：${player.hight} 经验：${player.experience} 得分：<font color="red">${player.pss?.point}</font> 篮板：${player.pss?.rebound_all} 助攻：${player.pss?.assist}</p>
+#{/list}
+<p>PG:</p>
+#{list items:_pgs,as:"player"}
+<p>depth:${player.depth}  <a name="player" target="_blank" href="/basedata/player/recent/${player.id}?gameId=${_game != null?_game.id:''}">${player.name}</a>  体重:${player.weight} 身高：${player.hight} 经验：${player.experience} 得分：<font color="red">${player.pss?.point}</font> 篮板：${player.pss?.rebound_all} 助攻：${player.pss?.assist}</p>
+#{/list}
+<p>SG:</p>
+#{list items:_sgs,as:"player"}
+<p>depth:${player.depth}  <a name="player" target="_blank" href="/basedata/player/recent/${player.id}?gameId=${_game != null?_game.id:''}">${player.name}</a>  体重:${player.weight} 身高：${player.hight} 经验：${player.experience} 得分：<font color="red">${player.pss?.point}</font> 篮板：${player.pss?.rebound_all} 助攻：${player.pss?.assist}</p>
+#{/list}
+<p>SF:</p>
+#{list items:_sfs,as:"player"}
+<p>depth:${player.depth}  <a name="player" target="_blank" href="/basedata/player/recent/${player.id}?gameId=${_game != null?_game.id:''}">${player.name}</a>  体重:${player.weight} 身高：${player.hight} 经验：${player.experience} 得分：<font color="red">${player.pss?.point}</font> 篮板：${player.pss?.rebound_all} 助攻：${player.pss?.assist}</p>
+#{/list}
+

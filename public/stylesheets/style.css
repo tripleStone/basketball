@@ -1,0 +1,75 @@
+@charset "utf-8";
+.header{height: 74px;padding: 0 50px;background: url(../images/top_bg.gif) 0 -54px repeat-x;}
+.header .login{float: left;width: 200px;height: 74px;}
+.header .top_info{float: right;position: relative;width: 665px;height: 74px;}
+.header .top_info p{margin-top: 10px;color: #fff;text-align: right;}
+.header .top_info a{color: #fff;}
+.header .top_info .edit_pw{margin-left: 20px;}
+.header .top_info .menu{position:absolute;right: 0;bottom: 0;height: 31px;}
+.header .top_info .menu li{float: left;margin-left: 10px;display: inline;line-height: 31px;text-align: center;padding: 0 18px;background-color: #026396;font-size:14px;font-weight: bold;border-top-left-radius: 3px;border-top-right-radius: 3px;}
+.header .top_info .menu a:hover{text-decoration: none;}
+.header .top_info .menu .cur{background-color: #fff;color: #026396;}
+.container{width: 100%;margin: 0 auto;overflow: hidden;}
+.reportleft{width:49%;float: left;background-color: #fff;border:1px solid #ddd;}
+.reportright{width:50%;float: right;background-color: #fff;border:1px solid #ddd;}
+.main{width: 89%;float: left;background-color: #fff;}
+.left_nar{width: 130px;float: left;background-color: #f4f4f4;border-right:1px solid #d7d7d7;}
+.left_nar h3{font-size: 14px;font-weight: normal;color: #797979;height: 36px;line-height: 36px;margin: 0 1px;border-bottom: 1px solid #d1d1d1;}
+.left_nar h3 span{display: inline-block;width: 24px;height: 18px;background: url(../images/icons.png) no-repeat;vertical-align: -10px;margin-right: 8px;}
+.left_nar .icon_1 span{background-position: -216px -58px;}
+.left_nar .icon_2 span{background-position: -219px -86px;}
+.left_nar .icon_3 span{background-position: -218px -113px;}
+.left_nar .sub_nar{border-top:1px solid #fff;margin: 0 1px;padding: 3px 0 3px 25px;}
+.left_nar .sub_nar li{line-height: 30px;}
+.left_nar .sub_nar .cur{background-color: #fff;border: 1px solid #d7d7d7;border-right: none;margin-right: -2px;padding-left: 33px;border-top-left-radius: 2px;border-bottom-left-radius: 2px;color: #6e6e6e;font-weight: bold;box-shadow: 0 1px 2px #ccc;}
+.left_nar .sub_nar .cur span{display:inline-block; width:10px;height:10px;background: url(../images/icons.png) -236px -136px no-repeat;margin-left: 10px; vertical-align:-1px; }
+.content{padding: 20px;}
+.query_nar{padding: 5px;background-color: #f7f7f7;margin-bottom: 5px;}
+.query_nar .column{padding: 8px 12px;background-color: #f7f7f7;}
+.query_nar label{margin-right: 6px;}
+.query_nar .txt{border:1px solid #ccc;padding: 4px;width: 110px;margin-right: 12px;}
+.query_nar .time_bar{background:#fff url(../images/icons.png) -101px -142px no-repeat;cursor: pointer;width:110px}
+.query_nar .textBox{font: 15px/1.8 Arial, Helvetica, sans-serif, "宋体";text-indent:2em;}
+.query_nar .textBox p{font: 15px/1.8 Arial, Helvetica, sans-serif, "宋体";text-indent:2em;}
+a.query_btn{display: inline-block;padding: 4px 8px;border: 1px solid #ccc;color: #383838;font-weight: bold;}
+a.query_btn:hover{text-decoration: none;}
+
+
+.query_nar  li{display: inline-block;padding: 4px 8px;border: 1px solid #ccc;color: #383838;font-weight: bold;cursor:pointer;}
+.query_nar  li{text-decoration: none;cursor:pointer;}
+.column  li{display: inline-block;padding: 4px 8px;border: 1px solid #ccc;color: #383838;font-weight: bold;cursor:pointer;}
+.column  li{text-decoration: none;cursor:pointer;}
+
+
+
+.bigtable{width: 100%;border:1px solid #dadada;}
+.bigtable thead th{font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; color: #4f6b72; border-right: 1px solid #C1DAD7; border-bottom: 1px solid #C1DAD7; border-top: 1px solid #C1DAD7; letter-spacing: 2px; text-transform: uppercase; text-align: left; padding: 6px 6px 6px 6px;background: #CAE8EA  no-repeat;}
+.bigtable .b_tit th{font-weight: bold;color: #075d96;}
+.bigtable tbody td{border: 1px solid #C1DAD7; background: #fff; font-size:11px; color: #4f6b72;padding: 4px;}
+.bigtable .even td{background-color: #f7f7f7;}
+.bigtable tbody td.comments{border-right:1px solid #dadada;padding: 8px 8px;text-align: center;width:300px}
+.bigtable tbody td.smallcmt{border-right:1px solid #dadada;padding: 8px 8px;text-align: center;width:200px}
+.bigtable tbody td.team{border-right:1px solid #dadada;padding: 8px 8px;text-align: center;width:90px}
+.bigtable tbody td.score{border-right:1px solid #dadada;padding: 8px 8px;text-align: center;width:70px}
+.bigtable tbody td.winscore{border-right:1px solid #dadada;padding: 8px 8px;text-align: left;width:35px;color:#FF6600;}
+.bigtable tbody td.losescore{border-right:1px solid #dadada;padding: 8px 8px;text-align: left;width:35px;color:#009933;}
+.bigtable tbody td.winstate{border-right:1px solid #dadada;padding: 8px 8px;text-align: left;width:30px;color:#FF6600;}
+.bigtable tbody td.losestate{border-right:1px solid #dadada;padding: 8px 8px;text-align: left;width:30px;color:#009933;}
+.bigtable tbody td.date{border-right:1px solid #dadada;padding: 8px 8px;text-align: center;width:80px}
+.bigtable tbody td.costime{border-right:1px solid #dadada;padding: 8px 8px;text-align: center;width:40px}
+.bigtable .txt_align{text-align: center;}
+/*校门口*/
+.pager_v2{margin:20px 20px 20px 30px;}
+.pager_v2 a,.pager_v2 span{font-size:12px;  margin-right:4px; font-family:none;}
+.pager_v2 a{ border:#48afc0 1px solid; padding:3px 7px ; background:#d8e7ee;  color:#004344; text-decoration:none;}
+.pager_v2 a:hover {border:#48afc0 1px solid; color:#fff; background:#207fb7;}
+.pager_v2 a:active {border:#48afc0 1px solid; color:#fff; background:#48afc0;}
+.pager_v2 span.current {border: #48afc0 1px solid; padding:3px 7px;font-weight:bold; background:#207fb7; color:#ffffff;}
+.pager_v2 span.disabled {border:#48afc0 1px solid; padding:3px 7px;}
+.point { width:250px;}
+.sub_box { height:30px; line-height:30px; background:#e7e7e7; padding-left:15px; font-size:14px;}
+.sub_box a{ background:#ccc; color:#333; margin:0 5px; float:left; width:96px; text-align:center; line-height:30px; height:30px; display:inline-block;}
+.sub_box a.select{ border-top:2px solid #229ad7; background:#fff;line-height:28px; height:28px; font-weight:bold;}
+.sub_edit { float:left; background:#d4f1ff; border:1px solid #295f7b; padding:4px 10px; font-weight:bold; cursor:pointer;}
+.sub_del{ float:left; margin-left:10px;background:#f9f4d4; border:1px solid #ae8e5f; padding:4px 10px; font-weight:bold;cursor:pointer;}
+.sub_recommend { float:left; background:url(../images/gou_bg.png)  no-repeat; width:23px; height:23px; display:inline-block; font-weight:bold; cursor:pointer; margin-right:15px;}

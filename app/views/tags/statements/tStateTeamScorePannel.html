@@ -1,0 +1,37 @@
+<table class="bigtable">
+<tbody>
+	<tr>	
+		<td><input type="checkbox" value="SHOOT_HIT" name="teamscore" text="投篮"/>投篮</td>
+		<td><input type="checkbox" value="SHOOT_PERCENT" name="teamscore" text="投篮命中率"/>投篮命中率</td>
+		<td><input type="checkbox" value="THREE_HIT" name="teamscore" text="三分球"/>三分球</td>
+		<td><input type="checkbox" value="THREE_PERCENT" name="teamscore" text="3分命中率"/>3p命中率</td>
+		<td><input type="checkbox" value="FREE_HIT" name="teamscore" text="罚球命中"/>罚球命中</td>
+		<td><input type="checkbox" value="FREE_PERCENT" name="teamscore" text="罚球命中率"/>罚球命中率</td>
+		<td><input type="checkbox" value="FIRST_SCORE" name="teamscore" text="首发"/>首发</td>
+		<td><input type="checkbox" value="SUBSTITUTE_SCORE" name="teamscore" text="替补"/>替补</td>
+		<td><input type="checkbox" value="PAINT_POINTS" name="teamscore" text="禁区"/>禁区</td>
+		<td><input type="checkbox" value="FAST_BREAK_POINTS" name="teamscore" text="快攻"/>快攻</td>
+	</tr>
+	<tr>	
+		<td><input type="checkbox" value="TURN_OUT" name="teamscore" text="失误"/>失误</td>
+		<td><input type="checkbox" value="BLOCK" name="teamscore" text="封盖"/>封盖</td>
+		<td><input type="checkbox" value="ASSIST" name="teamscore" text="助攻"/>助攻</td>
+		<td><input type="checkbox" value="TURN_OUT" name="teamscore" text="失误"/>失误</td>
+		<td><input type="checkbox" value="TEAM_OFFS" name="teamscore" text="球队失误"/>球队失误</td>
+		<td><input type="checkbox" value="TEAM_POINTS_OFF" name="teamscore" text="球队失误失分"/>球队失误失分</td>			
+		<td><input type="checkbox" value="STOLEN" name="teamscore" text="抢断"/>抢断</td>
+		<td>
+			<select id="stat_type">
+				<option value="0">本队客场</option>
+				<option value="1">本队主场</option>
+				<option value="2" selected>本队全部</option>
+				<option value="3">本队客场失</option>
+				<option value="4">本队主场失</option>
+				<option value="5">本队所有失</option>
+			</select>
+		</td>
+		<td colspan="1"><a id="stat_query" class="query_btn" href="javascript:void(0);">查询</a></td>
+		<td colspan="1"><a id="gen_report" class="query_btn" href="javascript:void(0);">生成报表</a></td>
+	</tr>
+</tbody>
+</table>

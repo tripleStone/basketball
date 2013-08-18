@@ -1,0 +1,21 @@
+*{球队赛季信息}
+*{var: _htss,_gtss,_hilo,_gameInfo}*
+
+<p>${_gameInfo.play_date.format("yyyy-MM-dd")}:${_gameInfo.guest_name}(客)VS${_gameInfo.home_name}(主)
+<input type="button" class="button" name="queryTable" value="查询比赛" url="/analysis/hilo/similarHiloIndex?"/></p>
+<p>大小分盘口总分是：<input type="checkbox" value="${_hilo.hilo}" name="querycondition" data="hilo"/>${_hilo.hilo}分 </p>
+<p><input type="radio" value="${_gameInfo.guest_id}" name="querycondition" data="awayId"/>${_gameInfo.guest_name}(客)休息了${_gameInfo.g_btb}天,
+<input type="radio" value="${_gameInfo.home_id}" name="querycondition" data="homeId"/>${_gameInfo.home_name}(主)休息了${_gameInfo.h_btb}天 </p>
+<p>美国比赛时间：
+<input type="checkbox" value="${_gameInfo.usa_play_date?_gameInfo.usa_play_date.format("yyyy-MM-dd HH:mm"):""}" name="querycondition" data="usaPlayDate"/>${_gameInfo.usa_play_date?_gameInfo.usa_play_date.format("yyyy-MM-dd"):""}
+<input type="checkbox" value="${_gameInfo.play_time}" name="querycondition" data="playTime"/>${_gameInfo.play_time} 
+<input type="checkbox" value="${_gameInfo.week_day}" name="querycondition" data="weekDay"/> ${_gameInfo.getWeekDay()} </p>
+<p>${_gameInfo.home_name}(主)赛季得分是${_htss.season_score},失分是${_htss.season_lost_score},总分为${_htss.sum(_htss.season_score,_htss.season_lost_score)}</p>
+<p>&nbsp;</p>
+<p>${_gameInfo.home_name}(主)主场得分${_htss.home_score},失分是${_htss.home_lost_score},总分为${_htss.sum(_htss.home_score,_htss.home_lost_score)}</p>
+<p>&nbsp;</p>
+<p>${_gameInfo.guest_name}(客)赛季得分是${_gtss.season_score},失分是${_gtss.season_lost_score},总分为${_gtss.sum(_gtss.season_score,_gtss.season_lost_score)}</p>
+<p>&nbsp;</p>
+<p>${_gameInfo.guest_name}(客)客场得分${_gtss.guest_score},失分是${_gtss.guest_lost_score},总分为${_gtss.sum(_gtss.guest_score,_gtss.guest_lost_score)}</p>
+<p>&nbsp;</p>
+<p>${_gameInfo.home_name}(主)主场得分 + ${_gameInfo.guest_name}(客)客场得分为:${_htss.sum(_htss.home_score,_gtss.guest_score)} </p>

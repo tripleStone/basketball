@@ -1,0 +1,20 @@
+#{extends 'main.html'/}
+#{set title:'basketball'/}
+
+<script type="text/javascript">
+</script>
+<div class="query_nar">
+<table class="bigtable">
+	<tbody>
+	#{list items:teams,as:'team'}
+	#{if team_index % 5 == 1}
+	<tr>
+	#{/if}
+	<td><a href="/gameData/gameDataImport/${team.id}" target="_blank">${team.full_name}</a></td>
+	#{if team_index % 5 == 0}
+	</tr>
+	#{/if}
+	#{/list}
+	</tbody>
+</table>
+</div>

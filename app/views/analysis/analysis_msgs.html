@@ -1,0 +1,18 @@
+#{extends 'report.html'/}
+#{set title:'analysis'/}
+#{include 'analysis/analysis_navigate.html'/}
+
+<div class="query_nar clearfix">
+	<div class="reportleft">
+		%{ tmpMsgs = homeMsgs
+		   teamName = gameInfo.home_name
+		}%
+		#{include '/analysis/ajax/analysis_msgs_table.html'/}
+	</div>
+	<div class="reportleft">
+		%{ tmpMsgs = guestMsgs
+		   teamName = gameInfo.guest_name
+		}%
+		#{include '/analysis/ajax/analysis_msgs_table.html'/}
+	</div>
+</div>

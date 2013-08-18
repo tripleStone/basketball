@@ -1,0 +1,43 @@
+#{extends 'report.html'/}
+#{set title:gameInfo.guest_name+"-"+ gameInfo.home_name+"-总分-赔率"/}
+#{set 'moreStyles'}
+
+#{/set}
+<input type="hidden" id="homeId" value="${gameInfo.home_id}"/>
+<input type="hidden" id="awayId" value="${gameInfo.guest_id}"/>
+<input type="hidden" id="gameId" value="${gameInfo.id}"/>
+
+<div class="query_nar">
+	#{analysis.tAnalysisNav gameInfo:gameInfo,lyType:"hilo"/}
+</div>
+
+
+
+<p>&nbsp;两队的历史交手记录：</p>
+<div class="query_nar">
+	#{lottery.hilo lotteries:hilos/}
+</div>
+
+<p>&nbsp;赔率变化：</p>
+<div class="query_nar  clearfix"  id="hiloHistory">
+</div>
+
+<p>&nbsp;最近赔率：</p>
+<div class="query_nar  clearfix"  id="hilo">
+</div>
+
+
+<p>&nbsp;相同间隔天数的赔率：</p>
+<div class="query_nar  clearfix" >
+
+	<div class="reportleft">	
+		<font color="red">${gameInfo.guest_name}休息了${gameInfo.g_btb}</font>:
+		#{lottery.hilo lotteries:gDayLty/}	
+	</div>
+	<div class="reportright">		
+		<font color="red">${gameInfo.home_name}休息了${gameInfo.h_btb}</font>:
+		#{lottery.hilo lotteries:hDayLty/}
+	</div>
+
+
+</div>

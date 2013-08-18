@@ -1,0 +1,30 @@
+<table class="bigtable">
+<thead>
+	<tr>
+		<th></th><th>场次</th><th>胜</th><th>负</th><th>得分</th><th>失分</th><th>净胜分</th><th>胜率</th>
+	</tr>
+</thead>
+	<tbody>
+		<tr>
+			<td>总计</td><td>${tsiTmp.win + tsiTmp.loss}</td><td>${tsiTmp.win}</td><td>${tsiTmp.loss}</td>
+			<td>${tsiTmp.season_score}</td><td>${tsiTmp.season_lost_score}</td><td>${tsiTmp.season_net_score}</td>
+			<td>${tsiTmp.season_percent}</td>
+		</tr>
+		<tr>
+			<td>主场</td><td>${tsiTmp.home_all}</td><td>${tsiTmp.home_win}</td><td>${tsiTmp.home_all - tsiTmp.home_win}</td>
+			<td>${tsiTmp.home_score}</td><td>${tsiTmp.home_lost_score}</td><td>${tsiTmp.home_net_score}</td>
+			<td>${tsiTmp.home_percent}</td>
+		</tr>
+		<tr>
+			<td>客场</td><td>${tsiTmp.guest_all}</td><td>${tsiTmp.guest_win}</td><td>${tsiTmp.guest_all - tsiTmp.guest_win}</td>
+			<td>${tsiTmp.guest_score}</td><td>${tsiTmp.guest_lost_score}</td><td>${tsiTmp.guest_net_score}</td>
+			<td>${tsiTmp.guest_percent}</td>
+		</tr>
+		<tr>
+			<td>最近${games}场</td><td>${games}</td><td>${recent.win}</td><td>${recent.loss}</td>
+			<td>${recent.home_score}</td><td>${recent.home_lost_score}</td><td>${recent.home_net_score}</td>
+			<td>${recent.home_percent}</td>
+		</tr>
+		
+	</tbody>
+</table>

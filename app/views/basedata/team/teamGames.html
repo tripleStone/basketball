@@ -1,0 +1,81 @@
+#{extends 'main.html'/}
+#{set title:team.team_name + "-赛程"/}
+
+<script type="text/javascript">
+$(function(){
+	$('#season').change(function(){		
+		window.location.href = '/basedata/team/games?teamId=${team.id}&year='+$("#season option:selected").val();
+	});
+});
+</script>
+<div class="query_nar">
+	
+</div>
+
+	
+
+<div class="query_nar">
+	<select id="season" name="season">
+		<option value="2013" #{if season == 2013} selected #{/if}>2013</option>
+		<option value="2012" #{if season == 2012} selected #{/if}>2012</option>
+	</select>
+</div>
+
+<div class="query_nar">
+	<table class="bigtable">
+	<thead>
+		<tr>
+			<th>主队</th><th>让分</th><th >客队</th><th>比分</th><th>胜负</th><th>胜分差</th><th>大小分</th><th>耗时</th><th>简报</th><th>日期</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:gameInfos,as:'gameInfo'}
+		<tr>
+			<td class="team">
+			#{if team.team_name != gameInfo.home_name}
+				<a href="/basedata/team/${gameInfo.home_id}/games" target="_blank">${gameInfo.home_name}</a>
+			#{/if}
+			#{else}
+				${gameInfo.home_name}
+			#{/else}
+			</td>
+			<td class="date" #{if mapHandicap.get(gameInfo.id)!=null} #{if mapHandicap.get(gameInfo.id).hit == "win"} style="color:red" #{/if}#{else}style="color:green"#{/else} #{/if}>
+				#{if mapHandicap.get(gameInfo.id)!=null }${mapHandicap.get(gameInfo.id).handicap}(${mapHandicap.get(gameInfo.id).lottery})${mapHandicap.get(gameInfo.id).hit}#{/if}
+			</td>
+			<td class="team">
+			#{if team.team_name != gameInfo.guest_name}
+				<a href="/basedata/team/${gameInfo.guest_id}/games" target="_blank">${gameInfo.guest_name}</a>
+			#{/if}
+			#{else}
+				${gameInfo.guest_name}
+			#{/else}
+			</td>
+			<td class="score">
+			#{if gameInfo.home_score == 0}无#{/if}
+			#{else}<a href="/basedata/game/score/${gameInfo.id}">${gameInfo.home_score}-${gameInfo.guest_score}</a>#{/else}
+			</td>
+			
+			<td #{if gameInfo.getWinScore(team.team_name) > 0} class="winstate" #{/if}#{else}class="losestate"#{/else} >${gameInfo.getWin(team.team_name)}</td>			
+			<td>			
+				${gameInfo.getWinScore(team.team_name)}
+				#{if mapWinPoint.get(gameInfo.id)!=null }(${mapWinPoint.get(gameInfo.id).lottery})#{/if}
+			</td>
+			<td #{if mapHilo.get(gameInfo.id)!=null} #{if mapHilo.get(gameInfo.id).hit == "greater"} style="color:red" #{/if}#{else}style="color:green"#{/else} #{/if}>
+				${gameInfo.home_score+gameInfo.guest_score}#{if mapHilo.get(gameInfo.id) != null}(${mapHilo.get(gameInfo.id).hilo})(${mapHilo.get(gameInfo.id).lottery}) #{/if}
+			</td>
+			
+			<td class="costime">${gameInfo.cost_time}</td>
+			<td>${gameInfo.reportTitle}</td>
+			<td class="date">
+			#{if gameInfo.getBtoB(team.team_name) == false}
+				${gameInfo.play_date.format("yyyy-MM-dd")}
+			#{/if}
+			#{else}
+				<font color="red">${gameInfo.play_date.format("yyyy-MM-dd")}</font>
+			#{/else}
+			</td>
+		</tr>
+		#{/list}
+	</tbody>
+	</table>
+</div>

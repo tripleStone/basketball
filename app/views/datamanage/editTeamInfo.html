@@ -1,0 +1,97 @@
+#{extends 'main.html'/}
+#{set title:'basketball'/}
+#{set 'moreScripts'}
+<script type="text/javascript" >
+$(function(){
+	
+	
+	$("#saveTeam").click(function(){
+		var team_name = $("#team_name").val();
+		var full_name = $("#full_name").val();
+		var bigarea = $("#bigarea").val();
+		var smallarea = $("#smallarea").val();
+		var comments = $("#comments").val();
+		var teamId = $("#teamid").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/manageInfo/saveTeamInfo',
+   			data:{teamId:teamId,team_name:team_name,full_name:full_name,
+   				bigarea:bigarea,smallarea:smallarea,comments:comments},
+   			dataType:'text',
+   			success:function(data){
+   				if (data.error == "1"){
+   					msgTips('success','保存成功');
+   				}else{
+   					msgTips('error','保存失败');
+   				}
+   			}
+		});
+	});
+	
+	$("#savePlayerInfo").click(function(){
+		var team_url = $("#team_url").val();
+		var teamId = $("#teamid").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/manageInfo/saveTeamPlayersInfo',
+   			data:{teamId:teamId,team_url:team_url},
+   			dataType:'json',
+   			success:function(data){
+   				if (data.error == "1"){
+   					msgTips('success','保存成功');
+   				}else{
+   					msgTips('error','保存失败');
+   				}
+   			}
+		});		
+	});	
+});
+</script>
+#{/}
+<div class="query_nar">
+	<input type="hidden" id="teamid" name="teamid" value="${teamId}"/>
+	队名：<input type="text" id="team_name" name="team_name" value="${teamInfo?teamInfo.team_name:''}"/>
+	全名：<input type="text" id="full_name" name="full_name" value="${teamInfo?teamInfo.full_name:''}"/>
+	大区: <select id="bigarea" name="bigarea">
+		  <option value="west" #{if (teamInfo != null && teamInfo.bigarea == "west")} selected #{/if}>西部</option>
+		  
+		  <option value="east" #{if (teamInfo != null && teamInfo.bigarea == "east")} selected #{/if}>东部</option>
+		  </select>
+	分区：<select id="smallarea" name="smallarea">
+		  	<option value="westsouth" #{if (teamInfo != null && teamInfo.smallarea == "westsouth")} selected #{/if} >西南区</option>
+		  	<option value="westnorth" #{if (teamInfo != null && teamInfo.smallarea == "westnorth")} selected #{/if} >西北区</option>
+		  	<option value="parcific" #{if (teamInfo != null && teamInfo.smallarea == "parcific")} selected #{/if} >太平洋区</option>
+		  	<option value="eastsouth" #{if (teamInfo != null && teamInfo.smallarea == "eastsouth")} selected #{/if}>东南区</option>
+		  	<option value="middle" #{if (teamInfo != null && teamInfo.smallarea == "middle")} selected #{/if}>中区</option>
+		  	<option value="atlantic" #{if (teamInfo != null && teamInfo.smallarea == "atlantic")} selected #{/if}>大西洋区</option>
+		  </select>
+	备注：<input type="text" id="comments" name="comments" value="${teamInfo?teamInfo.comments:''}"/>
+	
+	<input type="button"  id="saveTeam" value="保存"/> <input type="button"  id="back" value="返回" onclick="javascript:window.history.go(-1);"/> 
+</div>
+<!--  
+<div class="query_nar">
+	URL:<input type="text" id="team_url" />
+	<input type="button"  id="savePlayerInfo" value="保存"/>
+</div>
+-->
+<div class="query_nar">
+<table class="table">
+<thead>
+	<tr>
+		<th>号码</th><th>姓名</th><th>位置</th><th>身高</th><th>体重</th><th>生日</th>
+	</tr>
+</thead>
+<tbody>
+#{if players !=  null}
+	#{list items:players,as:'player'}
+	<tr>
+		<td>${player.play_num}</td><td>${player.name_chi}</td><td>${player.position_chi}</td>
+		<td>${player.hight}M</td><td>${player.weight}KG</td><td>${player.birthday.format("yyyy-MM-dd")}</td>
+	</tr>
+	#{/list}
+#{/if}
+</tbody>
+</table>
+
+</div>

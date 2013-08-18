@@ -1,0 +1,65 @@
+#{extends 'main.html'/}
+#{set title:'basketball'/}
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+$(function(){
+	$("input[name=begin_date]").calendar({ format:'yyyy-MM-dd'});
+	
+   	$("#report_query").click(function(){//查询
+		window.location.href="/gameDataImport/importmsg?today="+$("#b_day").val();
+   	});
+   	
+   	$("a[name='msgImport']").click(function(){
+   		var teamId = $(this).attr('data');
+   		var $fontEle =  $(this).find('font');
+   		loading("导入中..");
+   		$.ajax({
+			type:'get',
+			url:'/gameDataImport/ajax/importMsg',
+			data:{teamId:teamId},
+			dataType:'json',
+			success:function(msg){
+				removeLoad();
+				if (msg.error == "1"){
+					msgTips('success',msg.error);
+					$fontEle.css('color', 'black')
+				}				
+				aclose();
+			},
+			error:function(msg){
+				removeLoad();
+			}
+		});	
+   	});
+   	
+   	
+});
+
+</script>
+#{/}
+
+
+<div class="query_nar">
+	<input type="text" id="b_day" name="begin_date" class="txt time_bar" value="${today}">
+	<a id="report_query" class="query_btn" href="javascript:void(0);">查询</a>
+</div>
+
+<div class="query_nar">
+	<table class="bigtable">
+	#{list items:teams,as:'team'}
+		#{if team_index % 5 == 1}
+			<tr>
+		#{/if}
+		<td>
+		<a name="msgImport" data="${team.id}" class="query_btn" href="javascript:void(0);">
+		#{if todayMap.get(team.id) != null}<font color="red" >${team.team_name}</font>#{/if}
+		#{if todayMap.get(team.id) == null}${team.team_name}#{/if}		
+		</a>
+		</td>
+		#{if team_index % 5 == 0}
+			</tr>
+		#{/if}	
+	#{/list}
+	</table>
+</div>

@@ -1,0 +1,134 @@
+#{extends 'main.html'/}
+#{set title:'basketball'/}
+
+<script type="text/javascript">
+$(function(){
+	if($("input[name=game_date]").length>=1){
+   		$("input[name=game_date]").calendar({ format:'yyyy-MM-dd'});
+   	}
+	
+	$("#import_data").click(function(){
+		loading('加载中');
+		var teamId = $("#team_id").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/gameData/ajax/importScheduleByUrl',
+   			data:{teamId:teamId},
+   			dataType:'text',
+   			success:function(data){
+   				if (data != "1")
+   					msgTips("warn","出错！");	
+   				else {	
+	   				$("#team_id :selected").remove();
+					$("#ajaxData").html(data);					
+   				}
+   				removeLoad();
+   			},
+   			error:function(data){
+   				removeLoad();
+   			}
+		});
+	});
+
+	$("#import_old_data").click(function(){
+		loading('加载中');
+		var teamId = $("#team_id_oldSeason").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/gameData/ajax/importOldSchedule',
+   			data:{teamId:teamId},
+   			dataType:'text',
+   			success:function(data){
+   				if (data != "1")
+   					msgTips("warn","出错！");	
+   				else {	
+	   				$("#team_id_oldSeason :selected").remove();
+					$("#ajaxData").html(data);					
+   				}
+   				removeLoad();
+   			},
+   			error:function(data){
+   				removeLoad();
+   			}
+		});
+	});
+	
+	
+	$("#import_player_data").click(function(){
+		loading('加载中');
+		var teamId = $("#team_id_player").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/gameData/ajax/importTeamPlayers',
+   			data:{teamId:teamId},
+   			dataType:'text',
+   			success:function(data){
+   				if (data != "1")
+   					msgTips("warn","出错！");	
+   				else {	
+	   				$("#team_id_player :selected").remove();
+					$("#ajaxData").html(data);					
+   				}
+   				removeLoad();
+   			},
+   			error:function(data){
+   				removeLoad();
+   			}
+		});
+	});
+	
+	$("#hupu_teamId").click(function(){
+		loading('加载中');
+		$.ajax({
+   			type:'POST',
+   			url:'/data/import/huputeamId',
+   			data:{},
+   			dataType:'text',
+   			success:function(data){
+   				if (data != "1"){
+   					msgTips("warn","出错！");					
+   				}
+   				removeLoad();
+   			},
+   			error:function(data){
+   				removeLoad();
+   			}
+		});
+	});
+	
+});
+</script>
+
+<div class="query_nar">
+	球队本赛季赛程导入<select name="team_id" id="team_id">
+		#{list items:tmpTeams,as:"team"}
+		<option value="${team.id}">${team.team_name}</option>
+		#{/list}
+	</select>
+	<input type="button" class="button" id="import_data" value="导入数据"/>
+</div>
+
+<div class="query_nar">
+	球队过往赛季导入<select name="team_id" id="team_id_oldSeason">
+		#{list items:tmpTeams,as:"team"}
+		<option value="${team.id}">${team.team_name}</option>
+		#{/list}
+	</select>
+	<input type="button" class="button" id="import_old_data" value="导入数据"/>
+</div>
+
+<div class="query_nar" id="ajaxData">
+	个球员信息导入：<select name="team_id" id="team_id_player">
+		#{list items:tmpTeams,as:"team"}
+		<option value="${team.id}">${team.team_name}</option>
+		#{/list}
+	</select>
+	<input type="button" class="button" id="import_player_data" value="导入数据"/>	
+</div>
+
+<div class="query_nar" >
+	从HUPU同步球队ID：<input type="button" class="button" id="hupu_teamId" value="导入数据"/>	
+</div>
+
+
+

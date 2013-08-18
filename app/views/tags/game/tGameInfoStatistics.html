@@ -1,0 +1,38 @@
+<table class="bigtable">
+	<thead>
+	<tr>
+	    <th>球队</th><th>投篮</th><th>3分</th><th>罚球</th><th>前场</th><th>后场</th><th>篮板</th>
+	    <th>助攻</th><th>犯规</th><th>抢断</th><th>失误</th><th>封盖</th>	<th>比分</th><th>日期</th>    
+	</tr>
+	</thead>
+	<tbody>
+	#{list items:_gameStatics,as:'hstatic'}
+	<tr>
+		#{if hstatic.is_host == 1}
+		<td class="team"><font color="red">${hstatic.team_name}(主)</font></td>
+		#{/if}
+		#{else}
+		<td class="team">${hstatic.team_name}</td>
+		#{/else}
+		<td>${hstatic.shoot_hit}-${hstatic.shoot_all}</td><td>${hstatic.three_hit}-${hstatic.three_all}</td>
+		<td>${hstatic.free_hit}-${hstatic.free_all}</td><td>${hstatic.rebound_front}</td><td>${hstatic.rebound_after}</td>
+		<td>${hstatic.rebound_all}</td><td>${hstatic.assist}</td><td>${hstatic.foul}</td><td>${hstatic.stolen}</td><td>${hstatic.turn_out}</td>
+		<td>${hstatic.block}</td>
+		#{if hstatic.is_win == 1}
+		<td><font color="red">${hstatic.score}</font></td>
+		#{/if}
+		#{else}
+		<td>${hstatic.score}</td>
+		#{/else}
+		#{if hstatic_index % 2 == 1}
+		
+		<td rowspan="2"><a href="/basedata/game/score/${hstatic.game_id}" target="_blank">${hstatic.game_date.format("MM-dd")}</a></td>
+		#{/if}
+	</tr>
+	#{if hstatic_index % 2 == 0}
+	<tr><td colspan="14"></td></tr>
+	#{/if}
+	#{/list}
+	</tbody>
+	<br/>
+</table>

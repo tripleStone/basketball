@@ -1,0 +1,46 @@
+#{extends 'report.html'/}
+#{set title:'analysis'/}
+#{include 'analysis/analysis_navigate.html'/}
+#{set 'moreScripts'}
+<script type="text/javascript">
+$(function(){
+	
+})
+
+</script>
+#{/}
+
+<input type="hidden" id="gameId" value="${gameId}"/>
+
+<div class="query_nar">
+<div class="column">
+	<ul rel="mutual" id="linav">
+		<li data="baseinfo">基本信息</li>
+		<li data="lottery">盘口</li>
+		<li data="detail">对战详细数据</li>		
+	</ul>
+</div>
+
+<div class="column" id="baseinfo" name="mutual">
+	<p>交手记录</p>
+	#{games_table gameInfos:mutualGames/}	
+</div>
+
+<div class="column" id="lottery" name="mutual">
+	#{lottery.wnm lotteries:mutualWinPoints/}
+	<br/>
+	
+	#{lottery.hilo lotteries:mutualHilos/}
+	<br/>
+	
+	#{lottery.handicap lotteries:mutualHandicaps/}
+	<br/>
+	
+	#{lottery.winlose lotteries:mutualWinLoses/}
+</div>
+
+<div class="column" id="detail" name="mutual">
+	#{set gameStatics = statistics/}
+	#{include 'basedata/include/base_incl_statisticinfos.html'/}
+</div>
+</div>

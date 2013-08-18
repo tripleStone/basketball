@@ -1,0 +1,16 @@
+<table class="table">
+		<thead>
+		<tr>
+	          <th>首发</th><th>位置</th><th>时间</th><th>投篮</th><th>3分</th><th>罚球</th>
+	          <th>前场</th><th>后场</th><th>篮板</th><th>助攻</th><th>封盖</th><th>得分</th>
+	          <th>首发</th><th>替补</th><th>日期</th><th>场</th>
+	    </tr>
+	    </thead>
+	    <tbody>
+	    	#{list items:players,as:'player'}
+	    	<tr>
+	    		#{game/TgamePlayerInfo player:player,addititon:addition/}
+	    	</tr>	    	
+	    	#{/list}	    	
+	    </tbody>    
+</table>

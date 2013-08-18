@@ -1,0 +1,45 @@
+#{extends 'main.html'/}
+#{set title:gameInfo.guest_name+"-"+ gameInfo.home_name+"-经验"/}
+<script type="text/javascript">
+
+$(function(){
+	$("#importReport").live("click",function(){
+		var report_url = $("#report_url").val();
+		var gameId = $(this).attr("data");
+		var url = $(this).attr("url");
+		$.ajax({
+			type:'get',
+			url:url,
+			data:{url:report_url,gameId:gameId},
+			dataType:'json',
+			success:function(msg){				
+				$("#game_report").html(msg.error);					
+			},
+			error:function(msg){
+				
+			}
+		});			
+	});
+});
+</script>
+<div class="query_nar">
+	#{basedata.baseDataNav gameId:gameId/}
+</div>
+
+<div class="query_nar">
+	<div class="column">
+		${gameInfo.guest_name} vs ${gameInfo.home_name}<br/>
+		<!-- 
+		战报url：<input type="text" id="report_url" />
+		<input type="button" value="导入战报" id="importReport" data="${gameInfo.id}" url="/gameData/ajax/importGameReport"/>
+		战报:<br/>
+		 -->
+		<textarea id="game_report" name="game_comment" style="width:800px;height:300px">${report}</textarea>
+		
+	</div>
+	
+	<div class="column">
+		<a class="query_btn" href="javascript:void()" onclick="saveExperience(${gameInfo.id},'/manage/editExperience/save')"  >保存</a>
+		<!-- <input type="button" value="保存" url="/manage/editExperience/save" /> -->
+	</div>
+</div>

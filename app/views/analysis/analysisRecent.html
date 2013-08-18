@@ -1,0 +1,90 @@
+#{extends 'report.html'/}
+#{set title:'analysis'/}
+
+
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+
+
+$(function(){
+	$("a[name='rect_query']").live('click',function(){
+		var type = $(this).attr("data");
+		var homeAway = $("#"+type+"Type").val();
+		var gameDeadLine = $("#"+type+"Games").val();
+		var teamId = $(this).attr("id");
+		recentStatistic(${gameInfo.id},teamId,homeAway,gameDeadLine,type);
+	});
+	
+	recentStatistic(${gameInfo.id},${gameInfo.home_id},'home',10,'home');
+	recentStatistic(${gameInfo.id},${gameInfo.guest_id},'away',10,'away');
+
+})
+
+
+
+</script>
+#{/set}
+<div class="query_nar">
+	#{analysis.tAnalysisNav gameInfo:gameInfo,lyType:lytype/}
+</div>
+
+<div class="query_nar">
+	<ul rel="gsi" id="linav">	
+		<li data="statistic">数据统计</li>		
+		<li data="point">得分</li>			
+	</ul>
+</div>
+
+<div id="query_nar">
+	<div class="reportleft">
+		<div class="column">
+			<font color="red">${gameInfo.guest_name}</font>:
+			主客场:<select id="awayType" >
+			<option value="all" >全部</option>
+			<option value="home">主</option>
+			<option value="away" selected>客</option>
+			</select>
+			场次：<select id="awayGames" >
+			<option value="5">5</option>
+			<option value="10" selected>10</option>
+			<option value="15">15</option>
+			<option value="trade">交易日</option>
+			</select>
+			<a class="query_btn" name="rect_query" data="away" id="${gameInfo.guest_id}" href="javascript:void(0)">查询</a>
+		</div>	
+		
+		<div class="column clearfix" id="awayRecent">
+			
+		</div>		
+	</div>
+
+
+	<div class="reportright">
+		<div class="column">
+			<font color="red">${gameInfo.home_name}</font>:
+			主客场:<select id="homeType" >
+				<option value="all" >全部</option>
+				<option value="home" selected>主</option>
+				<option value="away">客</option>
+				</select>
+			场次：<select id="homeGames" >
+				<option value="5">5</option>
+				<option value="10" selected>10</option>
+				<option value="15">15</option>
+				<option value="trade">交易日</option>
+			</select>
+			<a class="query_btn" name="rect_query" data="home" id="${gameInfo.home_id}"  href="javascript:void(0)">查询</a>
+		</div>
+		
+		<div class="column clearfix" id="homeRecent">
+		
+		</div>		
+	</div>
+	
+	
+
+</div>
+
+
+

@@ -1,0 +1,56 @@
+#{extends 'report.html'/}
+#{set title:'basketball'/}
+#{set 'moreScripts'}
+<script type="text/javascript">
+$(function(){
+	$("input[name='queryTable']").click(function(){
+		
+		var url = $(this).attr("url");
+		var condition = "";
+		$("input[name='querycondition']").each(function(){
+			if($(this).attr("checked") == 'checked'){
+				if (condition == ""){
+					condition = $(this).attr("data") + "=" + $(this).val();
+				}else{
+					condition = condition + "&" +  $(this).attr("data") + "=" + $(this).val();
+				}
+			}
+		});
+		
+		if (condition != null){
+			window.open(url+condition);
+		}
+	});
+})
+</script>
+#{/set}
+
+
+
+<div class="query_nar">
+	#{analysis.tAnalysisNav gameInfo:gameInfo,lyType:lytype/}
+</div>
+
+<div class="query_nar">
+	<div class="reportleft">
+		<div class="textBox clearfix">		
+		#{analysis.hilo.tpHilo htss:hTeamStatistic,gtss:aTeamStatistic,hilo:hilo,gameInfo:gameInfo/}
+		<p>&nbsp;</p>
+		<p>${gameInfo.guest_name}(客) 大分${awayGreater}场 小分${awayLess}场</p>
+		<p>${gameInfo.home_name}(主) 大分${homeGreater}场 小分${homeLess}场</p>		
+		</div>
+	</div>
+	
+	<div class="reportright">
+	#{analysis.team_statistic htss:hTeamStatistic,gtss:aTeamStatistic/}
+	</div>
+	
+</div>
+
+<!-- 
+<div class="query_nar">
+	<div class="textBox">
+		#{analysis.hilo.tpHilo htss:hTeamStatistic,gtss:aTeamStatistic,hilo:hilo,gameInfo:gameInfo/}
+	</div>
+</div>
+ -->

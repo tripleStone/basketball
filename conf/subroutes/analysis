@@ -1,0 +1,59 @@
+#分析首页
+GET /analysis/{<\d+>gameId}/{lytype}		AnalysisController.index
+
+#分析基本情况
+GET /analysis/base/{<\d+>gameId}/{lytype}      AnalysisController.base 
+
+#分析球队走势
+GET /analysis/recent/{<\d+>gameId}/{lytype}  AnalysisController.recent
+
+#分析球队赛季
+GET /analysis/analysiseason			AnalysisController.analysiSeason
+
+#分析球队赛季
+GET /analysis/analysismsg		AnalysisController.analysisMsgs
+
+#获取最近
+GET /analysis/ajax/getrecentgames		AnalysisController.getRecentGames
+
+#获取最近比赛详细数据
+GET /analysis/ajax/recnet/gamestat   AnalysisController.ajaxRecentGameStat
+
+
+#获取比赛球员数据
+POST /analysis/ajax/teamPlayers/{<\d+>gameId}		AnalysisController.teamPlayers
+
+#预测对位
+POST /analysis/ajax/forecastPlayers/{<\d+>gameId}  		AnalysisController.forecastPlayers
+
+#首发分析
+POST /analysis/ajax/teamStartes//{<\d+>gameId}			AnalysisController.teamStarters
+
+#############################v1.0##########################
+
+#分析相互交手记录
+GET /analysis/analysismutual		AnalysisController.mutual
+#获取比赛预测
+GET /analysis/report/{<\d+>gameId}		AnalysisController.report
+#获取比赛预测
+GET /analysis/experience/{<\d+>gameId}/{lyType}		AnalysisController.experience
+
+
+#大小分赔率
+GET /analysis/hilo/lottery/{<\d+>gameId}	analysis.AnalysisHilo.lottery
+#相似情况的hilo
+GET /analysis/hilo/similarHiloIndex			analysis.AnalysisHilo.similarHiloIndex
+#相似情况的hilo
+GET /analysis/hilo/ajax/similarHilos		analysis.AnalysisHilo.similarHilos
+#最近大小分成绩
+GET /analysis/hilo/ajax/recent				analysis.AnalysisHilo.recent
+#hilo投注变更
+GET /analysis/hilo/ajax/history				analysis.AnalysisHilo.history
+#获取胜分差区间
+GET /analysis/scoreSpan						analysis.AnalysisHDC.scoreSpan
+		
+	
+#对手数据
+POST /analysis/player/ajax/rivals   analysis.AnalysisPlayer.getRivals
+
+

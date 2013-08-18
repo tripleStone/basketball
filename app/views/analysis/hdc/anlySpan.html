@@ -1,0 +1,198 @@
+#{extends 'report.html'/}
+#{set title:'analysis'/}
+#{include 'analysis/analysis_navigate.html'/}
+<p>${gameInfo.home_name}VS${gameInfo.guest_name}</p>
+<div class="query_nar clearfix">
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主胜0-5</p>
+		#{set gameInfos = hgame0t5w/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客负0-5</p>
+		#{set gameInfos = agame0t5l/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+	
+	
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主胜6-10</p>
+		#{set gameInfos = hgame6t10w/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客负6-10</p>
+		#{set gameInfos = agame6t10l/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+	
+	
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主胜11-15</p>
+		#{set gameInfos = hgame11t15w/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客负11-15</p>
+		#{set gameInfos = agame11t15l/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+	
+	
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主胜16-20</p>
+		#{set gameInfos = hgame16t20w/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客负16-20</p>
+		#{set gameInfos = agame16t20l/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+	
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主胜21-25</p>
+		#{set gameInfos = hgame21t25w/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客负21-25</p>
+		#{set gameInfos = agame21t25l/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+	
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主胜26+</p>
+		#{set gameInfos = hgame26w/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客负26+</p>
+		#{set gameInfos = agame26l/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+
+</div>
+
+<div class="query_nar clearfix">
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主负0-5</p>
+		#{set gameInfos = hgame0t5l/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客胜0-5</p>
+		#{set gameInfos = agame0t5w/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+	
+	
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主负6-10</p>
+		#{set gameInfos = hgame6t10l/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客胜6-10</p>
+		#{set gameInfos = agame6t10w/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+	
+	
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主负11-15</p>
+		#{set gameInfos = hgame11t15l/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客胜11-15</p>
+		#{set gameInfos = agame11t15w/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+	
+	
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主负16-20</p>
+		#{set gameInfos = hgame16t20l/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客胜16-20</p>
+		#{set gameInfos = agame16t20w/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+	
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主负21-25</p>
+		#{set gameInfos = hgame21t25l/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客胜21-25</p>
+		#{set gameInfos = agame21t25w/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+	
+	<div class="column clearfix">
+		<div class="reportleft">
+		<p>主负26+</p>
+		#{set gameInfos = hgame26l/}
+		#{set isGuest = 0/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+		<div class="reportright">
+		<p>客胜26+</p>
+		#{set gameInfos = agame26w/}
+		#{set isGuest = 1/}
+		#{include '/analysis/ajax/analysis_span_table.html'/}
+		</div>
+	</div>
+
+</div>
+
+
+

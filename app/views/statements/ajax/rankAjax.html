@@ -1,0 +1,10 @@
+<input type="hidden" id="colus" value="${colus}"/>
+<input type="hidden" id="colusName" value="${colusName}"/>
+<div class="reportleft" data="east">
+	#{statements.tRank ranktype:ranktype, ranks:eastRank, columnCount:columnCount,columnNameList:columnNameList/}
+</div>
+	
+<div class="reportright" data="west" >
+	#{statements.tRank ranktype:ranktype, ranks:westRank, columnCount:columnCount,columnNameList:columnNameList/}
+</div>
+

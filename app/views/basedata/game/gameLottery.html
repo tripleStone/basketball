@@ -1,0 +1,24 @@
+#{extends 'main.html'/}
+#{set title:gameInfo.guest_name+"-"+ gameInfo.home_name+"-彩票口"/}
+
+<div class="query_nar">
+	#{basedata.baseDataNav gameId:gameId/}
+</div>
+
+<div class="query_nar">
+	<div class="column">
+	#{lottery.wnm lotteries:lwps/}
+	</div>
+	
+	<div class="column">
+	#{lottery.hilo lotteries:hilos/}
+	</div>
+	
+	<div class="column">
+	#{lottery.handicap lotteries:lhandicaps/}
+	</div>
+	
+	<div class="column">
+	#{lottery.winlose lotteries:winloses/}
+	</div>
+</div>

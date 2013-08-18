@@ -1,0 +1,30 @@
+<div class="column">
+	<ul rel="lottery" id="linav">		
+		<li data="winpoint">胜分差</li>
+		<li data="winlose">胜负</li>
+		<li data="handicap">让分</li>
+		<li data="hilos">总分</li>		
+	</ul>
+</div>
+
+
+
+<div class="column" id="winpoint" name="lottery" >
+	#{lottery.wnm lotteries:lotteries/}
+</div>
+
+<div class="column" id="winlose" name="lottery" style="display:none">
+	#{lottery.winlose  lotteries:winLoses/}
+</div>
+<div class="column" id="hilos" name="lottery" style="display:none">
+	#{lottery.hilo lotteries:hilos/}
+</div>
+
+<div class="column" id="handicap" name="lottery" style="display:none">
+	#{lottery.handicap lotteries:handicaps/}
+</div>
+
+
+
+
+ 

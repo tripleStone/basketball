@@ -1,0 +1,41 @@
+*{每场比赛}*
+*{var:_gamePlayers,_gameStatistic}*
+   <thead>
+	  <tr>
+         <th>首发</th><th>&nbsp;</th><th>时间</th><th>投篮</th><th>3分</th><th>罚球</th>
+         <th>前场</th><th>后场</th><th>篮板</th><th>助攻</th><th>犯规</th><th>抢断</th>
+         <th>失误</th><th>封盖</th><th>得分</th><th>+/-</th>
+       </tr>
+   </thead>
+   <tbody>
+   	#{list items:_gamePlayers,as:'player'}
+		#{game.tGamePlayerInfo player:player/}
+   	#{if player_index == 5}
+   	<thead>
+   	<tr>
+         <th>替补</th><th>&nbsp;</th><th>时间</th><th>投篮</th><th>3分</th><th>罚球</th>
+         <th>前场</th><th>后场</th><th>篮板</th><th>助攻</th><th>犯规</th><th>抢断</th>
+         <th>失误</th><th>封盖</th><th>得分</th><th>+/-</th>
+       </tr>
+       </thead>
+       #{/if}
+   	#{/list}
+   	#{if _gameStatistic != null}
+   	<tr>
+   		<td></td><td></td><td></td>
+   		<td>${_gameStatistic.shoot_hit}-${_gameStatistic.shoot_all}</td><td>${_gameStatistic.three_hit}-${_gameStatistic.three_all}</td>
+   		<td>${_gameStatistic.free_hit}-${_gameStatistic.free_all}</td>
+   		<td></td><td></td><td></td>
+   		<td></td><td></td><td></td>
+   		<td></td><td></td><td></td><td></td>
+   	</tr>
+   	<tr>
+   		<td></td><td></td><td></td>
+   		<td>${_gameStatistic.shoot_percent}</td><td>${_gameStatistic.three_percent}</td><td>${_gameStatistic.free_percent}</td>
+   		<td>${_gameStatistic.rebound_front}</td><td>${_gameStatistic.rebound_after}</td><td>${_gameStatistic.rebound_all}</td>
+   		<td>${_gameStatistic.assist}</td><td>${_gameStatistic.foul}</td><td>${_gameStatistic.stolen}</td>
+   		<td>${_gameStatistic.turn_out}</td><td>${_gameStatistic.block}</td><td></td><td></td>
+   	</tr>
+   	#{/if}
+   	
+   </tbody>

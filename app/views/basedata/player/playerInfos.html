@@ -1,0 +1,48 @@
+<div class="column clearfix">
+	<div class="reportleft clearfix">
+		${gameInfo.guest_name}:<a href="javascript:void;" name="orderPoint" targetid="awayPlayers"  teamId="${gameInfo.guest_id}"  gameId="${gameInfo.id}">得分</a>
+		
+		#{player.tPlayersTable players:awayPgs,pssMap:pssMap,gameInfo:gameInfo/}			
+	</div>
+	<div class="reportright clearfix">
+		${gameInfo.home_name}:<a href="javascript:void;" name="orderPoint" targetid="awayPlayers"  teamId="${gameInfo.home_id}"  gameId="${gameInfo.id}">得分</a>
+		#{player.tPlayersTable players:homePgs,pssMap:pssMap,gameInfo:gameInfo/}
+	</div>
+</div>
+
+<div class="column clearfix">
+	<div class="reportleft clearfix">
+		#{player.tPlayersTable players:awayC,pssMap:pssMap,gameInfo:gameInfo/}	
+	</div>
+	<div class="reportright clearfix">		
+		#{player.tPlayersTable players:homeC,pssMap:pssMap,gameInfo:gameInfo/}
+	</div>
+</div>
+
+<div class="column clearfix">
+	<div class="reportleft clearfix">
+		#{player.tPlayersTable players:awayPfs,pssMap:pssMap,gameInfo:gameInfo/}
+	</div>
+	<div class="reportright clearfix">		
+		#{player.tPlayersTable players:homePfs,pssMap:pssMap,gameInfo:gameInfo/}	
+	</div>
+</div>
+
+<div class="column clearfix">
+	<div class="reportleft clearfix">
+		#{player.tPlayersTable players:awaySfs,pssMap:pssMap,gameInfo:gameInfo/}	
+	</div>
+	<div class="reportright clearfix">		
+		#{player.tPlayersTable players:homeSfs,pssMap:pssMap,gameInfo:gameInfo/}
+	</div>
+</div>
+
+<div class="column clearfix">
+	<div class="reportleft clearfix">
+		#{player.tPlayersTable players:awaySgs,pssMap:pssMap,gameInfo:gameInfo/}
+	</div>
+	<div class="reportright clearfix">
+		
+		#{player.tPlayersTable players:homeSgs,pssMap:pssMap,gameInfo:gameInfo/}
+	</div>
+</div>

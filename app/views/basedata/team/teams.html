@@ -1,0 +1,49 @@
+#{extends 'main.html'/}
+#{set title:'basketball'/}
+
+<div class="query_nar clearfix" style="width:51%;float: left;">
+<table class="bigtable">
+	<tbody>
+	
+	<tr >
+	<td rowspan="3" class="score">东部</td><td class="date">大西洋赛区</td>
+	#{list items:atlantics,as:'team'}
+	<td><a href="/basedata/team/${team.id}/games" target="_blank">${team.team_name}</a></td>
+	#{/list}
+	</tr>
+	<td class="date">东南赛区</td>
+	#{list items:eastsouths,as:'team'}
+	<td><a href="/basedata/team/${team.id}/games" target="_blank">${team.team_name}</a></td>
+	#{/list}
+	</tr>
+	<td class="date">中部赛区</td>
+	#{list items:middles,as:'team'}
+	<td><a href="/basedata/team/${team.id}/games" target="_blank">${team.team_name}</a></td>
+	#{/list}
+	</tr>
+	<td rowspan="3" class="score">西部</td><td class="date">太平洋</td>
+	#{list items:parcifics,as:'team'}
+	<td><a href="/basedata/team/${team.id}/games" target="_blank">${team.team_name}</a></td>
+	#{/list}
+	</tr>
+	<td class="date">西南赛区</td>
+	#{list items:westsouths,as:'team'}
+	<td><a href="/basedata/team/${team.id}/games" target="_blank">${team.team_name}</a></td>
+	#{/list}
+	</tr>
+	<td class="date">西北赛区</td>
+	#{list items:westnorths,as:'team'}
+	<td><a href="/basedata/team/${team.id}/games" target="_blank">${team.team_name}</a></td>
+	#{/list}
+	</tr>
+	
+	</tbody>
+</table>
+</div>
+
+<div class="query_nar clearfix" style="width:45%;float: right;">
+<img alt=" " src="/public/images/map.jpg"/>
+
+</div>
+
+

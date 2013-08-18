@@ -1,0 +1,264 @@
+#{extends 'main.html'/}
+#{set title:'basketball'/}
+
+<script type="text/javascript">
+$(function(){
+	if($("input[name=game_date]").length>=1){
+   		$("input[name=game_date]").calendar({ format:'yyyy-MM-dd'});   		
+   	}
+	
+	$("input[name=import_data]").click(function(){
+		loading('加载中');
+		var gameId = $(this).attr("data");
+		var gameUrl = $("#game_url_"+gameId).val();
+		$.ajax({
+   			type:'POST',
+   			url:'/dataimport/espn/impotGameData',
+   			data:{dataUrl:gameUrl,gameId:gameId},
+   			dataType:'json',
+   			success:function(data){
+   				window.location.reload();
+   			},
+   			error:function(data){
+   				msgTips('error',data.error);
+   				removeLoad();
+   			}
+		});
+		
+	});
+	
+	$("input[name=import_addition_data]").click(function(){
+		loading('加载中');
+		var gameId = $(this).attr("data");
+		var gameUrl = $("#addition_"+gameId).val();
+		$.ajax({
+   			type:'POST',
+   			url:'/dataimport/nbachina/importGameAdditironData',
+   			data:{dataUrl:gameUrl,gameId:gameId},
+   			dataType:'json',
+   			success:function(data){
+   				window.location.reload();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});
+	
+	$("input[name=import_chart]").click(function(){
+		loading('加载中');
+		var gameId = $(this).attr("data");
+		$.ajax({
+   			type:'POST',
+   			url:'/dataimport/espn/importGameChart',
+   			data:{gameId:gameId},
+   			dataType:'json',
+   			success:function(data){
+   				window.location.reload();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+	$("input[name=import_today_games]").click(function(){
+		loading('加载中');
+		var postUrl = $(this).attr("data");
+		$.ajax({
+   			type:'POST',
+   			url:'/dataimport/espn/importTodayGames',
+   			data:{postUrl:postUrl},
+   			dataType:'json',
+   			success:function(data){
+   				window.location.reload();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+
+	$("input[name=nbachina]").click(function(){
+		loading('加载中');
+		var date = $("#b_day").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/import/chinanba/importgames',
+   			data:{date:date},
+   			dataType:'json',
+   			success:function(data){
+   				window.location.reload();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+	$("input[name=hupunba]").click(function(){
+		loading('加载中');
+		var date = $("#b_day").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/import/hupu/importGameReports',
+   			data:{date:date},
+   			dataType:'json',
+   			success:function(data){
+   				window.location.reload();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+	$("input[name=importPreview]").click(function(){
+		loading('加载中');
+		var date = $("#b_day").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/dataimport/espn/importPreviews',
+   			data:{date:date},
+   			dataType:'json',
+   			success:function(data){
+   				window.location.reload();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});		
+	
+	$("input[name=import_preview]").click(function(){
+		loading('加载中');
+		var gameId = $(this).attr("data");
+		$.ajax({
+   			type:'POST',
+   			url:'/dataimport/espn/importPreview',
+   			data:{gameId:gameId},
+   			dataType:'json',
+   			success:function(data){
+   				window.location.reload();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+	$("input[name=importGameInfosByDay]").click(function(){
+		loading('加载中');
+		var date = $("#b_day").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/import/espn/importGameInfosByDay',
+   			data:{date:date},
+   			dataType:'json',
+   			success:function(data){
+   				window.location.reload();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+	$("input[name=espnPlayByPlay]").click(function(){
+		loading('加载中');
+		var date = $("#b_day").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/dataimport/espn/importPlayByPlay',
+   			data:{date:date},
+   			dataType:'json',
+   			success:function(data){
+   				window.location.reload();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+	$("#report_query").click(function(){//查询
+		window.location.href="/gameData/gameDataImport?playDate="+$("#b_day").val();
+   	});
+	
+});
+</script>
+<div class="query_nar">
+	<input type="button" class="button" name="import_today_games" value="今天的比赛" data="http://espn.go.com/nba/"/>&nbsp;
+	||&nbsp;
+	<!--  <input type="text" id="nba_date" name="nba_date" class="txt time_bar" value="${playDate}"/>-->
+	<input type="button" class="button" name="nbachina" value="附加数据"/>&nbsp;	
+	<input type="button" class="button" name="hupunba" value="虎扑战报"/>&nbsp;
+	<input type="button" class="button" name="espnPlayByPlay" value="playByPlay"/>
+	&nbsp;||&nbsp;
+	<input type="button" class="button" name="importPreview" value="比赛前瞻"/>
+	&nbsp;||&nbsp;
+	<input type="button" class="button" name="importGameInfosByDay" value="按日导入比赛"/>
+</div>
+
+
+<div class="query_nar">
+	<a class="query_btn" href="/gameData/gameDataImport?playDate=${preDate}"><<</a>
+	<input type="text" id="b_day" name="game_date" class="txt time_bar" value="${playDate}">
+	<a id="report_query" class="query_btn" href="javascript:void(0);">查询</a>
+	<a class="query_btn" href="/gameData/gameDataImport?playDate=${nextDate}">>></a>
+</div>
+
+<div class="query_nar" id="ajaxData">
+	<table class="bigtable">
+	<thead>
+		 <tr>
+		 	<th>球队(主VS客)</th><th>日期</th><th>操作</th>
+		 </tr>
+	</thead>
+	<tbody>
+		#{list items:gameInfos,as:'gameInfo'}
+		 <tr>
+		 	<td>${gameInfo.home_name}VS${gameInfo.guest_name}</td><td>${gameInfo.play_date.format("yyyy-MM-dd")}</td>
+		 	<td>
+		 		#{if gameInfo.has_detail == 0}
+		 		<P>比赛数据:<input type="text" id="game_url_${gameInfo.id}" name="game_url" style="width:200px"/>
+		 		<input type="button" name="import_data" value="导入数据" data="${gameInfo.id}"/></P>
+		 		#{/if}
+		 		#{elseif gameInfo.viewers == 0}
+		 		<P>附加数据:<input type="text" id="addition_${gameInfo.id}" name="game_url" style="width:200px"/>
+		 		<input type="button" name="import_addition_data" value="附加数据" data="${gameInfo.id}"/></P>
+		 		#{/elseif}
+		 		#{if gameInfo.has_detail == 1 && (gameInfo.reportTitle == null || gameInfo.reportTitle == '') }
+		 		无战报
+		 		#{/if}
+		 		#{if gameInfo.has_detail == 1 && gameInfo.has_playbyplay == 0}
+		 		无playbyplay
+		 		#{/if}
+		 		
+		 		#{if gameInfo.has_detail == 1 && gameInfo.has_chart == 0 }
+		 		<input type="button" name="import_chart" value="进球分布" data="${gameInfo.id}"/>
+		 		#{/if}
+		 		
+		 		#{if gameInfo.has_detail == 1 && gameInfo.hasPreview == 0}
+		 		<input type="button" name="import_preview" value="预测" data="${gameInfo.id}"/>
+		 		#{/if}
+		 	</td>
+		 </tr>
+		 #{/list}
+	</tbody>
+	</table>
+</div>
+
+
+
+

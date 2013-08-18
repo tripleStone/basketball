@@ -1,0 +1,8 @@
+${msgs.size()}
+#{list items:msgs,as:"msg"}
+<div style="border: 1px solid #cbe4fc;">
+<p>${msg.msg_title}</p>
+<p>${msg.msg_content}</p>
+<p>${msg.msg_date.format("yyyy-MM-dd")}</p>
+</div> 
+#{/list}

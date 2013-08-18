@@ -1,0 +1,19 @@
+*{var:_ranktype, _ranks,_columnCount,_columnNameList}*
+
+<table class="bigtable" ranktype="${_ranktype}">
+	<thead><tr>#{statements.tRankHead ranktype:_ranktype,columnNameList:_columnNameList /}</tr></thead>
+	<tbody>
+	#{list items:_ranks,as:'rank'}
+	<tr>
+		<td><input type="checkbox" value="${rank[0]}" name="teamids"/>${rank[1]}</td>
+		%{ for (i in 2.._columnCount - 1) { }%
+		<td>${rank[i]}</td>
+		%{ } }%
+	</tr>
+	#{/list}
+	</tbody>
+</table>
+
+<script type="text/javascript">
+setBackColor();
+</script>

@@ -1,0 +1,14 @@
+*{大小分排列}
+*{var:_thead, _ranks}*
+<table class="bigtable">
+	${print(_thead)}
+	<tbody>
+	#{list items:_ranks,as:'rank'}
+	<tr>
+		<td><input type="checkbox" value="${rank[0]}" name="west"/>${rank[1]}</td>
+		<td>${rank[2]}</td>
+		<td>${rank[3]}</td>
+	</tr>
+	#{/list}
+	</tbody>
+</table>

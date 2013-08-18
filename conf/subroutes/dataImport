@@ -1,0 +1,111 @@
+#球队信息
+GET /gameData/teamScoreIndex	GameDataImport.teamScoreIndex
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~赛季信息begin~~~~~~~~~~~~~~~~~~~~~~~
+#导入赛季信息界面
+GET  /gameData/teamScheduleImport		GameDataImport.teamScheduleImport
+
+#导入赛季信息入库
+POST /gameData/ajax/importScheduleByUrl      GameDataImport.importScheduleByUrl
+
+#导入赛季信息入库
+POST /gameData/ajax/importOldSchedule      GameDataImport.importOldScheduleById
+
+#导入球队球员信息
+POST /gameData/ajax/importTeamPlayers		GameDataImport.importTeamPlayers
+
+#导入页面
+GET /gameDataImport/importmsg     GameDataImport.importTeaMsg
+
+#导入操作
+GET /data/import/importMsg     dataimport.HupuImport.importMsg
+
+#导入hupu的球队ID
+POST /data/import/huputeamId		dataimport.HupuImport.saveTeamsId
+
+#-----------------------赛季信息end-----------------------
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~导入比赛数据 ~~~~~~~~~~~~~~~~~~~~~~~
+#界面
+GET /gameData/gameDataImport	GameDataImport.gameDataImport
+
+#导入一天的比赛
+POST /dataimport/espn/importTodayGames			dataimport.EspnImport.importTodayGames
+
+#导入一场比赛
+POST /dataimport/espn/impotGameData				dataimport.EspnImport.impotGameData
+
+#根据url导入比赛附加信息
+POST /dataimport/espn/importGameChart 			dataimport.EspnImport.importChart
+
+#批量导入preview
+POST /dataimport/espn/importPreviews			dataimport.EspnImport.importPreviews
+
+#单个导入preview
+POST /dataimport/espn/importPreview				dataimport.EspnImport.importPreview
+
+#单个导入preview
+POST /dataimport/espn/importPlayByPlay			dataimport.EspnImport.importPlayByPlay
+
+#按日导入比赛信息
+POST /import/espn/importGameInfosByDay      	dataimport.EspnImport.importGamesByDay
+
+#从chinaNBA导入一天的比赛
+POST /import/chinanba/importgames				dataimport.ChinaNbaImport.importGames
+
+#根据url导入比赛附加信息
+POST /dataimport/nbachina/importGameAdditironData 	dataimport.ChinaNbaImpot.importGameAdditionData
+
+#从hupu导入一天的比赛
+POST /import/hupu/importGameReports				dataimport.hupuImport.importGameReports
+
+#比赛信息编辑--比赛信息编辑
+GET /import/hupu/importGameReport      dataimport.hupuImport.importGameReport
+#-----------------------导入比赛数据  end-----------------------
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~比赛消息编辑begin~~~~~~~~~~~~~~~~~~~~~~~
+#比赛信息编辑
+GET /gameData/gameDataEdit      GameDataImport.gameDataEdit
+
+#比赛信息编辑--每日比赛
+POST /gameData/ajax/gamesByDayAjax      GameDataImport.gamesByDayAjax
+
+#保存比赛信息
+POST /gameData/ajax/savegameinfo     GameDataImport.saveGameInfo
+#-----------------------比赛消息编辑end-----------------------
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~盘口数据导入begin~~~~~~~~~~~~~~~~~~~~~~~
+#投注信息
+GET /lotteryData/lotteryImport      			dataimport.NBALotteryImport.lotteryImport
+
+#盘口查询
+POST /lotteryData/ajax/getLotteriesAjax			dataimport.NBALotteryImport.getLotteriesAjax
+
+#投注信息
+POST /lotteryData/ajax/lotteryImportByUrl       dataimport.NBALotteryImport.lotteryImportByUrl
+
+#根据url导入分差
+POST /lotteryData/ajax/handiCapImportByUrl 		dataimport.NBALotteryImport.handiCapImportByUrl
+
+#根据url导入大小分
+POST /lotteryData/ajax/hiloImportByUrl 			dataimport.NBALotteryImport.HiloImportByUrl
+
+#根据url导入胜负
+POST /lotteryData/ajax/winLoseImportByUrl 		dataimport.NBALotteryImport.winLoseImportByUrl
+
+#导入全部
+POST /lotteryData/ajax/importAllLottery			dataimport.NBALotteryImport.importAllLottery
+
+#获取之前之后一个日期
+GET /lottery/getDay    							dataimport.NBALotteryImport.getDate
+
+#导入历史记录
+POST /lottery/ajax/importMatchResult dataimport.NBALotteryImport.getResultHistory
+#-----------------------盘口数据导入end-----------------------
+

@@ -1,0 +1,24 @@
+<div class="column">
+	<ul rel="lotteryHis" id="linav">
+		<li data="winpointHis">胜分差</li>
+		<li data="winloseHis">胜负</li>
+		<li data="hiloHis">总分</li>
+		<li data="handicapHis">让分</li>
+	</ul>
+</div>
+
+<div class="column" id="winpointHis" name="lotteryHis" #{if ltype != "wnm"}style="display:none"#{/if}>
+#{lottery.wnm lotteries:winPoints/}
+</div>
+
+<div class="column" id="hiloHis" name="lotteryHis" #{if ltype != "hilo"}style="display:none"#{/if}>
+#{lottery.hilo lotteries:hilos/}
+</div>
+
+<div class="column" id="handicapHis" name="lotteryHis" #{if ltype != "handicap"}style="display:none"#{/if}>
+#{lottery.handicap lotteries:handiCaps/}
+</div>
+
+<div class="column" id="winloseHis" name="lotteryHis" #{if ltype != "winlose"}style="display:none"#{/if}>
+#{lottery.winlose lotteries:winLoses/}
+</div>

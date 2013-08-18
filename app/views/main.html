@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>#{get 'title'/}</title>
+<link href="/public/stylesheets/reset.css" rel="stylesheet" type="text/css" />
+<link href="/public/stylesheets/style.css" rel="stylesheet" type="text/css" />
+<script src="/public/javascripts/jquery.js" type="text/javascript"></script>
+<script src="/public/javascripts/public-min.js" type="text/javascript"></script>
+<script src="/public/javascripts/basketball.js" type="text/javascript"></script>
+<script src="/public/javascripts/loaddata.js" type="text/javascript"></script>
+<script src="/public/javascripts/DatePicker/lhgcalendar.min.js"></script>
+#{get 'moreStyles' /}
+#{get 'moreScripts' /}
+</head>
+<body>
+<!-- 
+	<div class="header clearfix">
+		<div class="login"><span class="hide">数据分析后台</span></div>
+		<div class="top_info">
+			<p class="user_info">欢迎您 &nbsp;<!--<a class="edit_pw" href="#">修改密码</a></p>
+			<div class="menu">
+				<ul>
+					<li class="cur">静态信息管理</li>
+					<li><a href="#">成绩查询</a></li>
+					<li><a href="#">成绩查询</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+-->
+	<div class="container clearfix">
+		<div class="left_nar clearfix">
+			<h3 class="icon_1">分析与查询</h3>
+			<ul class="sub_nar">
+				<li><a href="/basedata/schedule" style="color:#005EAC">赛程</a></li>
+			</ul>
+			<h3 class="icon_1">常规数据</h3>
+			<ul class="sub_nar">		 	
+				 <li><a href="/basedata/team/index" style="color:#005EAC">球队列表</a></li>
+			</ul>
+			<h3 class="icon_1">数据录入</h3>
+			<ul class="sub_nar">
+				<li><a href="/lotteryData/lotteryImport" style="color:#005EAC">盘口信息</a></li>
+				 <li><a href="/gameData/gameDataImport" style="color:#005EAC">单场比赛</a></li>
+				 <li><a href="/gameData/teamScheduleImport" style="color:#005EAC">赛季信息</a></li>				 
+				 <li><a href="/gameDataImport/importmsg" style="color:#005EAC">球队消息导入</a></li>				 
+			</ul>
+			<h3 class="icon_1">NBA球队信息管理</h3>
+			<ul class="sub_nar">
+				 <!-- <li><a href="/basedata/team/index" style="color:#005EAC">球队列表</a></li> -->
+				 <li><a href="/datamanage/statisticgames" style="color:#005EAC">信息更新与统计</a></li>
+			</ul>
+			
+		</div>
+		<div class="main clearfix">
+            #{doLayout/}
+		</div>
+	</div>
+</body>
+</html>

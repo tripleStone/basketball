@@ -1,0 +1,15 @@
+#球队战绩主页
+GET /statements/rank/{<\d+>gameId}	 									StatementsController.rankCompare
+
+#按排名检索比赛报表
+GET /statements/rankreport/{<\d+>teamId}/{<\d+>gameId}	 				StatementsController.rankReport
+
+#球队战绩排名
+POST /statements/rank/{<\d+>gameId}/{ranktype}	 						StatementsController.rankAjax
+
+#球队战绩排名
+POST /statements/rankRe/{<\d+>gameId}/{ranktype}/{area}/{<\d+>orderBy}	 StatementsController.rankReAjax
+
+
+	
+	

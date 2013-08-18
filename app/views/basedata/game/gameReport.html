@@ -1,0 +1,21 @@
+#{extends 'main.html'/}
+#{set title:gameInfo.guest_name+"-"+ gameInfo.home_name+"-战报"/}
+
+#{set 'moreScripts'}
+<script src="/public/javascripts/loaddata.js" type="text/javascript"></script>
+#{/}
+
+<div class="query_nar">
+#{if position == "baseData"}
+	#{basedata.baseDataNav gameId:gameId/}
+#{/if}
+#{else}
+	#{analysis.tAnalysisNav gameInfo:gameInfo/}
+#{/else}
+</div>
+
+<div id="gamereport" class="query_nar"  name="gameinfo">	
+	<div class="textBox" >
+		#{game.tGameReport report:report/}
+	</div>
+</div>

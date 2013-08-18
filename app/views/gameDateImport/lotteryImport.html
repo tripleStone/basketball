@@ -1,0 +1,81 @@
+#{extends 'main.html'/}
+#{set title:'basketball'/}
+
+
+<script type="text/javascript">
+$(function(){
+	if($("input[name=game_date]").length>=1){
+   		$("input[name=game_date]").calendar({ format:'yyyy-MM-dd'});
+   	}	
+		
+	$("#report_query").live('click',function(){//查询
+   		loading('加载中');
+   		var url = '/lotteryData/ajax/getLotteriesAjax';
+		var data = {playDate:$("#b_day").val()}
+   		window.location.href = "/lotteryData/lotteryImport?playDate="+$("#b_day").val()	 
+   	});
+	
+	$("input[name='game_data']").live('click',function(){
+		loading('加载中');
+		var url = $(this).attr("rel");
+		if ($(this).attr("id") == "import_data" )
+			var gameUrl = $("#game_url").val();
+		else if ($(this).attr("id") == "handicap_data" )
+			var gameUrl = $("#handicap_url").val();
+		else if ($(this).attr("id") == "hilo_data" )
+			var gameUrl = $("#hilo_url").val();
+		else 
+			var gameUrl = $("#wl_url").val();
+		$.ajax({
+	  			type:'POST',
+	  			url:url,
+	  			data:{dataUrl:gameUrl},
+	  			dataType:'text',
+	  			success:function(data){
+	  				msgTips('success',data);
+					removeLoad();
+	  			},
+	  			error:function(data){
+	  				removeLoad();
+	  			}
+		});
+	});
+	
+	
+	$('#preDay').live('click',function(){
+		window.location.href = $(this).attr("url") + "?playDate=" + $(this).attr("date");
+		
+	});
+	
+	$("#nextDay").live('click',function(){
+		window.location.href = $(this).attr("url") + "?playDate=" + $(this).attr("date");
+	});
+	
+});
+</script>
+
+<div class="query_nar">
+	胜分差url:<input type="hidden" id="game_url" name="game_url" value="http://info.sporttery.com/basketball/wnm_single.php"/>
+	<input type="button" id="import_data"  name="game_data" rel="/lotteryData/ajax/lotteryImportByUrl" value="导入数据"/>	
+	
+	让分url:<input type="hidden" id="handicap_url" name="handicap" value="http://info.sporttery.com/basketball/hdc_list.php"/>
+	<input type="button" id="handicap_data" name="game_data" rel="/lotteryData/ajax/handiCapImportByUrl" value="导入数据"/>	
+	
+	大小分url:<input type="hidden" id="hilo_url" name="hilo" value="http://info.sporttery.com/basketball/hilo_list.php"/>
+	<input type="button" id="hilo_data" name="game_data" rel="/lotteryData/ajax/hiloImportByUrl" value="导入数据"/>	
+	
+	胜负url:<input type="hidden" id="wl_url" name="winlose" value="http://info.sporttery.com/basketball/mnl_list.php"/>
+	<input type="button" id="wl_url" name="game_data" rel="/lotteryData/ajax/winLoseImportByUrl" value="导入数据"/>	
+	
+	全部：<input type="button" id="all_url" name="game_data" rel="/lotteryData/ajax/importAllLottery" value="全部数据"/>
+</div>
+<div class="query_nar">
+	<a href="javascript:void(0);" url="/lotteryData/lotteryImport" class="query_btn" id="preDay" date="${preDate}"><<</a>
+	<input type="text" id="b_day" name="game_date" class="txt time_bar" value="${playDate}">
+	<a href="javascript:void(0);" id="report_query" class="query_btn" >查询</a>		
+	<a href="javascript:void(0);" url="/lotteryData/lotteryImport" class="query_btn" id="nextDay" date="${nextDate}">>></a>	
+</div>
+
+<div class="query_nar"  id="ajaxData">
+	#{include '/gameDateImport/ajax/lotteriesAjax.html'/}
+</div>

@@ -1,0 +1,41 @@
+*{胜分差}
+*{var: _lotteries,_type}*
+
+<table class="bigtable">
+<thead>
+	 <tr>
+	 	<th>球队(客VS主)</th><th>小分</th><th>总分</th><th>大分</th><th>创建时间</th><th></th>
+	 </tr>
+</thead>
+<tbody>
+	#{list items:_lotteries,as:'hilo'}
+	<tr>
+		#{if hilo.hit == null || hilo.hit == "" }
+			<td><a href="/analysis/${hilo.game_id}/hilo" target="_blank">${hilo.away_name}VS${hilo.host_name}</a></td>
+		#{/if}
+		#{else}
+			<td><a href="/basedata/game/score/${hilo.game_id}" target="_blank">${hilo.away_name}VS${hilo.host_name}</a></td>
+		#{/else}
+		<td #{if hilo.hit == "less"} style="color:red" #{/if}>${hilo.less_than}</td>
+		<td>${hilo.hilo} #{if hilo.sumScore != 0 }<font color="red">&nbsp;&nbsp;(${hilo.sumScore})</font>#{/if}</td>
+		<td #{if hilo.hit == "greater"} style="color:red" #{/if}>${hilo.greater_than}</td>		
+		#{if _type == "analysis"}
+		<td>${hilo.createDate.format("MM-dd HH:mm")}</td>
+		#{/if}
+		#{elseif _type == "gameDate"}
+			<td>${hilo.game_date.format("yyyy-MM-dd")}</td>
+		#{/elseif}
+		#{else }
+		<td>${hilo.createDate.format("yyyy-MM-dd HH:mm")}</td>
+		#{/else}
+		<td>
+			<a name="lottery_his"  href="javascript:void(0);" data="${hilo.game_id}" ltype="hilo">历史</a>
+			<a name="lottery_exp"  href="javascript:void(0);" data="${hilo.id}" rel="hilo">经验</a>	
+			#{if hilo.hit == "less" || hilo.hit == "greater" }
+			<a href="/analysis/${hilo.game_id}/hilo" target="_blank">复盘</a>
+			#{/if}	
+		</td>
+	</tr>
+	#{/list}
+</tbody>
+</table>

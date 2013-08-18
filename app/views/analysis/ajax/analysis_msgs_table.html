@@ -1,0 +1,14 @@
+	<table class="bigtable">
+		<thead>
+		<tr><th>${teamName}</th><th>日期</th><th>操作</th></tr>
+		</thead>
+		<tbody>
+		#{list items:tmpMsgs,as:'tmpMsg'}
+		<tr>
+			<td>${tmpMsg.msg_title}</td>
+			<td>${tmpMsg.msg_date.format("yyyy-MM-dd")}</td>
+			<td></td>
+		</tr>
+		#{/list}
+		</tbody>
+	</table>

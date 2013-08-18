@@ -1,0 +1,51 @@
+<p>客：${gameInfo.guest_name} vs 主:${gameInfo.home_name}</p>
+
+<table class="bigtable" style="border:0px;">
+	<tbody>
+	<tr>
+      <td>名字</td><td>身高</td><td>体重</td><td>经验</td><td>首发</td><td>时间</td><td>投篮</td><td>3分</td><td>罚球</td>
+      <td>(前/后)篮板</td><td>助攻</td><td>犯规</td><td>抢断</td>
+      <td>失误</td><td>封盖</td><td>得分</td><td>+/-</td>
+    </tr>
+		#{list items:rivalGPIs,as:"gpi"}
+			<tr>
+			#{if gpi.time > 0}
+				#{if rivalPImap.get(gpi.player_id)}
+					#{set player= rivalPImap.get(gpi.player_id) /}
+					<td>${player.name}</td><td>${player.hight}</td><td>${player.weight}</td><td>${player.experience}</td>
+				#{/if}
+				#{else}
+					<td colspan="4"></td>
+				#{/else}
+				<td>${gpi.first}</td><td>${gpi.time}</td><td>${gpi.shoot_hit}-${gpi.shoot_all}</td><td>${gpi.three_hit}-${gpi.three_all}</td>
+				<td>${gpi.three_hit}-${gpi.three_all}</td><td>(前/后)篮板:(${gpi.rebound_front}/${gpi.rebound_after})${gpi.rebound_front + gpi.rebound_after}</td>
+				<td>${gpi.assist}</td> <td>${gpi.foul}</td><td>${gpi.stolen}</td>
+		     	<td>${gpi.turn_out}</td> <td>${gpi.block}</td> <td>${gpi.point} </td> <td>${gpi.per}</td> 
+		     #{/if}
+			</tr>
+		#{/list}
+	</tbody>
+</table>
+<br/>
+#{if gameInfo.has_detail == 1}
+<table class="bigtable" style="border:0px;">
+	<tr>
+		<td></td>
+		#{if hilo.hit == "greater"}
+		<td>(${hilo.hilo})${hilo.sumScore}#<font color="red">${hilo.greater_than}</font></td>
+		#{/if}
+		#{else}
+		<td>(${hilo.hilo})${hilo.sumScore}#<font color="green">${hilo.less_than}</font></td>
+		#{/else}
+		#{if hilo.hit == "win"}
+		<td>(${handicap.handicap})<font color="red">${handicap.lottery}</font></td>
+		#{/if}
+		#{else}
+		<td>(${handicap.handicap})#<font color="green">${handicap.lottery}</font></td>
+		#{/else}
+	</tr>
+</table>
+#{/if}
+	   
+<a  onclick="closeRP(${gPlayer.id})" href="javascript:void;">关闭</a>
+

@@ -1,0 +1,30 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       BaseDataController.schedule
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+#比赛数据导入
+#{include 'conf/subroutes/dataImport'/}
+
+#信息管理
+#{include 'conf/subroutes/dataManage'/}
+
+#基础数据
+#{include 'conf/subroutes/basedata'/}
+
+#数据分析
+#{include 'conf/subroutes/analysis'/}
+
+#报表
+#{include 'conf/subroutes/Statements'/}
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

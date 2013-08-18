@@ -1,0 +1,23 @@
+*{数据分析导航条}
+*{var: _gameInfo,_lyType}*
+	<a id="affairs" class="query_btn" href="/analysis/base/${_gameInfo.id}/${_lyType}">基本信息</a>
+	<a id="affairs" class="query_btn" href="/analysis/${_gameInfo.id}/${_lyType}">阵容</a>
+#{if _lyType == "hilo"}
+			
+	<a id="base" class="query_btn" href="/analysis/recent/${_gameInfo.id}/${_lyType}">最近战绩详细</a>
+	<a id="lotteries" class="query_btn" href="/analysis/hilo/lottery/${_gameInfo.id}">赔率信息</a>
+#{/if}
+#{else}		
+	<a id="season" class="query_btn" href="/analysis/analysismutual/${_gameInfo.id}">相互交手</a>
+	<a id="base" class="query_btn" href="/analysis/recent/${_gameInfo.id}">最近战绩详细</a>
+	<a id="lottery" class="query_btn" href="/analysis/analysislottery/${_gameInfo.id}">盘口数据</a>
+	<a id="span" class="query_btn" href="/analysis/scoreSpan/${_gameInfo.id}">区间统计</a>
+	<a id="players" class="query_btn" href="/analysis/teamPlayer/${_gameInfo.id}">球员数据</a>
+	
+#{/else}
+	<a id="affairs" class="query_btn" href="/statements/rank/${_gameInfo.id} " target="_blank">排名报表</a>
+	<a id="affairs" class="query_btn" href="/basedata/game/msg/${_gameInfo.id}/${_lyType} ">球队消息</a>
+	
+	<a class="query_btn" href="/analysis/report/${_gameInfo.id}?reportType=2">前瞻</a>
+	<a class="query_btn" href="/analysis/experience/${_gameInfo.id}/${_lyType}">经验</a>
+	

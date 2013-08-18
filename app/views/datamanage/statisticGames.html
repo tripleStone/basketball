@@ -1,0 +1,214 @@
+#{extends 'main.html'/}
+#{set title:'basketball'/}
+<script type="text/javascript">
+$(function(){
+	$("input[name=begin_date]").calendar({ format:'yyyy-MM-dd'});
+	$("input[name=end_date]").calendar({ format:'yyyy-MM-dd'});	
+	$("input[name=query_date]").calendar({ format:'yyyy-MM-dd'});
+	
+	
+	$("#noRegistePlayer").click(function(){//查询
+		window.location.href = '/datamanage/statisticgames?gameDate='+$("#query_date").val();
+   	});
+	
+	$("input[name=prc_gis]").click(function(){
+		loading('加载中');
+		var date = $("#begin_date").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/mamage/game/gameinfostatistic',
+   			data:{date:date},
+   			dataType:'json',
+   			success:function(data){
+   				msgTips('success',data.msg);
+   				removeLoad();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+	$("input[name=prc_tss]").click(function(){
+		loading('加载中');
+		var beginDate = $("#begin_date").val();
+		var endDate = $("#end_date").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/mamage/game/teamseasonstatistic',
+   			data:{beginDate:beginDate,endDate:endDate},
+   			dataType:'json',
+   			success:function(data){
+   				msgTips('success',data.msg);
+   				removeLoad();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+	$("input[name=prc_tsss]").click(function(){
+		loading('加载中');
+		var beginDate = $("#begin_date").val();
+		var endDate = $("#end_date").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/mamage/game/teamseasonstatisticScore',
+   			data:{beginDate:beginDate,endDate:endDate},
+   			dataType:'json',
+   			success:function(data){
+   				msgTips('success',data.msg);
+   				removeLoad();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+	
+	$("input[name=prc_ptss]").click(function(){
+		loading('加载中');
+		var beginDate = $("#begin_date").val();
+		var endDate = $("#end_date").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/mamage/game/playerteamseason',
+   			data:{beginDate:beginDate,endDate:endDate},
+   			dataType:'json',
+   			success:function(data){
+   				msgTips('success',data.msg);
+   				removeLoad();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+	
+	
+	$("input[name=prc_pss]").click(function(){
+		loading('加载中');
+		var beginDate = $("#begin_date").val();
+		var endDate = $("#end_date").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/mamage/game/playerseason',
+   			data:{beginDate:beginDate,endDate:endDate},
+   			dataType:'json',
+   			success:function(data){
+   				msgTips('success',data.msg);
+   				removeLoad();
+   			},
+   			error:function(data){
+   				msgTips('error',data.msg);
+   				removeLoad();
+   			}
+		});		
+	});	
+
+   	
+   	$("a[name='player']").click(function(){
+		loading('加载中');
+		var teamId = $(this).attr("data");
+		var gamedate = $("#query_date").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/gameData/ajax/importTeamPlayers',
+   			data:{teamId:teamId,gameDate:gamedate},
+   			dataType:'text',
+   			success:function(data){
+   				if (data != "1"){
+   					msgTips("warn","出错！");	
+   					removeLoad();
+   				}else {	
+   					$(this).remove();
+   					removeLoad();
+   				}
+   				
+   			},
+   			error:function(data){
+   				removeLoad();
+   			}
+		});
+	});
+   	
+   	
+   	$("input[name='importMatchResult']").click(function(){
+		loading('加载中');
+		var beginDate = $("#begin_date").val();
+		var endDate = $("#end_date").val();
+		$.ajax({
+   			type:'POST',
+   			url:'/lottery/ajax/importMatchResult',
+   			data:{beginDateStr:beginDate,endDateStr:endDate},
+   			dataType:'text',
+   			success:function(data){
+   				if (data != "1"){
+   					msgTips("warn","出错！");	
+   					removeLoad();
+   				}else {	
+   					$(this).remove();
+   					removeLoad();
+   				}
+   				
+   			},
+   			error:function(data){
+   				removeLoad();
+   			}
+		});
+	});
+   	
+});
+</script>
+
+
+
+
+<div class="query_nar">
+	<input type="text" id="begin_date" name="begin_date" class="txt time_bar" value="${gameDate}"/>
+	<input type="text" id="end_date" name="end_date" class="txt time_bar" value="${gameDate}"/>	
+</div>
+
+<div class="query_nar">
+	<li><input type="button" class="button" name="prc_gis" value="比赛统计"/>${gis.game_date.format('yyyy-MM-dd')}</li>
+	<li><input type="button" class="button" name="prc_tss" value="球队赛季基础"/>${tss.deadline_date.format('yyyy-MM-dd')}</li>
+	<li><input type="button" class="button" name="prc_tsss" value="球队赛季得分"/>${tsssDate}</li>
+</div>
+
+<div class="query_nar">
+	<li><input type="button" class="button" name="prc_pss" value="球员赛季"/>${pss.Deadline_Date.format('yyyy-MM-dd')}</li>
+	<li><input type="button" class="button" name="prc_ptss" value="球员球队"/>${ptss.game_date.format('yyyy-MM-dd')}</li>	
+</div>
+
+<div class="query_nar">
+<input type="button" class="button" name="importMatchResult" value="导入盘口数据"/>
+</div>
+
+<div class="query_nar">
+	<input type="text" id="query_date" name="query_date" class="txt time_bar" value="${gameDate}"/>
+	<input type="button" class="button" name="noRegistePlayer" id="noRegistePlayer" value="球员登记查询"/>	
+</div>
+
+
+
+<div class="query_nar">
+	<table>
+	#{list items:teams,as:'team'}
+		#{if team_index % 5 == 1}
+			<tr>
+		#{/if}
+		<a name="player" data="${team.id}" class="query_btn" href="javascript:void(0);">${team.team_name}</a>
+		#{if team_index % 5 == 0}
+			</tr>
+		#{/if}
+	#{/list}	
+	</table>
+
+</div>
+

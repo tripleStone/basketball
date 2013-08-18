@@ -1,0 +1,9 @@
+<div class="reportleft clearfix">
+	<a href="javascript:void;" name="orderPoint" targetid="awayPlayers"  teamId="${gameInfo.guest_id}"  gameId="${gameInfo.id}">${gameInfo.guest_name}</a>
+	#{team.tgteamStarters teamStartersList:awayStartersList,startersGameMap:gamesMap/} 
+	
+</div>
+<div class="reportright clearfix">
+	<a href="javascript:void;" name="orderPoint" targetid="homePlayers"  teamId="${gameInfo.home_id}"  gameId="${gameInfo.id}">${gameInfo.home_name}</a>	
+	#{team.tgteamStarters teamStartersList:homeStartersList,startersGameMap:gamesMap/} 
+</div>

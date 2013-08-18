@@ -1,0 +1,65 @@
+#{extends 'main.html'/}
+#{set title:gameInfo.guest_name+"-"+ gameInfo.home_name+"-详细数据"/}
+
+#{set 'moreScripts'}
+<script src="/public/javascripts/espn.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function(){
+	
+});
+
+</script>
+#{/set}
+
+<div class="query_nar">
+	#{basedata.baseDataNav gameId:gameId/}
+
+</div>
+
+<div id="baseData" class="query_nar" name="gameinfo">
+	<div class="textBox">
+		<p>客队${gameInfo.guest_name}休息了${gameInfo.g_btb}天,
+		主队${gameInfo.home_name}休息了${gameInfo.h_btb}天</p>
+	</div>
+	<div class="textBox">
+		<p>日期:${gameInfo.play_date.format("yyyy-MM-dd")}&nbsp;耗时:${gameInfo.cost_time}&nbsp;观众：${gameInfo.viewers}&nbsp;交替领先：${gameInfo.lead_cha}&nbsp;平手次数：${gameInfo.equal}&nbsp;
+		</p>
+	</div>
+	<table class="bigtable">	
+		<tbody id="gamequartes_${gameInfo.id}" name="loadgamequarters" gameId="${gameInfo.id}" homeId="${gameInfo.home_id}" awayId="${gameInfo.guest_id}">
+
+		</tbody>
+	</table>
+	<br/>
+	
+	主队：${gameInfo.home_name}<br>	
+	<table class="bigtable" id="playerInfos_${gameInfo.home_id}" name="loadgameplayerinfo" gameId="${gameInfo.id}" teamId="${gameInfo.home_id}">
+		
+	</table>
+	客队：${gameInfo.guest_name}<br>
+	<table class="bigtable" id="playerInfos_${gameInfo.guest_id}" name="loadgameplayerinfo"  gameId="${gameInfo.id}" teamId="${gameInfo.guest_id}" >
+		
+	</table>
+</div>
+
+
+
+<div id="gamepreview" class="query_nar" style="display:none" name="gameinfo">	
+	<div class="textBox" >
+		#{game.tGameReport report:preview/}
+	</div>
+	<!-- 
+	<div class="column">
+		<a class="team_edit_btn" rel="${gameInfo.id}" href="javascript:void(0);" >编辑</a>
+	</div>
+	 -->
+</div>
+
+
+<div id="espn" class="query_nar" style="display:none" name="gameinfo">
+	<div id="flashViewsDiv" style="position:relative;"> 
+ 		${print(gameInfo.chart)}
+	</div>
+</div>
+

@@ -1,0 +1,41 @@
+#{if winScore != null}
+<div>
+	胜分:${winScore}&nbsp;负分:${loseScore}&nbsp;净得分:${winScore - loseScore}&nbsp;得分最高:${maxWinScore}&nbsp;得分最低:${minWinScore}
+</div>
+#{/if}
+<table class="bigtable">
+<thead>
+<tr>
+	<th>主V队</th><th>比分</th><th>分差</th><th>胜负</th><th>日期</th><th>评述</th>
+</tr>
+</thead>
+<tbody>
+#{list items:recentGames,as:'hrg'}
+<tr>
+	<td class="team"><a href="/basedata/teamgames?teamId=${hrg.home_id}" target="_blank">${hrg.home_name}</a>VS<a href="/basedata/teamgames?teamId=${hrg.guest_id}" target="_blank">${hrg.guest_name}</a></td>
+	<td class="score"><a href="/basedata/game/score/${hrg.id}" target="_blank">${hrg.home_score}-${hrg.guest_score}</a></td>
+	#{if hrg.getWinScore(teamName) >= 0} 
+		<td class="winscore">
+	#{/if}
+	#{else}
+		<td class="losescore">
+	#{/else}${hrg.getWinScore(teamName)}</td>
+	#{if hrg.getWinScore(teamName) >= 0} 
+	<td class="winstate">
+	#{/if}
+	#{else}
+		<td class="losestate">
+	#{/else}
+	${hrg.getWin(teamName)}</td>
+	<td class="date">${hrg.play_date.format("MM-dd")}</td>
+	#{if hrg.home_name == teamName}
+	<td class="smallcmt"><a href="/basedata/game/score/${hrg.id}" target="_blank">${hrg.home_brief}</a></td>
+	#{/if}
+	#{else}
+	<td class="smallcmt"><a href="/basedata/game/score/${hrg.id}" target="_blank">${hrg.guest_brief}</a></td>
+	#{/else}
+</tr>
+#{/list}
+
+</tbody>
+</table>

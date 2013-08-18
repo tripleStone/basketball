@@ -1,0 +1,92 @@
+<div class="column">
+	主队:<input type="text" name="host_team" id="host_team" maxlength="10" value="${gameInfo.home_name}" />
+	得分：<input type="text" name="host_score" id ="host_score"  value="${gameInfo.home_score}"/>	
+	&nbsp;VS&nbsp;
+	客队:<input type="text" name="guest_team" id="guest_team" maxlength="10" value="${gameInfo.guest_name}" />
+	得分:<input type="text" name="guest_score" id ="guest_score" value="${gameInfo.guest_score}" />
+</div>
+<div class="column">
+	日期:<input type="text" id="game_date" name="game_date" class="txt time_bar" value="" />
+	耗时:<input type="text" id="cost_time" name="cost_time" value="${gameInfo.cost_time}"/>
+	简单评述:<input type="text" id="game_comment" name="game_comment" style="width:200px"/>
+</div>
+<table class="table">
+	<thead>
+		<tr><th></th>
+		#{list items:gameQuartersHome,as:'quarter'}
+		<th>第${quarter_index}节</th>
+		#{/list}
+		</tr>
+	</thead>	
+	<tbody>
+		<tr><td>主</td>
+		#{list items:gameQuartersHome,as:'qHome'}
+		<td>${qHome.score}</td>
+		#{/list}		
+		</tr>
+		<tr><td>客</td>
+		#{list items:gameQuartersGuest,as:'qGuest'}
+		<td>${qGuest.score}</td>
+		#{/list}</tr>
+	</tbody>
+</table>
+
+主队：<br>	
+<table class="table">
+	<thead>
+	<tr>
+        <th>首发</th><th>&nbsp;</th><th>时间</th><th>投篮</th><th>3分</th><th>罚球</th>
+          <th>前场</th><th>后场</th><th>篮板</th><th>助攻</th><th>犯规</th><th>抢断</th>
+          <th>失误</th><th>封盖</th><th>得分</th><th>+/-</th>
+    </tr>
+    </thead>
+    <tbody>
+    	#{list items:homePlayers,as:'player'}
+    	<tr>
+    		<td>${player.player_name}</td><td>${player.player_position}</td><td>${player.time}</td>
+    		<td>${player.shoot_hit}-${player.shoot_all}</td><td>${player.three_hit}-${player.three_all}</td><td>${player.free_hit}-${player.free_all}</td>
+    		<td>${player.rebound_front}</td><td>${player.rebound_after}</td><td>${player.rebound_front + player.rebound_after}</td>
+    		<td>${player.assist}</td><td>${player.foul}</td><td>${player.stolen}</td>
+    		<td>${player.turn_out}</td><td>${player.block}</td><td>${player.point}</td><td>${player.per}</td>
+    	</tr>
+    	
+    	#{if player_index == 5}
+    	<tr>
+          <th>替补</th><th>&nbsp;</th><th>时间</th><th>投篮</th><th>3分</th><th>罚球</th>
+          <th>前场</th><th>后场</th><th>篮板</th><th>助攻</th><th>犯规</th><th>抢断</th>
+          <th>失误</th><th>封盖</th><th>得分</th><th>+/-</th>
+        </tr>
+        #{/if}
+    	#{/list}
+    </tbody>    
+</table>
+<br/>
+客队：<br>	
+<table class="table">
+	<thead>
+		<tr >
+          <th>首发</th><th>&nbsp;</th><th>时间</th><th>投篮</th><th>3分</th><th>罚球</th>
+          <th>前场</th><th>后场</th><th>篮板</th><th>助攻</th><th>犯规</th><th>抢断</th>
+          <th>失误</th><th>封盖</th><th>得分</th><th>+/-</th>
+        </tr>
+    </thead>
+    <tbody>
+    	#{list items:guestPlayers,as:'player'}
+    	<tr>
+    		<td>${player.player_name}</td><td>${player.player_position}</td><td>${player.time}</td>
+    		<td>${player.shoot_hit}-${player.shoot_all}</td><td>${player.three_hit}-${player.three_all}</td><td>${player.free_hit}-${player.free_all}</td>
+    		<td>${player.rebound_front}</td><td>${player.rebound_after}</td><td>${player.rebound_front + player.rebound_after}</td>
+    		<td>${player.assist}</td><td>${player.foul}</td><td>${player.stolen}</td>
+    		<td>${player.turn_out}</td><td>${player.block}</td><td>${player.point}</td><td>${player.per}</td>
+    	</tr>
+    	
+    	#{if player_index == 5}
+    	<tr>
+          <th>替补</th><th>&nbsp;</th><th>时间</th><th>投篮</th><th>3分</th><th>罚球</th>
+          <th>前场</th><th>后场</th><th>篮板</th><th>助攻</th><th>犯规</th><th>抢断</th>
+          <th>失误</th><th>封盖</th><th>得分</th><th>+/-</th>
+        </tr>
+        #{/if}
+    	#{/list}
+    </tbody>
+</table>

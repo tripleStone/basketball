@@ -1,0 +1,62 @@
+#赛程
+GET /basedata/schedule					    BaseDataController.schedule
+
+
+
+########################盘口##################
+POST  /basedata/ajax/lotterHis  basedata.BaseDataLottery.lotteryHistory
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~球员~~~~~~~~~~~~~~~~~~
+POST /basedata/player/teamPlayers  basedata.BaseDataPlayer.teamPlayers
+
+
+#获取某名球员信息
+GET /basedata/player/recent/{<\d+>playerId}	basedata.BaseDataPlayer.recentPlayerInfos
+#-----------------------球员-----------------------
+
+#~~~~~~~~~~~~~~~~~~~~~~球队~~~~~~~~~~~~~~~~~~~~~~
+#球队列表
+GET /basedata/team/index    basedata.BaseDataTeam.index
+
+#球队比赛
+GET /basedata/team/{<\d+>teamId}/games    basedata.BaseDataTeam.games
+
+#球队消息主界面
+GET /basedata/game/msg/{<\d+>gameId}/{lytype}    basedata.BaseDataMsg.gameMsgs
+
+#球队消息
+POST /basedata/team/ajax/tmsg    basedata.BaseDataMsg.ajaxtmsg
+#-----------------------球队-----------------------
+
+#~~~~~~~~~~~~~~~~~~~~~~比赛~~~~~~~~~~~~~~~~~~~~~~
+#比赛球员信息
+GET /basedata/game/score/{<\d+>gameId} 			basedata.BaseDataGame.gameScore
+
+#比赛战报
+GET /basedata/game/report/{<\d+>gameId} 		basedata.BaseDataGame.gameReport
+
+#比赛前瞻
+GET /basedata/game/preview/{<\d+>gameId} 		basedata.BaseDataGame.gameReport
+
+#比赛博彩数据
+GET /basedata/game/lottery/{<\d+>gameId}		basedata.BaseDataGame.gameLottery
+
+#espn比赛flash数据
+GET /basedata/game/espnchart/{<\d+>gameId}		basedata.BaseDataGame.gameEspnChart
+
+#与球队过往数据比较
+GET /basedata/game/gameStatements/{<\d+>gameId} basedata.BaseDataGame.gameStatements
+
+#经验页
+GET /basedata/game/experience/{<\d+>gameId}		basedata.BaseDataGame.experience
+
+POST  /basedata/game/ajaxreport/{<\d+>gameId}	basedata.BaseDataGame.ajaxGameReport
+
+POST /basedata/game/ajax/gamePlayersInfo  basedata.BaseDataGame.gamePlayersInfo
+
+POST /basedata/game/ajax/quarters  basedata.BaseDataGame.gameQuarters
+
+POST /basedata/game/ajax/injury  basedata.BaseDataGame.injuries
+#-----------------------比赛 -----------------------
+

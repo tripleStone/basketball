@@ -1,0 +1,13 @@
+#{extends 'report.html'/}
+#{set title:"对比结果"/}
+#{set 'moreStyles'}
+
+#{/set}
+
+#{set 'moreScripts'}
+
+#{/set}
+
+<div class="query_nar" id="result">	
+	#{games_table gameInfos:gameInfos,hiloMap:hiloMap,handiCapMap:handiCapMap/}
+</div>

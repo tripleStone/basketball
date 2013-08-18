@@ -1,0 +1,18 @@
+*{单节比赛数据}*
+*{var:_gameInfo,_gameQuartersAway,_gameQuartersHome}*
+#{if _gameQuartersAway != null}
+<tr>
+	<td>${_gameInfo.guest_name}<客></td>
+	#{list items:_gameQuartersAway,as:'qGuest'}
+	<td>第${qGuest_index}节：${qGuest.score}</td>
+	#{/list}
+	<td>总分${_gameInfo.guest_score}</td>
+</tr>
+#{/if}
+<tr>
+	<td>${_gameInfo.home_name}<主></td>
+	#{list items:_gameQuartersHome,as:'qHome'}
+	<td>第${qHome_index}节：${qHome.score}</td>
+	#{/list}
+	<td>总分${_gameInfo.home_score}</td>
+</tr>

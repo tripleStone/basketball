@@ -1,0 +1,37 @@
+*{比赛结果基本表}*
+*{var: _gameInfos,_hiloMap,_handiCapMap}*
+<table class="bigtable">
+	<thead>
+		<tr>
+			<th width="90px" >客VS主</th><th width="6px">gbb</th><th width="6px">hbb</th><th>比分</th><th>结果</th><th>分差</th>
+			<th>让分盘口</th><th>总分</th><th>总分盘口</th><th>简报</th><th>日期</th><th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:_gameInfos,as:'gameInfo'}
+			#{set _handicap:_handiCapMap!=null?_handiCapMap.get(gameInfo.id):null/}
+			#{set _hilo:_hiloMap!=null?_hiloMap.get(gameInfo.id):null/}
+			<tr>
+				<td><a href="/basedata/team/${gameInfo.guest_id}/games" target="_blank">${gameInfo.guest_name}</a>VS<a href="/basedata/team/${gameInfo.home_id}/games" target="_blank">${gameInfo.home_name}</a></td>				
+				<td>${gameInfo.g_btb}</td>
+				<td>${gameInfo.h_btb}</td>
+				<td class="score"><a href="/basedata/game/score/${gameInfo.id}" target="_blank">${gameInfo.guest_score}-${gameInfo.home_score}</a></td>					
+				<td #{if gameInfo.home_score - gameInfo.guest_score > 0 }class="winstate" #{/if}#{else}class="losestate"#{/else}>${gameInfo.getWin(gameInfo.home_name)}</td>
+				
+				<td #{if gameInfo.home_score - gameInfo.guest_score > 0 }class="winscore" #{/if}#{else}class="losescore"#{/else}>${gameInfo.home_score - gameInfo.guest_score}</td>
+				<td class="score">#{if _handicap != null }${_handicap.handicap}#{/if}</td>
+				
+				<td class="score">${gameInfo.home_score + gameInfo.guest_score}</td>
+				<td class="score">#{if _hilo != null }<a href="/analysis/base/${gameInfo.id}/hilo" target="_blank">${_hilo.hilo}</a>#{/if}</td>
+				
+				<td>#{if gameInfo.has_detail == 1}<a href="/basedata/game/report/${gameInfo.id}?reportType=1" >${gameInfo.reportTitle}</a>#{/if}</td>
+				
+				<td   class="date" >${gameInfo.play_date.format("yyyy-MM-dd")}</td>
+				<td class="date"  >			
+					<a href="/analysis/base?gameId=${gameInfo.id}&date=${gameInfo.play_date.format("yyyy-MM-dd")}" target="_blank">分析</a>
+				</td>		
+			</tr>
+			#{if gameInfo_index % 5 == 0}<tr><td colspan="8"></td></tr>#{/if}
+		#{/list}
+	</tbody>
+</table>

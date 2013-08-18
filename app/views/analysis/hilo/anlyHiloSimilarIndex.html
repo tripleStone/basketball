@@ -1,0 +1,36 @@
+#{extends 'report.html'/}
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+$(function(){
+	similiarGame();
+});
+
+function similiarGame(){
+	var data = {};
+	$("input[name='querycondition']").each(function(){		
+		if($(this).val() != ''){			
+			if ($(this).val() != ""){
+				data[$(this).attr("data")] = $(this).val();
+			}
+		}
+	});
+	
+	loadHtml(data,'GET','/analysis/hilo/ajax/similarHilos',"#result");
+	
+}
+
+
+</script>
+#{/}
+
+<input type="hidden" data="usaPlayDate" value="${usaPlayDate?usaPlayDate:""}" name="querycondition"/>
+<input type="hidden" data="playTime" value="${playTime?playTime:""}" name="querycondition"/>
+<input type="hidden" data="hilo" value="${hilo?hilo:""}" name="querycondition"/>
+<input type="hidden" data="homeId" value="${homeId?homeId:""}" name="querycondition"/>
+<input type="hidden" data="awayId" value="${awayId?awayId:""}" name="querycondition"/>
+<input type="hidden" data="weekDay" value="${weekDay?weekDay:""}" name="querycondition"/>
+
+<div class="query_nar" id="result">
+
+</div>

@@ -1,0 +1,29 @@
+*{var: _players,_pssMap,_gameInfo}*
+<table class="bigtable ">
+	<thead>
+		<tr><th>名字</th><th>位置</th><th>身高</th><th>体重</th><th>经验</th><th>得分</th><th>助攻</th><th>篮板</th></tr>
+	</thead>
+	<tbody>
+		#{list items:_players,as:'player'}
+		<tr>
+			#{if player_index == 6}
+				<td colspan="7"></td>
+			#{/if}
+			#{else}
+				<td> <a name="player" target="_blank" href="/basedata/player/recent/${player.id}?gameId=${_gameInfo != null?_gameInfo.id:''}" >${player.name} </a></td>
+				
+				<td> ${player.position}</td><td> ${player.hight}</td><td> ${player.weight}</td>
+				<td>${player.experience}</td>
+				#{ if _pssMap.get(player.id) == null}
+					<td colspan="4"></td>
+				#{/if}
+				#{else}
+					<td >${ _pssMap.get(player.id).point}</td>
+					<td >${ _pssMap.get(player.id).assist}</td>
+					<td >${ _pssMap.get(player.id).rebound_all}</td>
+				#{/else}
+			#{/else}
+		</tr>
+		#{/list}
+	</tbody>
+</table>

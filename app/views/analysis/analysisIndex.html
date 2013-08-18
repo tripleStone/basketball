@@ -1,0 +1,38 @@
+#{extends 'report.html'/}
+#{set title:gameInfo.home_name+"-"+gameInfo.guest_name +"-总分-首页"/}
+#{set 'moreScripts'}
+<script type="text/javascript">
+<!--
+
+//-->
+$(function(){
+	teamPlayers(${gameInfo.id});
+});
+
+
+
+</script>
+
+#{/}
+<input type="hidden" id="homeId" value="${gameInfo.home_id}"/>
+<input type="hidden" id="awayId" value="${gameInfo.guest_id}"/>
+<input type="hidden" id="gameId" value="${gameInfo.id}"/>
+
+<div class="query_nar">
+	#{analysis.tAnalysisNav gameInfo:gameInfo,lyType:lytype/}
+</div>
+
+<div class="query_nar">	
+	<a href="javascript:void;" class="query_btn" onclick="teamPlayers(${gameInfo.id});">按位置</a>
+	<a href="javascript:void;" class="query_btn" onclick="forecastPlayers(${gameInfo.id});">按深度</a>
+	<a href="javascript:void;" class="query_btn" onclick="loadHtml({},'POST','/analysis/ajax/teamStartes/${gameInfo.id}','#players')">首发</a>
+	<a href="javascript:void;" class="query_btn" onclick="setColor();">伤病</a>
+</div>
+
+<div class="query_nar clearfix" id="players">
+	
+</div>
+
+<div class="query_nar clearfix" id="injuries" name="loadInjury" gameId="${gameInfo.id}">
+
+</div>

@@ -1,0 +1,21 @@
+#{extends 'report.html'/}
+#{set title:gameInfo.guest_name+"-"+ gameInfo.home_name+"-总分-首页"/}
+#{set 'moreStyles'}
+
+#{/}
+<input type="hidden" id="homeId" value="${gameInfo.home_id}"/>
+<input type="hidden" id="awayId" value="${gameInfo.guest_id}"/>
+<input type="hidden" id="gameId" value="${gameInfo.id}"/>
+
+<div class="query_nar">
+	#{analysis.tAnalysisNav gameInfo:gameInfo,lyType:"hilo"/}
+</div>
+
+
+
+<div class="query_nar" >
+	<div class="textBox" >
+		#{game.tGameReport report:preview/}
+	</div>
+
+</div>

@@ -1,0 +1,30 @@
+*{比赛数据统计：得分情况}
+*{var: _gameStatics}*
+<table class="bigtable">
+	<thead>
+	<tr>
+	    <th>球队</th><th>主力</th><th>替补</th><th>快攻</th><th>禁区得分</th><th>球队失误</th><th>球队失误送分</th><th>日期</th> 
+	</tr>
+	</thead>
+	<tbody>
+	#{list items:_gameStatics,as:'gs'}
+	<tr>
+		#{if gs.is_host == 1}
+		<td class="team"><font color="red">${gs.team_name}(主)</font></td>
+		#{/if}
+		#{else}
+		<td class="team">${gs.team_name}</td>
+		#{/else}
+		<td>${gs.first_score}</td>
+		<td>${gs.sub_score}</td>
+		<td>${gs.fast_break_points}</td>
+		<td>${gs.paint_points}</td>
+		<td>${gs.team_offs}</td>
+		<td>${gs.team_points_off}</td>
+		#{if gs_index % 2 == 1}
+		<td rowspan="2">${gs.game_date.format("MM-dd")}</td>
+		#{/if}
+	</tr>
+	#{/list}
+	</tbody>
+</table>

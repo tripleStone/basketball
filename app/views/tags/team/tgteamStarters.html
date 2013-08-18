@@ -1,0 +1,22 @@
+*{阵容}
+*{var: _teamStartersList,_startersGameMap}*
+<table class="bigtable ">
+	<thead>
+		<tr><th>球员1</th><th>球员2</th><th>球员3</th><th>球员4</th><th>球员5</th><th>次数</th></tr>
+	</thead>
+	<tbody>
+		#{list items:_teamStartersList,as:"teamStarters"}
+		<tr id="${teamStarters.id}" >
+			<td>${teamStarters.player1.name}-${teamStarters.player1.position}</td>
+			<td>${teamStarters.player2.name}-${teamStarters.player2.position}</td>
+			<td>${teamStarters.player3.name}-${teamStarters.player3.position}</td>
+			<td>${teamStarters.player4.name}-${teamStarters.player4.position}</td>
+			<td>${teamStarters.player5.name}-${teamStarters.player5.position}</td>
+			<td #{if _startersGameMap.get(teamStarters.id) != null} style="background-color:rgb(193, 218, 215);" #{/if} >${teamStarters.use_count}</td>
+		</tr>
+		#{if teamStarters_index % 5 == 0}
+			<tr ><td colspan="6"></td></tr>
+		#{/if}
+		#{/list}
+	</tbody>
+</table>	

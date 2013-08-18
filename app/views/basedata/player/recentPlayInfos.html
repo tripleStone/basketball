@@ -1,0 +1,89 @@
+#{extends 'report.html'/}
+#{set title:playerInfo.name/}
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+<!--
+
+//-->
+$(function(){
+	$("a[name='rivalPlayer']").bind("click",function(){
+		var id = $(this).attr("data");
+		var span = $(this).attr("span");
+		$.ajax({
+			url:'/analysis/player/ajax/rivals',
+			data:{"id": id},
+			dataType:'html',
+			type:'POST',
+			beforeSend:function(){
+				loading('加载中');
+			},
+			success: function(data) {
+				if($("#rival"+id).length>0){
+					$("#rival"+id).remove();
+				}
+				$("#"+id).after("<tr id=\"rival"+id+"\"><td colspan=\""+span+"\">" + data + "</td></tr>");
+				removeLoad();
+			},
+			error:function() {
+				$("#"+id).after("<font color='red'>加载失败</font>");
+				 removeLoad();
+			}
+			
+		});				
+	});	
+});
+
+function closeRP(id){
+	if($("#rival"+id).length>0){
+		$("#rival"+id).remove();
+	}
+}
+
+</script>
+#{/set}
+
+<div class="query_nar  ">
+		主客场:<select id="awayType" >
+		<option value="all" selected>全部</option>
+		<option value="home">主</option>
+		<option value="away" >客</option>
+		</select>
+		场次：<select id="awayGames" >
+		<option value="5">5</option>
+		<option value="10" selected>10</option>
+		<option value="15">15</option>
+		<option value="15">20</option>
+		</select>
+		<a class="query_btn"  id="${playerInfo.id}" href="javascript:void(0)">查询</a>
+	#{if pss != null}
+	<table class="bigtable">
+	   <thead>
+		   <tr>
+	         <th>名字</th><th>梯队</th><th>身高</th><th>体重</th><th>经验</th><th>时间</th><th>投篮</th><th>3分</th><th>罚球</th>
+	         <th>(前/后)总篮板</th><th>助攻</th><th>犯规</th><th>抢断</th>
+	         <th>失误</th><th>封盖</th><th>得分</th><th>首发</th><th>替补</th>
+	       </tr>
+	   </thead>	
+	   <tbody>
+		<tr>
+			<td>${playerInfo.name}</td><td>${playerInfo.depth}</td><td>${playerInfo.hight}</td><td>${playerInfo.weight}</td><td>${playerInfo.experience}</td><td>${pss.time}</td>
+			<td >${pss.shoot_hit}-${pss.shoot_all}</td><td>${pss.three_hit}-${pss.three_all}</td><td>${pss.free_hit}-${pss.free_all}</td>
+			<td>(${pss.rebound_front}/${pss.rebound_after})${pss.rebound_front + pss.rebound_after}</td>
+			<td>${pss.assist}</td><td>${pss.foul}</td><td>${pss.stolen}</td>
+			<td>${pss.turn_out}</td><td>${pss.block}</td><td>${pss.point}</td><td>${pss.first_count}</td><td>${pss.second_count}</td>
+		
+		</tr>
+	   </tbody>	
+	</table>
+	#{/if}
+</div>
+
+
+
+
+<div class="query_nar" style=" top:200px">	
+	<div class="column">
+	#{player.tRecentPlayerScore gamePlayers:gamePlayerInfos /}
+	</div>
+</div>

@@ -1,0 +1,106 @@
+*{球队赛季信息}
+*{var: _htss,_htss}*
+<div class="reportleft">
+球队：<a href="/basedata/team/${_gtss.team_id}/games" target="_blank">${_gtss.team_name}(客)</a><br/>
+	<table class="bigtable">
+		<tr><td>日期</td><td>${_gtss.deadline_date.format('yyyy-MM-dd')}</td></tr>
+		<tr><td>得分</td><td style="color: red">${_gtss.season_score}</td></tr>
+		<tr><td>失分</td><td style="color: green">${_gtss.season_lost_score}</td></tr>
+		<tr>
+			<td>净得分</td>
+			<td style=#{if _gtss.season_net_score > 0 }"color: red" #{/if}#{else}"color: green"#{/else}>${_gtss.season_net_score}</td>
+		</tr>
+		<tr><td>胜</td><td style="color: red">${_gtss.win}</td></tr>
+		<tr><td>负</td><td style="color: green">${_gtss.loss}</td></tr>
+		<tr><td>总</td><td>${_gtss.games}</td></tr>		
+		<tr>
+			<td>连胜</td>
+			<td style=#{if _gtss.streak > 0 }"color: red" #{/if}#{else}"color: green"#{/else}>${_gtss.streak}</td>
+		</tr>
+		
+		<tr><td colspan="2"></td></tr>
+		<tr><td>客场得分</td><td style="color: red">${_gtss.guest_score}</td></tr>
+		<tr><td>客场失分</td><td style="color: green">${_gtss.guest_lost_score}</td></tr>
+		<tr>
+			<td>客场净得分</td>
+			<td  style=#{if _gtss.guest_net_score > 0 }"color: red" #{/if}#{else}"color: green"#{/else} >${_gtss.guest_net_score}</td>
+		</tr>
+		<tr><td>客胜</td><td  style="color: red">${_gtss.guest_win}</td></tr>
+		<tr><td>客负</td><td  style="color: green">${_gtss.guest_win-_gtss.guest_all}</td></tr>
+		<tr><td>客场</td><td>${_gtss.guest_all}</td></tr>
+		<tr>
+			<td>客场连胜</td>
+			<td  style=#{if _gtss.streakAway > 0 }"color: red" #{/if}#{else}"color: green"#{/else}>${_gtss.streakAway}</td>
+		</tr>
+		
+		<tr><td colspan="2"></td></tr>
+		<tr><td>主场得分</td><td style="color: red">${_gtss.home_score}</td></tr>
+		<tr><td>主场失分</td><td style="color: green">${_gtss.home_lost_score}</td></tr>
+		<tr>
+			<td>主场净得分</td>
+			<td style=#{if _gtss.home_net_score > 0 }"color: red" #{/if}#{else}"color: green"#{/else}>${_gtss.home_net_score}</td>
+		</tr>
+		<tr><td>主胜</td><td style="color: red">${_gtss.home_win}</td></tr>
+		<tr><td>主负</td><td style="color: green">${_gtss.home_win-_gtss.home_all}</td></tr>
+		<tr><td>主场</td><td>${_gtss.home_all}</td></tr>
+		<tr>
+			<td>主场连胜</td>
+			<td style=#{if _gtss.streakHome > 0 }"color: red" #{/if}#{else}"color: green"#{/else}>${_gtss.streakHome}</td>
+		</tr>		
+		<tr><td colspan="2"></td></tr>
+	</table>	
+</div>
+
+<div class="reportright">
+球队：<a href="/basedata/team/${_htss.team_id}/games" target="_blank">${_htss.team_name}(主)</a><br/>
+	<table class="bigtable">
+		<tr><td>日期</td><td>${_htss.deadline_date.format('yyyy-MM-dd')}</td></tr>
+		<tr><td>得分</td><td style="color: red">${_htss.season_score}</td></tr>
+		<tr><td>失分</td><td style="color: green">${_htss.season_lost_score}</td></tr>
+		<tr>
+			<td>净得分</td>
+			<td style=#{if _htss.season_net_score > 0 }"color: red" #{/if}#{else}"color: green"#{/else}>${_htss.season_net_score}</td>
+		</tr>
+		<tr><td>胜</td><td style="color: red">${_htss.win}</td></tr>
+		<tr><td>负</td><td style="color: green">${_htss.loss}</td></tr>
+		<tr><td>总</td><td>${_htss.games}</td></tr>		
+		<tr>
+			<td>连胜</td>
+			<td style=#{if _htss.streak > 0 }"color: red" #{/if}#{else}"color: green"#{/else}>${_htss.streak}</td>
+		</tr>
+		<tr><td colspan="2"></td></tr>
+		
+		<tr><td>主场得分</td><td style="color: red">${_htss.home_score}</td></tr>
+		<tr><td>主场失分</td><td style="color: green">${_htss.home_lost_score}</td></tr>
+		<tr>
+			<td>主场净得分</td>
+			<td style=#{if _htss.home_net_score > 0 }"color: red" #{/if}#{else}"color: green"#{/else}>${_htss.home_net_score}</td>
+		</tr>
+		<tr><td>主胜</td><td style="color: red">${_htss.home_win}</td></tr>
+		<tr><td>主负</td><td style="color: green">${_htss.home_win-_htss.home_all}</td></tr>
+		<tr><td>主场</td><td>${_htss.home_all}</td></tr>
+		<tr>
+			<td>主场连胜</td>
+			<td style=#{if _htss.streakHome > 0 }"color: red" #{/if}#{else}"color: green"#{/else}>${_htss.streakHome}</td>
+		</tr>		
+		
+		
+		<tr><td colspan="2"></td></tr>
+		<tr><td>客场得分</td><td style="color: red">${_htss.guest_score}</td></tr>
+		<tr><td>客场失分</td><td style="color: green">${_htss.guest_lost_score}</td></tr>
+		<tr>
+			<td>客场净得分</td>
+			<td  style=#{if _htss.guest_net_score > 0 }"color: red" #{/if}#{else}"color: green"#{/else} >${_htss.guest_net_score}</td>
+		</tr>
+		<tr><td>客胜</td><td  style="color: red">${_htss.guest_win}</td></tr>
+		<tr><td>客负</td><td  style="color: green">${_htss.guest_win-_htss.guest_all}</td></tr>
+		<tr><td>客场</td><td>${_htss.guest_all}</td></tr>
+		<tr>
+			<td>客场连胜</td>
+			<td  style=#{if _htss.streakAway > 0 }"color: red" #{/if}#{else}"color: green"#{/else}>${_htss.streakAway}</td>
+		</tr>		
+		<tr><td colspan="2"></td></tr>
+	
+	</table>
+</div>
+

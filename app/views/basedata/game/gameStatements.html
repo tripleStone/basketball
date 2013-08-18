@@ -1,0 +1,72 @@
+#{extends 'main.html'/}
+#{set title:gameInfo.guest_name+"-"+ gameInfo.home_name+"-详细统计资料"/}
+
+
+<div class="query_nar">
+	#{basedata.baseDataNav gameId:gameInfo.id/}
+</div>
+
+<div class="query_nar">
+	<div class="textBox">
+		<p>客队${gameInfo.guest_name}休息了${gameInfo.g_btb}天,
+		主队${gameInfo.home_name}休息了${gameInfo.h_btb}天</p>
+	</div>
+</div>
+
+<div class="query_nar">
+	<table class="bigtable">
+		<thead>
+			<tr>
+				<th>球队</th><th>本场</th><th><font color="blue">主客场</font></th><th><font color="red">赛季</font></th>
+				<th>禁区</th><th><font color="blue">禁区</font></th><th><font color="red">禁区</font>
+				<th>快攻</th><th><font color="blue">快攻</font></th><th><font color="red">快攻</font>
+				<th>主力</th><th><font color="blue">主力</font></th><th><font color="red">主力</font>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>${gameInfo.guest_name}(客)</td><td>${awayGameStatistic.score}</td><td>${awaySeason.guest_score}(客)</td><td>${awaySeason.season_score}</td>
+				<td>${awayGameStatistic.paint_points}</td><td>${awayTeamStScores?.get(0).paint_points}</td><td>${awayTeamStScores?.get(1).paint_points}</td>
+				<td>${awayGameStatistic.fast_break_points}</td><td>${awayTeamStScores?.get(0).fast_break_points}</td><td>${awayTeamStScores?.get(1).fast_break_points}</td>
+				<td>${awayGameStatistic.first_score}</td><td>${awayTeamStScores?.get(0).first_score}</td><td>${awayTeamStScores?.get(1).first_score}</td>
+			</tr>
+			<tr>
+				<td>${gameInfo.home_name}(主)</td><td>${homeGameStatistic.score}</td><td>${homeSeason.home_score}(主)</td><td>${homeSeason.season_score}</td>
+				<td>${homeGameStatistic.paint_points}</td><td>${homeTeamStScores?.get(0).paint_points}</td><td>${homeTeamStScores?.get(1).paint_points}</td>
+				<td>${homeGameStatistic.fast_break_points}</td><td>${homeTeamStScores?.get(0).fast_break_points}</td><td>${homeTeamStScores?.get(1).fast_break_points}</td>
+				<td>${homeGameStatistic.first_score}</td><td>${homeTeamStScores?.get(0).first_score}</td><td>${homeTeamStScores?.get(1).first_score}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<br/>
+	<table class="bigtable">
+		<thead>
+			<tr>
+				<th>球队</th><th>投篮</th><th><font color="blue">投篮</font></th><th><font color="red">投篮</font></th>
+				<th>3分球</th><th><font color="blue">3分球</font></th><th><font color="red">3分球</font></th>
+				<th>罚球</th><th><font color="blue">罚球</font></th><th><font color="red">罚球</font></th>				
+				<th>助攻</th><th><font color="blue">助攻</font></th><th><font color="red">助攻</font></th>
+			</tr>
+		</thead>		
+		<tbody>
+			<tr>
+				<td>${gameInfo.guest_name}(客)</td><td>${awayGameStatistic.shoot_hit}-${awayGameStatistic.shoot_all}(${awayGameStatistic.shoot_percent})</td><td>${awayTeamStScores?.get(0).shootHit}-${awayTeamStScores?.get(0).shootAll}(${awayTeamStScores?.get(0).shootPercent})</td><td>${awayTeamStScores?.get(1).shootHit}-${awayTeamStScores?.get(1).shootAll}(${awayTeamStScores?.get(1).shootPercent})</td>
+				<td>${awayGameStatistic.three_hit}-${awayGameStatistic.three_all}(${awayGameStatistic.three_percent})</td><td>${awayTeamStScores?.get(0).threeHit}-${awayTeamStScores?.get(0).threeAll}(${awayTeamStScores?.get(0).threePercent})</td><td>${awayTeamStScores?.get(1).threeHit}-${awayTeamStScores?.get(1).threeAll}(${awayTeamStScores?.get(1).threePercent})</td>
+				<td>${awayGameStatistic.free_hit}-${awayGameStatistic.free_all}(${awayGameStatistic.free_percent})</td><td>${awayTeamStScores?.get(0).freeHit}-${awayTeamStScores?.get(0).threeAll}(${awayTeamStScores?.get(0).freePercent})</td><td>${awayTeamStScores?.get(1).freeHit}-${awayTeamStScores?.get(1).threeAll}(${awayTeamStScores?.get(1).freePercent})</td>
+				<td>${awayGameStatistic.assist}</td><td>${awayTeamStScores?.get(0).assist}</td><td>${awayTeamStScores?.get(1).assist}</td>
+			</tr>
+			<tr>
+				<td>${gameInfo.home_name}(主)</td><td>${homeGameStatistic.shoot_hit}-${homeGameStatistic.shoot_all}(${homeGameStatistic.shoot_percent})</td><td>${homeTeamStScores?.get(0).shootHit}-${homeTeamStScores?.get(0).shootAll}(${homeTeamStScores?.get(0).shootPercent})</td><td>${homeTeamStScores?.get(1).shootHit}-${homeTeamStScores?.get(1).shootAll}(${homeTeamStScores?.get(1).shootPercent})</td>
+				<td>${homeGameStatistic.three_hit}-${homeGameStatistic.three_all}(${homeGameStatistic.three_percent})</td><td>${homeTeamStScores?.get(0).threeHit}-${homeTeamStScores?.get(0).threeAll}(${homeTeamStScores?.get(0).threePercent})</td><td>${homeTeamStScores?.get(1).threeHit}-${homeTeamStScores?.get(1).threeAll}(${awayTeamStScores?.get(1).threePercent})</td>
+				<td>${homeGameStatistic.free_hit}-${homeGameStatistic.free_all}(${homeGameStatistic.free_percent})</td><td>${homeTeamStScores?.get(0).freeHit}-${homeTeamStScores?.get(0).threeAll}(${homeTeamStScores?.get(0).freePercent})</td><td>${homeTeamStScores?.get(1).freeHit}-${homeTeamStScores?.get(1).threeAll}(${homeTeamStScores?.get(1).freePercent})</td>
+				<td>${homeGameStatistic.assist}</td><td>${homeTeamStScores?.get(0).assist}</td><td>${homeTeamStScores?.get(1).assist}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="query_nar">
+	
+</div>

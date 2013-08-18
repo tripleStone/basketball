@@ -1,0 +1,37 @@
+*{每场比赛}*
+*{var:_gamePlayers}*
+<table class="bigtable">
+	<tbody>
+		#{list items:_gamePlayers,as:'_player'}
+			#{if _player_index % 5 == 1}
+			<tr>
+		      <td>首发</td><td>&nbsp;</td><td>时间</td><td>投篮</td><td>3分</td><td>罚球</td>
+		      <td>(前/后)篮板</td><td>助攻</td><td>犯规</td><td>抢断</td>
+		      <td>失误</td><td>封盖</td><td>得分</td><td>+/-</td><td>home</td><td>对手球队</td><td>操作</td><td>日期</td>
+		    </tr>
+			#{/if}
+			<tr id="${_player.id}">
+				<td>${_player.first}</td><td>${_player.player_position}</td><td>${_player.time}</td>
+				<td>${_player.shoot_hit}-${_player.shoot_all}</td><td>${_player.three_hit}-${_player.three_all}</td><td>${_player.free_hit}-${_player.free_all}</td>
+				<td>(${_player.rebound_front}/${_player.rebound_after})${_player.rebound_front + _player.rebound_after}</td>
+				<td>${_player.assist}</td><td>${_player.foul}</td><td>${_player.stolen}</td>
+				<td>${_player.turn_out}</td><td>${_player.block}</td><td>${_player.point}</td><td>${_player.per}</td>
+				
+				#{if _player.team_id == _player.gameInfo.home_id }
+				<td>主</td>
+				#{/if}
+				#{else}
+				<td>客</td>
+				#{/else}
+				#{if _player.team_id == _player.gameInfo.home_id }
+				<td>${_player.gameInfo.guest_name}</td>
+				#{/if}
+				#{else}
+				<td>${_player.gameInfo.home_name}</td>
+				#{/else}
+				<td><a name="rivalPlayer" data="${_player.id}" span="17" href="javascript:void;">比较</a></td>
+				<td><a href="/basedata/game/score/${_player.gameInfo.id}">${_player.game_date.format("yyyy-MM-dd")}</a></td>
+			</tr>
+	   	#{/list}
+	</tbody>
+</table>

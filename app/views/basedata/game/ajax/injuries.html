@@ -1,0 +1,45 @@
+<input type="hidden" id="injureNames" value="${names}"/>
+<div class="reportleft textBox clearfix">
+	${game.guest_name}:
+	<table class="bigtable">
+	#{list items:awayInjuries,as:'injury'}
+		<tr>
+			<td>${injury.playerName}</td><td>${injury.position}</td><td>${injury.brief}</td>
+		</tr>
+	#{/list}
+	</table>	
+	
+</div>
+<div class="reportright textBox clearfix">
+${game.home_name}:	
+	<table class="bigtable">
+	#{list items:homeInjuries,as:'injury'}
+		<tr>
+			<td>${injury.playerName}</td><td>${injury.position}</td><td>${injury.brief}</td>
+		</tr>
+	#{/list}
+	</table>	
+</div>
+
+<script type="text/javascript">
+function setInjury(){
+	if ($("#injureNames").val() != ''){
+		var injuryNames = $("#injureNames").val().split(",");
+		$("a[name='player']").each(function(){
+			var tmpName =  $(this).html();
+			
+			if (injuryNames.length != 0){
+				if (tmpName != ''){
+					for(var i=0;i<injuryNames.length;i++){
+						if (tmpName.indexOf(injuryNames[i]) >= 0 || injuryNames[i].indexOf(tmpName) >= 0 ){
+							$(this).css("color","red");
+							break;
+						}		
+					}
+				}
+			}
+		});
+	}
+}
+
+</script>

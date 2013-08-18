@@ -1,0 +1,18 @@
+*{var:_ranktype,_columnNameList}*
+<th order="0">球队</th>
+#{if _ranktype == 'winloss'}
+	<th order="1">胜</th><th order="2">负</th>
+#{/if}
+#{elseif _ranktype == 'hilo'}
+	<th order="1" >大</th><th order="2">小</th>
+#{/elseif}
+#{elseif _ranktype == 'teambase'}
+	<th order="1" >赛季得</th><th order="2" >赛季失</th><th order="3" >赛季净</th>
+	<th order="4" >主场得</th><th order="5" >主场失</th><th order="6" >主场净</th>
+	<th order="7" >客场得</th><th order="8" >客场失</th><th order="9" >客场净</th>
+#{/elseif}
+#{elseif _ranktype == 'teamscore'}
+	#{list items:_columnNameList,as:'columnName'}
+		<th order="${columnName_index - 1}">${columnName}</th>
+	#{/list}
+#{/elseif}

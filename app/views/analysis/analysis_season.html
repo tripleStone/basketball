@@ -1,0 +1,89 @@
+#{extends 'report.html'/}
+#{set title:'analysis'/}
+#{include 'analysis/analysis_navigate.html'/}
+#{set 'moreScripts'}
+<script type="text/javascript">
+$(function(){
+	
+})
+
+</script>
+#{/}
+
+<input type="hidden" id="gameId" value="${gameId}"/>
+
+<div class="query_nar">
+	场次：<select id="games" >
+		<option value="5">5</option>
+		<option value="10" selected>10</option>
+		<option value="15">15</option>
+		<option value="trade">交易日</option>
+	</select>
+	<a id="season_games" class="query_btn" href="javascript:void(0)">查询</a>
+</div>
+
+<div class="query_nar clearfix">
+	%{tsiTmp = hsi
+	  recent = hRecent	  
+	 }%
+	
+	<div class="reportleft">
+	<p>${gameInfo.home_name}</p>
+		#{include '/analysis/ajax/analysis_seaon_wl.html'/}
+	</div>
+	
+	%{  tsiTmp = gsi 
+		recent = gRecent	   
+	}%
+	
+	<div class="reportright">
+	<p>${gameInfo.guest_name}</p>
+		#{include '/analysis/ajax/analysis_seaon_wl.html'/}
+	</div>
+</div>
+
+
+	<div class="reportleft" >
+		主客场:<select id="home_select" >
+		<option value="all" selected>全部</option>
+		<option value="home">主</option>
+		<option value="away">客</option>
+		</select>
+		场次：<select id="home_games_deadline" >
+			<option value="5">5</option>
+			<option value="10" selected>10</option>
+			<option value="15">15</option>
+			<option value="trade">交易日</option>
+		</select>
+		<a  class="query_btn_ana" href="javascript:void(0)"
+		rel="${gameInfo.home_id}" url="/analysis/ajax/getrecentgames" data="recent_games_compare_home">查询</a>
+		<font color="red">${gameInfo.home_name}</font>最近战绩:
+		#{set recentGames = hgames/}
+		#{set teamName = gameInfo.home_name/}
+		<div id="recent_games_compare_home">
+		#{include '/analysis/ajax/analysis_recent_games.html'/}
+		</div>
+	</div>
+	
+	<div class="reportright" id="recent_games_compare_guest">
+		主客场:<select id="away_select" >
+		<option value="all" selected>全部</option>
+		<option value="home">主</option>
+		<option value="away">客</option>
+		</select>
+		场次：<select id="away_games_deadline" >
+			<option value="5">5</option>
+			<option value="10" selected>10</option>
+			<option value="15">15</option>
+			<option value="trade">交易日</option>
+		</select>
+		<a  class="query_btn_ana" href="javascript:void(0)"
+		 rel="${gameInfo.guest_id}" url="/analysis/ajax/getrecentgames" data="recent_games_compare_away">查询</a>
+		<font color="red">${gameInfo.guest_name}</font>最近战绩:
+		#{set recentGames = ggames/}
+		#{set teamName = gameInfo.guest_name/}
+		<div id="recent_games_compare_away">
+		#{include '/analysis/ajax/analysis_recent_games.html'/}
+		</div>	
+	</div>
+</div>	

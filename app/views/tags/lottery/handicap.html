@@ -1,0 +1,31 @@
+*{胜分差}
+*{var: _lotteries}*
+<table class="bigtable">
+<thead>
+	 <tr>
+	 	<th>球队(客VS主)</th><th>让分主负</th><th>主队让分</th><th>让分主胜</th><th>日期</th><th></th>
+	 </tr>
+</thead>
+<tbody>
+	#{list items:_lotteries,as:'handicap'}
+	<tr>
+		#{if handicap.hit == null || handicap.hit == "" }
+		<td><a href="/analysis/base?gameId=${handicap.game_id}" target="_blank">${handicap.away_name}VS${handicap.host_name}</a></td>
+		#{/if}
+		#{else}
+		<td><a href="/basedata/game/score/${handicap.game_id}" target="_blank">${handicap.away_name}VS${handicap.host_name}</a></td>
+		#{/else}		
+		<td #{if handicap.hit == "lose"} style="color:red" #{/if}>${handicap.lose}</td>
+		<td>${handicap.handicap}</td>
+		<td #{if handicap.hit == "win"} style="color:red" #{/if}>${handicap.win}</td>	
+		<td>${handicap.createDate.format("yyyy-MM-dd HH:mm")}</td>
+		<td><a name="lottery_his"  href="javascript:void(0);" data="${handicap.game_id}" ltype="handicap">历史</a>
+		<a name="lottery_exp"  href="javascript:void(0);" data="${handicap.id}" rel="handicap">经验</a>
+		#{if handicap.hit != null && handicap.hit != "" }
+		<a href="/analysis/analysismutual?gameId=${handicap.game_id}" target="_blank">复盘</a>
+		#{/if}	
+		</td>
+	</tr>
+	#{/list}
+</tbody>
+</table>

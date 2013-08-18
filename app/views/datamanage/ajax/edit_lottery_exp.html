@@ -1,0 +1,35 @@
+<script type="text/javascript">
+
+$(function(){
+	
+	
+});
+
+function saveExp(lotteryId){
+	var exp = $("#lottery_exp").val();
+	var lotteryType = $("#lottery_type").val();
+	loading("提交中......");
+	$.ajax({
+		type:'post',
+		url:'/datamanage/lottery/saveLotteryExp',
+		data:{exp:exp,lotteryId:lotteryId,lotteryType:lotteryType},
+		dataType:'json',
+		success:function(msg){				
+			removeLoad();
+			aclose();
+		},
+		error:function(msg){
+			
+		}
+	});	
+}
+</script>
+
+<div class="column">
+	<input id="lottery_type" type="hidden" value="${lotteryType}"/>
+	<input id="lottery_id" type="hidden" value="${lottery.id}"/>
+	战报:<br/>
+	<textarea id="lottery_exp" name="lottery_exp" style="width:800px;height:300px">${lottery.exp}</textarea>	
+	
+	<input type="button" value="保存"  onclick="saveExp(${lottery.id})"/>
+</div>

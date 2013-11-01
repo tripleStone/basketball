@@ -279,10 +279,12 @@ public class GameDataImport  extends Controller{
 				dataPlayer.save();
 			}
 			
-			GamePlayerInfo.updatePlayerId(teamId,DateUtil.parseDate(gameDate));
+			if (gameDate != null){
+				GamePlayerInfo.updatePlayerId(teamId,DateUtil.parseDate(gameDate));
+			}
 			PlayerInfo.delPlayer(teamId, ids);
 			
-			return ("{\"error\":\"1\"}");
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -292,6 +294,7 @@ public class GameDataImport  extends Controller{
 			e.printStackTrace();
 			return ("{\"error\":\"2\",\"msg\":\"出错\"}");
 		}
+    	return ("{\"error\":\"1\"}");
 	}
   
 

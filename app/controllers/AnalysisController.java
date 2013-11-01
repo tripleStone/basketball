@@ -146,7 +146,7 @@ public class AnalysisController  extends Controller{
 	 * @param teamId
 	 * @param gameId
 	 */
-	public static void ajaxRecentGameStat(String gameDeadLine,String homeAway,long teamId,long gameId){
+	public static void ajaxRecentGameStat(String gameDeadLine,String homeAway,long teamId,long gameId,String queryType){
 		GameInfo gameInfo = GameInfo.findById(gameId);
 		List<GameInfoStatic> gameStatics  =  null;
 		if (gameDeadLine.equalsIgnoreCase("trade")){
@@ -169,7 +169,7 @@ public class AnalysisController  extends Controller{
 			else
 				gameStatics = GameInfoStatic.getAwayStatics(teamId, gameInfo.play_date, Integer.parseInt(gameDeadLine));
 		}
-		render("/analysis/ajax/anlyGameStat.html",gameStatics); 
+		render("/analysis/ajax/anlyGameStat.html",gameStatics,queryType); 
 		
 	}
 	

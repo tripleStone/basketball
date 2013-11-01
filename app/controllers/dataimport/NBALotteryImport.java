@@ -99,7 +99,15 @@ public class NBALotteryImport extends Controller{
 			Logger.info(lottery.host_team  + " " +lottery.guest_team );
 			Logger.info(sdf.format( lottery.game_date));
 			TeamInfo home = TeamInfo.getTeamByFullName(lottery.host_team);
+			if (home == null){
+				Logger.info(" team name is  %s ", lottery.host_team);
+				System.out.println(lottery.host_team);
+			}
 			TeamInfo guest = TeamInfo.getTeamByFullName(lottery.guest_team);
+			if (guest == null){
+				Logger.info(" team name is  %s ", lottery.guest_team);
+				System.out.println(lottery.guest_team);
+			}
 			GameInfo game = GameInfo.getGameInfo(home.id, guest.id, lottery.game_date);
 			if (home == null || guest == null){
 				Logger.info(" %s vs %s", lottery.host_team,lottery.guest_team);
@@ -136,6 +144,8 @@ public class NBALotteryImport extends Controller{
 			lottery.game_id = game.id;
 			lottery.season = game.season;
 			lottery.createDate = new Date();
+			lottery.homeId = home.id;
+			lottery.awayId = guest.id;
 			lottery.save();				
 		}
 		return "";

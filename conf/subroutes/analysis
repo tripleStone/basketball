@@ -27,7 +27,7 @@ POST /analysis/ajax/teamPlayers/{<\d+>gameId}		AnalysisController.teamPlayers
 POST /analysis/ajax/forecastPlayers/{<\d+>gameId}  		AnalysisController.forecastPlayers
 
 #首发分析
-POST /analysis/ajax/teamStartes//{<\d+>gameId}			AnalysisController.teamStarters
+POST /analysis/ajax/teamStartes/{<\d+>gameId}			AnalysisController.teamStarters
 
 #############################v1.0##########################
 

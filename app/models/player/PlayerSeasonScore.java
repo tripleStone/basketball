@@ -96,7 +96,7 @@ public class PlayerSeasonScore  extends GenericModel {
 	public Date Deadline_Date;
 	
 	@Column(name="Stat_type")
-	public Long statType;
+	public Long stat_type;
 	
 	@Column(name="GAME_TYPE")
 	public int game_type;
@@ -105,12 +105,12 @@ public class PlayerSeasonScore  extends GenericModel {
 		return find(" order by id desc").first();
 	}
 	
-	public static PlayerSeasonScore get(long playerId, Date gameDate ,long  statType){
-		return find( " player_id = ? and Deadline_Date <= ? and statType = ? order by Deadline_Date desc",playerId,gameDate,statType ).first();
+	public static PlayerSeasonScore get(long playerId, Date gameDate ,int  statType){
+		return find( " player_id = ? and Deadline_Date <= ? and stat_type = ? order by Deadline_Date desc",playerId,gameDate,statType ).first();
 	}
 	
 	public static List<PlayerSeasonScore> gets(List<Long> playerIds,Date gameDate,int statType){
-		return find(" player_id in :ids and statType = :statType and Deadline_Date <= :gameDate  order by player_id")
+		return find(" player_id in :ids and stat_type = :statType and Deadline_Date <= :gameDate  order by player_id")
 				.bind("ids",playerIds)
 				.bind("statType",Long.valueOf(statType))
 				.bind("gameDate", gameDate)
@@ -124,6 +124,12 @@ public class PlayerSeasonScore  extends GenericModel {
 		query.setParameter(3, seasonBeginDate);
 		query.setParameter(4, season);
 		query.executeUpdate();
+	}
+	
+	public static List<PlayerSeasonScore> getScoreBySeason(long playerId,int statType, int gameType ){
+		return find( " Select pss from PlayerSeasonScore pss where pss.id in (select max(pss_.id)  from PlayerSeasonScore pss_" +
+				" where pss_.player_id = ?  and pss_.stat_type = ? and pss_.game_type = ? " +
+				"group by pss_.season)  order by season desc",playerId,statType,gameType).fetch();
 	}
 	
 }

@@ -16,6 +16,8 @@ $(function(){
 		recentStatistic(${gameInfo.id},teamId,homeAway,gameDeadLine,type);
 	});
 	
+	gameId,teamId,homeAway,gameDeadLine,type
+	
 	recentStatistic(${gameInfo.id},${gameInfo.home_id},'home',10,'home');
 	recentStatistic(${gameInfo.id},${gameInfo.guest_id},'away',10,'away');
 
@@ -30,15 +32,16 @@ $(function(){
 </div>
 
 <div class="query_nar">
-	<ul rel="gsi" id="linav">	
-		<li data="statistic">数据统计</li>		
-		<li data="point">得分</li>			
+	<ul>	
+		<li name="ajax" data="result" url="">数据统计</li>		
+		<li name="ajax" data="result" url="">得分</li>	
 	</ul>
 </div>
 
-<div id="query_nar">
+<div id="query_nar" id="result">
 	<div class="reportleft">
 		<div class="column">
+		
 			<font color="red">${gameInfo.guest_name}</font>:
 			主客场:<select id="awayType" >
 			<option value="all" >全部</option>

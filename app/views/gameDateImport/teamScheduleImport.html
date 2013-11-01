@@ -20,7 +20,6 @@ $(function(){
    					msgTips("warn","出错！");	
    				else {	
 	   				$("#team_id :selected").remove();
-					$("#ajaxData").html(data);					
    				}
    				removeLoad();
    			},
@@ -43,7 +42,6 @@ $(function(){
    					msgTips("warn","出错！");	
    				else {	
 	   				$("#team_id_oldSeason :selected").remove();
-					$("#ajaxData").html(data);					
    				}
    				removeLoad();
    			},
@@ -61,13 +59,12 @@ $(function(){
    			type:'POST',
    			url:'/gameData/ajax/importTeamPlayers',
    			data:{teamId:teamId},
-   			dataType:'text',
+   			dataType:'json',
    			success:function(data){
-   				if (data != "1")
+   				if (data.error != "1")
    					msgTips("warn","出错！");	
    				else {	
 	   				$("#team_id_player :selected").remove();
-					$("#ajaxData").html(data);					
    				}
    				removeLoad();
    			},

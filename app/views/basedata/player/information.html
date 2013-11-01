@@ -1,0 +1,59 @@
+#{extends 'report.html'/}
+#{set title:playerInfo.name/}
+
+#{set 'moreScripts'}
+<script type="text/javascript">
+<!--
+
+//-->
+$(function(){
+	
+});
+
+
+
+</script>
+#{/set}
+<!-- 导航条 -->
+#{player.tPlayerNavi playerId:playerInfo.id/}
+
+<div class="query_nar clearfix" >
+	<div style="float: left;width: 30%">
+	<img alt="" src="${headUrl}" />
+	</div>
+	<div style="float: left;width: 69%">
+		<table class="bigtable">
+		<tbody>
+			<tr>
+				<td>${playerInfo.name}</td><td>位置:${playerInfo.position}</td>
+				<td>NBA经验：${playerInfo.experience}</td><td>出生年：${playerInfo.birthyear}</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="query_nar" >
+按赛季分：
+	<table class="bigtable">
+	   <thead>
+		   <tr>
+	         <th>名字</th><th>身高</th><th>体重</th><th>经验</th><th>时间</th><th>投篮</th><th>3分</th><th>罚球</th>
+	         <th>(前/后)总篮板</th><th>助攻</th><th>犯规</th><th>抢断</th>
+	         <th>失误</th><th>封盖</th><th>得分</th><th>首发</th><th>替补</th><th>梯队</th><th>赛季</th>
+	       </tr>
+	   </thead>	
+	   <tbody>
+	   #{list items:psses,as : 'pss'}
+		<tr>
+			<td>${playerInfo.name}</td><td>${playerInfo.hight}</td><td>${playerInfo.weight}</td><td>${playerInfo.experience}</td><td>${pss.time}</td>
+			<td >${pss.shoot_hit}-${pss.shoot_all}</td><td>${pss.three_hit}-${pss.three_all}</td><td>${pss.free_hit}-${pss.free_all}</td>
+			<td>(${pss.rebound_front}/${pss.rebound_after})${pss.rebound_front + pss.rebound_after}</td>
+			<td>${pss.assist}</td><td>${pss.foul}</td><td>${pss.stolen}</td>
+			<td>${pss.turn_out}</td><td>${pss.block}</td><td>${pss.point}</td><td>${pss.first_count}</td><td>${pss.second_count}</td><td>${playerInfo.depth}</td><td>${pss.season}</td>
+		
+		</tr>
+		#{/list}
+	   </tbody>	
+	</table>
+</div>

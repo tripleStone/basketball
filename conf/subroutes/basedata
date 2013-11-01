@@ -10,9 +10,17 @@ POST  /basedata/ajax/lotterHis  basedata.BaseDataLottery.lotteryHistory
 #~~~~~~~~~~~~~~~~~~~~~~~球员~~~~~~~~~~~~~~~~~~
 POST /basedata/player/teamPlayers  basedata.BaseDataPlayer.teamPlayers
 
-
 #获取某名球员信息
 GET /basedata/player/recent/{<\d+>playerId}	basedata.BaseDataPlayer.recentPlayerInfos
+
+#获取某名球员信息图标
+GET /basedata/player/recent/{<\d+>playerId}/chart	basedata.BaseDataPlayer.recentPlayerInfosChart
+
+#赛季明细
+GET /basedata/player/recent/{<\d+>playerId}/seasonBoxScore	basedata.BaseDataPlayer.seasonBoxScore
+
+#基本资料
+GET /basedata/player/recent/{<\d+>playerId}/information		basedata.BaseDataPlayer.information
 #-----------------------球员-----------------------
 
 #~~~~~~~~~~~~~~~~~~~~~~球队~~~~~~~~~~~~~~~~~~~~~~
@@ -21,6 +29,9 @@ GET /basedata/team/index    basedata.BaseDataTeam.index
 
 #球队比赛
 GET /basedata/team/{<\d+>teamId}/games    basedata.BaseDataTeam.games
+
+#球员
+GET /basedata/team/{<\d+>teamId}/players    basedata.BaseDataTeam.players
 
 #球队消息主界面
 GET /basedata/game/msg/{<\d+>gameId}/{lytype}    basedata.BaseDataMsg.gameMsgs

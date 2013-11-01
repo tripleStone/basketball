@@ -8,7 +8,7 @@ import play.mvc.Controller;
 
 public class AnalysisHDC extends Controller {
 
-	public static void scoreSpan(Long gameId){ 
+	public static void scoreSpan(Long gameId){
 		GameInfo gameInfo = GameInfo.findById(gameId);
 		List<GameInfo> hgame0t5w = GameInfo.getHomeGameInfos(gameInfo.home_id, 1,5, Application.season);
 		List<GameInfo> hgame0t5l = GameInfo.getHomeGameInfos(gameInfo.home_id, -5,-1, Application.season);

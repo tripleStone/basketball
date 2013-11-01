@@ -199,23 +199,7 @@ public class UrlUtil  {
 	public static void main(String[] args){
 
 		try {
-//			Map<String,String> para = new HashMap<String,String>();
-//			para.put("start_date","2013-03-15");
-//			para.put("end_date","2013-03-15");
-//			para.put("lid","1");
-//			Document doc= getURLContentPost("http://info.sporttery.cn/basketball/match_result.php",para);
-//			System.out.println(doc.html());
-//			Map<String,String> para = new HashMap<String,String>();
-//			para.put("start_date","2013-03-15");
-//			para.put("end_date","2013-03-15");
-//			para.put("lid","1");	
-			
 
-			Map<String,String> para = new HashMap<String,String>();
-			para.put("userId", "1001");
-			para.put("grade", "一年级");
-			Document doc = getURLContentPost("http://221.130.6.212:4889/zypt/web/queryUserZy.action",para);
-			System.out.println(doc.body());
 			
 		} catch (Exception e) {
 			e.printStackTrace();

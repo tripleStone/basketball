@@ -132,7 +132,10 @@ public class LotteryHilo extends GenericModel  {
 	public static List<LotteryHilo> getHilos(long teamId,Date gameDate,int page, int pageSize){
 		return find(" (away_id = ? or host_id = ?) and game_date <  ? and del_marker = 0  order by game_date desc ",teamId,teamId,gameDate).from(page -1 ).fetch(pageSize);		
 	}
-
+	
+	public static List<LotteryHilo> getHilos(long teamId,Integer season){
+		return find(" (away_id = ? or host_id = ?) and season = ? and del_marker = 0  order by game_date desc ",teamId,teamId,season).fetch();		
+	}	
 	
 	public static List<LotteryHilo> getGreaterHilos(long teamId,double hilo, int pageSize){
 		return find(" (away_id = ? or host_id = ?) and del_marker = 0 and hilo > ?  order by game_date desc ",teamId,teamId,hilo).fetch(pageSize);		

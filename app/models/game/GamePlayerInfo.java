@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Query;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -29,11 +31,16 @@ public class GamePlayerInfo extends GamePlayerInfoModel {
 	@Column(name="id")
 	public long id;
 	
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="game_id",insertable=false,updatable=false)
 	public GameInfo gameInfo;
 	
 	@Transient
 	public Long espnId;
+	
+	public static List<GamePlayerInfo> getInfos(Integer season,Long playerId){
+		return find(" gameInfo.season = ? and player_id = ? order by game_date ",season,playerId).fetch();
+	}
 	
 	public static List<GamePlayerInfo> gets(long gameId,int page,int pageSize){
 		return find(" game_id = ? order game_date desc ",gameId).from(page -1).fetch(pageSize);

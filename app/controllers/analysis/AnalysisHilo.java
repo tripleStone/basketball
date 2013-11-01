@@ -59,6 +59,17 @@ public class AnalysisHilo extends Controller{
 		render("/analysis/hilo/ajax/anlyHiloRecnet.html",gameInfo,homeHilos,awayHilos);		
 	}
 	
+	/**
+	 * 两队最近赔率
+	 * url /analysis/hilo/ajax/recentRivals
+	 * @param gameId
+	 */
+	public static void rivalRecent(Long gameId){
+		GameInfo gameInfo = GameInfo.findById(gameId);
+		
+		render("/analysis/hilo/ajax/anlyHiloRecnetRivals.html");		
+	}
+	
 	
 	
 	/**

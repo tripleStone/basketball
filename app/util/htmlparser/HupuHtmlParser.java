@@ -66,9 +66,9 @@ public class HupuHtmlParser {
 		Document doc;
 		try {
 			doc = UrlUtil.getURLContent(url);
-			Element bfg = doc.getElementsByClass("battlefieldGame").get(0);
-			Element reportBox = bfg.getElementsByTag("div").get(2);
-			Elements childs =  reportBox.getElementsByTag("p");
+			Element bfg = doc.getElementsByClass("content").get(0);
+//			Element reportBox = bfg.getElementsByTag("div").get(2);
+			Elements childs =  bfg.getElementsByTag("p");
 			for (int i=0;i<childs.size()  ;i++){
 				Element ele = childs.get(i);
 
@@ -93,20 +93,38 @@ public class HupuHtmlParser {
 		String key = "";
 		String title = "";
 		
-		Element div = doc.getElementsByAttributeValue("class", "widthlist").get(0);
-		Elements games = div.children();
-		
-		for (Element game : games){
-			Elements names = game.getElementsByAttributeValue("class", "name");
-			home =  names.get(0).text();
-			away =  names.get(1).text();
+		Elements boxes = doc.getElementsByAttributeValue("class", "list_box");
+		for (Element box : boxes){
+			Element homeEle = box.getElementsByAttributeValue("class", "team_vs_a_1 clearfix").get(0);
+			home = homeEle.getElementsByTag("span").get(1).getElementsByTag("a").text();
 			
-			url = "http://g.hupu.com" + game.getElementsByAttributeValue("class", "vsExplain").get(0).getElementsByTag("a").get(0).attr("href");
-			title = game.getElementsByAttributeValue("class", "vsExplain").get(0).getElementsByTag("a").get(0).text();
+			Element awayEle = box.getElementsByAttributeValue("class", "team_vs_a_2 clearfix").get(0);
+			away = awayEle.getElementsByTag("span").get(1).getElementsByTag("a").text();
+			
+			Element a = box.getElementsByAttributeValue("class", "tips").get(0).getElementsByTag("a").get(0);
 			key = home + "-" + away;
+			title = a.text();
+			url = "http://g.hupu.com" + a.attr("href");
 			map.put(key, url);
-			map.put(key+"_title", title);
+			map.put(key+"_title", title);			
+			
 		}
+		
+		
+		
+//		Elements games = div.children();
+//		
+//		for (Element game : games){
+//			Elements names = game.getElementsByAttributeValue("class", "name");
+//			home =  names.get(0).text();
+//			away =  names.get(1).text();
+//			
+//			url = "http://g.hupu.com" + game.getElementsByAttributeValue("class", "vsExplain").get(0).getElementsByTag("a").get(0).attr("href");
+//			title = game.getElementsByAttributeValue("class", "vsExplain").get(0).getElementsByTag("a").get(0).text();
+//			key = home + "-" + away;
+//			map.put(key, url);
+//			map.put(key+"_title", title);
+//		}
 
 //		
 //		for (Element table : tables){			
@@ -168,7 +186,8 @@ public class HupuHtmlParser {
 	
 	public static void main(String[] args){
 		try {
-			getGameReport("http://g.hupu.com/nba/recap_21855.html");
+			Document doc = UrlUtil.getURLContent("http://g.hupu.com/nba/2013-10-30");
+			getGameReports(doc);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

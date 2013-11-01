@@ -246,11 +246,13 @@ public class EspnHtmlParser {
 				
 				TeamInfo anotherTeam = Application.teamMap.get(cityname);
 				if (cityname.equalsIgnoreCase("Los Angeles")){
-					if (team.id == 15l){
+					String url = tdEles.get(1).getElementsByAttributeValue("class","team-name").get(0).getElementsByTag("a").get(0).attr("href");
+					if (url.indexOf("clippers") >= 0){
 						anotherTeam = Application.teamMap.get("16");
 					}else{
 						anotherTeam = Application.teamMap.get("15");
 					}
+					
 				}
 				if (anotherTeam == null){
 					return null;

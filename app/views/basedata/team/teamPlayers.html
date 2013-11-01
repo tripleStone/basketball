@@ -1,0 +1,61 @@
+#{extends 'main.html'/}
+#{set title:team.team_name + "-球员"/}
+
+<div class="query_nar">
+	#{team.tgTeamNav teamId:team.id/}
+</div>
+
+
+<div class="query_nar">
+<table class="bigtable">
+	<thead>
+		<tr>
+			<th>POS</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>中锋</td>
+			#{set length = Centers.size()/}
+			#{list items:Centers,as:'player'}
+			<td><a href="/basedata/player/recent/${player.id}" target="_blank">${player.name}</a></td>
+			#{/list}
+			%{ for (i in 1..(5-length)) { }%  <td></td>  %{ } }%
+		</tr>
+		<tr>
+			<td>大前锋</td>
+			#{set length = Pfs.size()/}
+			#{list items:Pfs,as:'player'}
+			<td><a href="/basedata/player/recent/${player.id}" target="_blank">${player.name}</a></td>
+			#{/list}
+			%{ for (i in 1..(5-length)) { }%  <td></td>  %{ } }%
+		</tr>
+		<tr>
+			<td>小前锋</td>
+			#{set length = Sfs.size()/}
+			#{list items:Sfs,as:'player'}
+			<td><a href="/basedata/player/recent/${player.id}" target="_blank">${player.name}</a></td>
+			#{/list}
+			%{ for (i in 1..(5-length)) { }%  <td></td>  %{ } }%
+		</tr>
+		<tr>
+			<td>控卫</td>
+			#{set length = Pgs.size()/}
+			#{list items:Pgs,as:'player'}
+			<td><a href="/basedata/player/recent/${player.id}" target="_blank">${player.name}</a></td>
+			#{/list}
+			%{ for (i in 1..(5-length)) { }%  <td></td>  %{ } }%
+		</tr>
+
+		<tr>
+			<td>得分后卫</td>
+			#{set length = Sgs.size()/}
+			#{list items:Sgs,as:'player'}
+			<td><a href="/basedata/player/recent/${player.id}" target="_blank">${player.name}</a></td>
+			#{/list}
+			%{ for (i in 1..(5-length)) { }%  <td></td>  %{ } }%
+		</tr>
+	</tbody>
+</table>
+
+</div>

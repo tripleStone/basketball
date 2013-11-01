@@ -4,18 +4,19 @@
 <script type="text/javascript">
 $(function(){
 	$('#season').change(function(){		
-		window.location.href = '/basedata/team/games?teamId=${team.id}&year='+$("#season option:selected").val();
+		window.location.href = '/basedata/team/${team.id}/games?year='+$("#season option:selected").val();
 	});
 });
 </script>
 <div class="query_nar">
-	
+	#{team.tgTeamNav teamId:team.id/}
 </div>
 
 	
 
 <div class="query_nar">
 	<select id="season" name="season">
+		<option value="2014" #{if season == 2014} selected #{/if}>2014</option>
 		<option value="2013" #{if season == 2013} selected #{/if}>2013</option>
 		<option value="2012" #{if season == 2012} selected #{/if}>2012</option>
 	</select>
@@ -25,7 +26,8 @@ $(function(){
 	<table class="bigtable">
 	<thead>
 		<tr>
-			<th>主队</th><th>让分</th><th >客队</th><th>比分</th><th>胜负</th><th>胜分差</th><th>大小分</th><th>耗时</th><th>简报</th><th>日期</th>
+			<th>主队</th><th>让分</th><th >客队</th><th>比分</th><th>胜负</th><th>胜分差</th>
+			<th>大小分</th><th>耗时</th><th>简报</th><th>日期</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -52,7 +54,7 @@ $(function(){
 			</td>
 			<td class="score">
 			#{if gameInfo.home_score == 0}无#{/if}
-			#{else}<a href="/basedata/game/score/${gameInfo.id}">${gameInfo.home_score}-${gameInfo.guest_score}</a>#{/else}
+			#{else}<a href="/basedata/game/score/${gameInfo.id}" target="_blank">${gameInfo.home_score}-${gameInfo.guest_score}</a>#{/else}
 			</td>
 			
 			<td #{if gameInfo.getWinScore(team.team_name) > 0} class="winstate" #{/if}#{else}class="losestate"#{/else} >${gameInfo.getWin(team.team_name)}</td>			
@@ -60,19 +62,16 @@ $(function(){
 				${gameInfo.getWinScore(team.team_name)}
 				#{if mapWinPoint.get(gameInfo.id)!=null }(${mapWinPoint.get(gameInfo.id).lottery})#{/if}
 			</td>
-			<td #{if mapHilo.get(gameInfo.id)!=null} #{if mapHilo.get(gameInfo.id).hit == "greater"} style="color:red" #{/if}#{else}style="color:green"#{/else} #{/if}>
-				${gameInfo.home_score+gameInfo.guest_score}#{if mapHilo.get(gameInfo.id) != null}(${mapHilo.get(gameInfo.id).hilo})(${mapHilo.get(gameInfo.id).lottery}) #{/if}
+			<td #{if mapHilo.get(gameInfo.id)!=null} >
+				<a href="/analysis/base/${gameInfo.id}/hilo" #{if mapHilo.get(gameInfo.id).hit == "greater"} style="color:red" #{/if}#{else}style="color:green"#{/else} #{/if}>${gameInfo.home_score+gameInfo.guest_score}#{if mapHilo.get(gameInfo.id) != null}(${mapHilo.get(gameInfo.id).hilo})(${mapHilo.get(gameInfo.id).lottery}) #{/if}</a>
 			</td>
 			
 			<td class="costime">${gameInfo.cost_time}</td>
 			<td>${gameInfo.reportTitle}</td>
 			<td class="date">
-			#{if gameInfo.getBtoB(team.team_name) == false}
-				${gameInfo.play_date.format("yyyy-MM-dd")}
-			#{/if}
-			#{else}
-				<font color="red">${gameInfo.play_date.format("yyyy-MM-dd")}</font>
-			#{/else}
+				#{if gameInfo.getBtoB(team.team_name) == false}<font color="red">#{/if}
+				<a href="/basedata/schedule?playDate=${gameInfo.play_date.format("yyyy-MM-dd")}" target="_blank">${gameInfo.play_date.format("yyyy-MM-dd")}</a>
+				#{if gameInfo.getBtoB(team.team_name) == false}</font>#{/if}
 			</td>
 		</tr>
 		#{/list}

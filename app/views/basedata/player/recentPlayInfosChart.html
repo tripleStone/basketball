@@ -1,0 +1,25 @@
+#{extends 'report.html'/}
+#{set title:playerInfo.name/}
+
+#{set 'moreScripts'}
+<script src="/public/javascripts/highchart/highcharts.js" type="text/javascript"></script>
+<script src="/public/javascripts/highchart/modules/exporting.js" type="text/javascript"></script>
+#{/set}
+#{chart.tLineLabels xAxis:xAxis,yAxis:yAxis,playerInfo:playerInfo /}
+
+<!-- 导航条 -->
+#{player.tPlayerNavi playerId:playerInfo.id,gameId:gameId/}
+
+<div class="query_nar">
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+</div>
+<div class="query_nar">
+<table class="bigtable">
+	<tr>
+	#{list items:gamePlayerInfos,as:'tplayer'}
+	<td><a href="/basedata/game/score/${tplayer.gameInfo.id}" target="_blank">${tplayer.gameInfo.play_date.format("MMdd")}</a></td>
+	
+	#{/list}
+	</tr>
+</table>
+</div>

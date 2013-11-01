@@ -139,6 +139,11 @@ public class LotteryHandicap  extends GenericModel  {
 				" order by game_date desc ",teamId,teamId,season,gameDate).fetch();
 	}
 	
+	public static List<LotteryHandicap> getLotteries(long teamId,int season ){
+		return find("(away_id = ? or host_id = ? ) and season = ? and del_marker = 0 " +
+				" order by game_date desc ",teamId,teamId,season).fetch();
+	}
+	
 	public static void setHc(long gameId,int handicap,int homeScore,int awayScore,String hit){
 		Query query = JPA.em().createNativeQuery("update LOTTERY_HDC t set t.REAL_HDC = ?,hit = ?,home_score = ?,AWAY_SCORE = ?" +
 				" where game_id = ? ");

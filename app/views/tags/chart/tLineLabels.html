@@ -1,0 +1,42 @@
+*{_xAxis,_yAxis,_playerInfo}*
+<script type="text/javascript">
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: '${_playerInfo.name}'
+            },
+            subtitle: {
+                text: '最近比赛曲线'
+            },
+            xAxis: {
+                categories: [${_xAxis}]
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                enabled: false,
+                formatter: function() {
+                    return '<b>'+ this.series.name +'</b><br/>'+
+                        this.x +': '+ this.y +'°C';
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: ${print(_yAxis)}
+        });
+    });
+    
+		
+</script>

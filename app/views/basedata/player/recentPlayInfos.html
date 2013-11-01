@@ -7,55 +7,29 @@
 
 //-->
 $(function(){
-	$("a[name='rivalPlayer']").bind("click",function(){
-		var id = $(this).attr("data");
-		var span = $(this).attr("span");
-		$.ajax({
-			url:'/analysis/player/ajax/rivals',
-			data:{"id": id},
-			dataType:'html',
-			type:'POST',
-			beforeSend:function(){
-				loading('加载中');
-			},
-			success: function(data) {
-				if($("#rival"+id).length>0){
-					$("#rival"+id).remove();
-				}
-				$("#"+id).after("<tr id=\"rival"+id+"\"><td colspan=\""+span+"\">" + data + "</td></tr>");
-				removeLoad();
-			},
-			error:function() {
-				$("#"+id).after("<font color='red'>加载失败</font>");
-				 removeLoad();
-			}
-			
-		});				
-	});	
+	
 });
 
-function closeRP(id){
-	if($("#rival"+id).length>0){
-		$("#rival"+id).remove();
-	}
-}
+
 
 </script>
 #{/set}
+<!-- 导航条 -->
+#{player.tPlayerNavi playerId:playerInfo.id,gameId:gameId/}
 
 <div class="query_nar  ">
-		主客场:<select id="awayType" >
-		<option value="all" selected>全部</option>
-		<option value="home">主</option>
-		<option value="away" >客</option>
-		</select>
-		场次：<select id="awayGames" >
-		<option value="5">5</option>
-		<option value="10" selected>10</option>
-		<option value="15">15</option>
-		<option value="15">20</option>
-		</select>
-		<a class="query_btn"  id="${playerInfo.id}" href="javascript:void(0)">查询</a>
+	主客场:<select id="awayType" >
+	<option value="all" selected>全部</option>
+	<option value="home">主</option>
+	<option value="away" >客</option>
+	</select>
+	场次：<select id="awayGames" >
+	<option value="5">5</option>
+	<option value="10" selected>10</option>
+	<option value="15">15</option>
+	<option value="15">20</option>
+	</select>
+	<a class="query_btn"  id="${playerInfo.id}" href="javascript:void(0)">查询</a>
 	#{if pss != null}
 	<table class="bigtable">
 	   <thead>

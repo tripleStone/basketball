@@ -106,6 +106,12 @@ public class LotteryWinPoint extends GenericModel {
 	@Column(name="lottery")
 	public double lottery;
 	
+	@Column(name="HOME_ID")
+	public long homeId;
+	
+	@Column(name="away_id")
+	public long awayId;
+	
 	
 	public String getHitLottery(String span,double host,double guest){
 		String result = "";
@@ -144,6 +150,11 @@ public class LotteryWinPoint extends GenericModel {
 	public static List<LotteryWinPoint> getLotteries(String team_name,Date game_date ,int  games){
 		return find("  game_id in  ( select  id  from  GameInfo where  (home_name =? or guest_name = ?)  and  play_date < ?   )  and del_marker = 0   order by game_date desc ",
 				team_name,team_name,game_date).fetch(games);
+	}
+	
+	public static List<LotteryWinPoint> getLotteries(Long teamId,Integer season){
+		return find("  (home_id = ? or away_id = ?) and season = ? and del_marker = 0   order by game_date desc ",
+				teamId,teamId,season).fetch();
 	}
 	
 	public static List<LotteryWinPoint>  getLotteries(String host_team,String guest_team,Date gameDate){

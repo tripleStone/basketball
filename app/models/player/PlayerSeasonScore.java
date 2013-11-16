@@ -96,7 +96,7 @@ public class PlayerSeasonScore  extends GenericModel {
 	public Date Deadline_Date;
 	
 	@Column(name="Stat_type")
-	public Long stat_type;
+	public int stat_type;
 	
 	@Column(name="GAME_TYPE")
 	public int game_type;

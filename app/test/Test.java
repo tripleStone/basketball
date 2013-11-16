@@ -2,6 +2,8 @@ package test;
 
 import java.net.URLDecoder;
 import java.security.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.crypto.*;
  
@@ -26,7 +28,10 @@ public class Test {
 //	            System.out.print(bk[i]);*/
 //	        System.out.println("解密密文为：" + cm.EncipherMsg(msg, key));
 //	 
-		 String msg = "13716321552561000";
-		 System.out.println(msg.substring(1,msg.length()-4));
+//		 String msg = "13716321552561000";
+//		 System.out.println(msg.substring(1,msg.length()-4));
+		 Date date = new Date();
+		 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		 System.out.println(format.format(date));
 	    }
 }

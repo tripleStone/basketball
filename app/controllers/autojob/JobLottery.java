@@ -33,8 +33,8 @@ public class JobLottery  extends Job{
 		
 		
 		try {
-			String url = "http://info.sporttery.com/basketball/wnm_single.php";
-			NBALotteryImport.getWNMLottery(url);
+//			String url = "http://info.sporttery.com/basketball/wnm_single.php";
+//			NBALotteryImport.getWNMLottery(url);
 //			
 //			url = "http://info.sporttery.com/basketball/hdc_list.php";
 //			NBALotteryImport.handiCapLottery(url);
@@ -42,8 +42,8 @@ public class JobLottery  extends Job{
 //			url = "http://info.sporttery.com/basketball/hilo_list.php";
 //			NBALotteryImport.hiloLottery(url);
 			
-			url = "http://info.sporttery.com/basketball/mnl_list.php";
-//			NBALotteryImport.getAllLotteries(url);
+			String url = "http://info.sporttery.com/basketball/mnl_list.php";
+			NBALotteryImport.getAllLotteries(url);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

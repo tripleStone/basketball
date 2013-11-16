@@ -336,9 +336,9 @@ public class NBALotteryImport extends Controller{
 			Date beginDate = DateUtil.parseDate(beginDateStr);
 			Date endDate = DateUtil.parseDate(endDateStr);
 			
-//			LotteryHandicap.del(beginDate, endDate);
-//			LotteryHilo.delHilos(beginDate, endDate);
-//			LotteryWinLoss.del(beginDate, endDate);
+			LotteryHandicap.del(beginDate, endDate);
+			LotteryHilo.delHilos(beginDate, endDate);
+			LotteryWinLoss.del(beginDate, endDate);
 			
 			
 			List<GameInfo> gameInfos = GameInfo.getGameInfos(beginDate,DateUtil.addDate(endDate, 1));
@@ -351,9 +351,9 @@ public class NBALotteryImport extends Controller{
 			Map<String,String> result = NbaLotteryHtmlParser.getMatchResults(doc);
 			
 			for (GameInfo gi :gameInfos){
-				if (gi.has_sync == 1){
-					continue;
-				}
+//				if (gi.has_sync == 1){
+//					continue;
+//				}
 				LotteryWinPoint.del(gi.id);			
 				
 				TeamInfo home = Application.teamMap.get(String.valueOf(gi.home_id));

@@ -647,18 +647,21 @@ public class EspnHtmlParser {
 	
 	public static GamePlayByPlay setPlayByPlay(Element td,GamePlayByPlay play){
 		String text = td.text().trim();
+//		Logger.info("text is %s", text);
 		String[] make = text.split("makes");
-		if (td.html().indexOf("<b>") >= 0){
+		if (td.html().indexOf("<b>") >= 0 ){
 			play.playerName = make[0].trim();
 			
-			if (make[1].indexOf("-foot") > 0){
-				play.shoot_distance =  Integer.valueOf(make[1].split("-foot")[0].trim());
-			}else{
-				play.shoot_distance = 0;
-			}
-			
-			if (make[1].indexOf("assist") > 0 ){
-				play.assisterName = make[1].substring(make[1].indexOf("(") + 1,make[1].indexOf("assist")).trim();
+			if (make.length > 1) {
+				if (make[1].indexOf("-foot") > 0){
+					play.shoot_distance =  Integer.valueOf(make[1].split("-foot")[0].trim());
+				}else{
+					play.shoot_distance = 0;
+				}
+				
+				if (make[1].indexOf("assist") > 0 ){
+					play.assisterName = make[1].substring(make[1].indexOf("(") + 1,make[1].indexOf("assist")).trim();
+				}
 			}
 			
 		}

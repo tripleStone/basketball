@@ -371,7 +371,7 @@ public class EspnImport extends Controller {
 				if (game.has_playbyplay == 1)
 					continue;
 				
-				System.out.println(url.replace("{1}", String.valueOf(game.espnId)));
+				Logger.info( "import playbyplay url is %s",url.replace("{1}", String.valueOf(game.espnId) ) );
 				Document doc = UrlUtil.getURLContent(url.replace("{1}", String.valueOf(game.espnId)));
 				Map<String,Long> teamMap = new HashMap<String, Long>();
 				teamMap.put("home", game.home_id);

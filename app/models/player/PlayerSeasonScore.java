@@ -96,10 +96,10 @@ public class PlayerSeasonScore  extends GenericModel {
 	public Date Deadline_Date;
 	
 	@Column(name="Stat_type")
-	public int stat_type;
+	public Integer stat_type;
 	
 	@Column(name="GAME_TYPE")
-	public int game_type;
+	public Integer game_type;
 	
 	public static PlayerSeasonScore lastOne(){
 		return find(" order by id desc").first();
@@ -109,10 +109,9 @@ public class PlayerSeasonScore  extends GenericModel {
 		return find( " player_id = ? and Deadline_Date <= ? and stat_type = ? order by Deadline_Date desc",playerId,gameDate,statType ).first();
 	}
 	
-	public static List<PlayerSeasonScore> gets(List<Long> playerIds,Date gameDate,int statType){
-		return find(" player_id in :ids and stat_type = :statType and Deadline_Date <= :gameDate  order by player_id")
+	public static List<PlayerSeasonScore> gets(List<Long> playerIds,Date gameDate,Integer statType){
+		return find(" player_id in :ids and stat_type = " + statType+ " and Deadline_Date <= :gameDate  order by player_id")
 				.bind("ids",playerIds)
-				.bind("statType",Long.valueOf(statType))
 				.bind("gameDate", gameDate)
 				.fetch();
 	}

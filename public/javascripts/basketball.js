@@ -73,6 +73,33 @@ $(function(){
 		},'html');
 	});	
 	
+	//seasonBoxScore recentPlayerInfos
+	$("a[name='rivalPlayer']").bind("click",function(){
+		var id = $(this).attr("data");
+		var span = $(this).attr("span");
+		$.ajax({
+			url:'/analysis/player/ajax/rivals',
+			data:{"id": id},
+			dataType:'html',
+			type:'POST',
+			beforeSend:function(){
+				loading('加载中');
+			},
+			success: function(data) {
+				if($("#rival"+id).length>0){
+					$("#rival"+id).remove();
+				}
+				$("#"+id).after("<tr id=\"rival"+id+"\"><td colspan=\""+span+"\">" + data + "</td></tr>");
+				removeLoad();
+			},
+			error:function() {
+				$("#"+id).after("<font color='red'>加载失败</font>");
+				 removeLoad();
+			}
+			
+		});				
+	});	
+	
 });
 
 function showReport(gameId,reportType){
@@ -161,4 +188,11 @@ function teamPlayers(gameId){
 			$("#players").html("<font color='red'>加载失败</font>");
 		}
 	});
+}
+
+//seasonBoxScore recentPlayerInfos
+function closeRP(id){
+	if($("#rival"+id).length>0){
+		$("#rival"+id).remove();
+	}
 }

@@ -336,9 +336,9 @@ public class NBALotteryImport extends Controller{
 			Date beginDate = DateUtil.parseDate(beginDateStr);
 			Date endDate = DateUtil.parseDate(endDateStr);
 			
-			LotteryHandicap.del(beginDate, endDate);
-			LotteryHilo.delHilos(beginDate, endDate);
-			LotteryWinLoss.del(beginDate, endDate);
+//			LotteryHandicap.del(beginDate, endDate);
+//			LotteryHilo.delHilos(beginDate, endDate);
+//			LotteryWinLoss.del(beginDate, endDate);
 			
 			
 			List<GameInfo> gameInfos = GameInfo.getGameInfos(beginDate,DateUtil.addDate(endDate, 1));

@@ -376,39 +376,43 @@ public class EspnImport extends Controller {
 				Map<String,Long> teamMap = new HashMap<String, Long>();
 				teamMap.put("home", game.home_id);
 				teamMap.put("away", game.guest_id);
-				
-				List<GamePlayByPlay> playes = EspnHtmlParser.getPlayByPlay(doc, teamMap);
-				for (GamePlayByPlay play : playes){
-					play.game = game;
-					if (play.playerName != null){
-						if (playerMap.get(play.playerName) != null)
-							play.player = playerMap.get(play.playerName);
-						else
-							play.player = PlayerInfo.findPlayerEng(play.playerName);
+				try {
+					List<GamePlayByPlay> playes = EspnHtmlParser.getPlayByPlay(doc, teamMap);
+					for (GamePlayByPlay play : playes){
+						play.game = game;
+						if (play.playerName != null){
+							if (playerMap.get(play.playerName) != null)
+								play.player = playerMap.get(play.playerName);
+							else
+								play.player = PlayerInfo.findPlayerEng(play.playerName);
+						}
+						if (play.assisterName != null){
+							if (playerMap.get(play.playerName) != null)
+								play.assister = playerMap.get(play.assisterName);
+							else
+								play.assister = PlayerInfo.findPlayerEng(play.assisterName);
+						}
+	//					System.out.println("=================");
+	//					System.out.println(play.team_id);
+	//					System.out.println(play.get_point);
+	//					System.out.println(play.time);
+	//					System.out.println(play.quarter);
+	//					System.out.println(play.score);
+	//					System.out.println(play.shoot_distance);
+	//					System.out.println(play.team_point);
+	//					System.out.println(play.second);
+	//					System.out.println(play.score);
+	//					System.out.println(play.assisterName);
+	//					System.out.println(play.content);
+						if (play.get_point > 0 && Math.abs(play.get_point) < 10)
+							play.save();
 					}
-					if (play.assisterName != null){
-						if (playerMap.get(play.playerName) != null)
-							play.assister = playerMap.get(play.assisterName);
-						else
-							play.assister = PlayerInfo.findPlayerEng(play.assisterName);
-					}
-//					System.out.println("=================");
-//					System.out.println(play.team_id);
-//					System.out.println(play.get_point);
-//					System.out.println(play.time);
-//					System.out.println(play.quarter);
-//					System.out.println(play.score);
-//					System.out.println(play.shoot_distance);
-//					System.out.println(play.team_point);
-//					System.out.println(play.second);
-//					System.out.println(play.score);
-//					System.out.println(play.assisterName);
-//					System.out.println(play.content);
-					play.save();
+					game.has_playbyplay = 1;
+					game.save();
+				}catch(Exception ex){
+					Logger.info( "importatnt error playbyplay url is %s",url.replace("{1}", String.valueOf(game.espnId) ) );
 				}
 				
-				game.has_playbyplay = 1;
-				game.save();
 				
 			}
 		} catch (ParseException e) {

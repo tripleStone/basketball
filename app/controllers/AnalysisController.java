@@ -267,7 +267,7 @@ public class AnalysisController  extends Controller{
 			ids.add(player.id);
 		}
 		
-		List<PlayerSeasonScore> psses =  PlayerSeasonScore.gets(ids,gameInfo.play_date,2);
+		List<PlayerSeasonScore> psses =  PlayerSeasonScore.gets(ids,gameInfo.play_date,Integer.valueOf(2));
 		for (PlayerSeasonScore pss:psses){
 			pssMap.put(pss.player_id, pss);
 		}

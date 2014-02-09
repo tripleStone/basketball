@@ -647,7 +647,6 @@ public class EspnHtmlParser {
 	
 	public static GamePlayByPlay setPlayByPlay(Element td,GamePlayByPlay play){
 		String text = td.text().trim();
-//		Logger.info("text is %s", text);
 		String[] make = text.split("makes");
 		if (td.html().indexOf("<b>") >= 0 ){
 			play.playerName = make[0].trim();

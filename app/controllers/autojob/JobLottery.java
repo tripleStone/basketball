@@ -42,8 +42,8 @@ public class JobLottery  extends Job{
 //			url = "http://info.sporttery.com/basketball/hilo_list.php";
 //			NBALotteryImport.hiloLottery(url);
 			
-			String url = "http://info.sporttery.com/basketball/mnl_list.php";
-			NBALotteryImport.getAllLotteries(url);
+//			url = "http://info.sporttery.com/basketball/mnl_list.php";
+//			NBALotteryImport.getAllLotteries(url);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
